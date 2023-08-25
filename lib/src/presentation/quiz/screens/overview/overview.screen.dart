@@ -1,0 +1,65 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/overview/overview.controller.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/overview/widgets/overview_rotation_header.dart';
+import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
+import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
+import 'package:go_router/go_router.dart';
+
+class OverviewScreen extends ConsumerWidget {
+  const OverviewScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDesktop = MediaQuery.of(context).size.width > 600;
+
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Scaffold(
+        body: ref.watch(overviewControllerProvider).when(
+              data: (quizzes) {
+                if (quizzes.isEmpty) {
+                  return const Text('No quizzes');
+                }
+                return SingleChildScrollView(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 50),
+                        const OverviewRotationHeader(text: 'Flutter', angle: -0.1),
+                        const OverviewRotationHeader(text: 'Quizzes', angle: 0.1),
+                        const SizedBox(height: 100),
+                        SizedBox(
+                          width: isDesktop ? 300 : 200,
+                          child: ListView.separated(
+                            itemCount: quizzes.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            separatorBuilder: (context, index) => const SizedBox(height: 20),
+                            itemBuilder: (context, index) {
+                              final quiz = quizzes[index];
+                              return SizedBox(
+                                height: isDesktop ? 50 : 40,
+                                child: OutlinedButton(
+                                  child: Text(quiz.title),
+                                  onPressed: () {
+                                    context.push('/quiz/${quiz.id}');
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              loading: () => const Loading(),
+              error: (error, _) => AppError(error: error),
+            ),
+      ),
+    );
+  }
+}
