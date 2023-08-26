@@ -33,7 +33,7 @@ class QuizScreen extends ConsumerWidget {
                   ElevatedButton(
                     child: Text('Start Quiz', style: theme.textTheme.labelMedium),
                     onPressed: () {
-                      context.push('/quiz/$quizId/${question[0].id}');
+                      context.go('/quiz/$quizId/${question[0].id}');
                     },
                   ),
                 ],

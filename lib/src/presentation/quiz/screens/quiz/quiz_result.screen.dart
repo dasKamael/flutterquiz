@@ -11,10 +11,14 @@ class QuizResultScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text('You finished the quiz!'),
           const Text('Your score is: 10'),
           Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                 child: const Text('Leaderboard'),

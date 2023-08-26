@@ -16,10 +16,10 @@ class QuestionResultDialog extends ConsumerWidget {
     final List<Question> questions = ref.read(quizControllerProvider(quizId: question.quizId)).value!.questions!;
     final int questionIndex = questions.indexOf(question);
     if (questionIndex + 1 < questions.length) {
-      context.push('/quiz/${question.quizId}/${questions[questionIndex + 1].id}');
+      context.go('/quiz/${question.quizId}/${questions[questionIndex + 1].id}');
       context.pop();
     } else {
-      context.push('/quiz/${question.quizId}/result');
+      context.go('/quiz/${question.quizId}/result');
       context.pop();
     }
   }

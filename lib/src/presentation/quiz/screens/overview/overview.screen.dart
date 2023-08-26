@@ -40,7 +40,7 @@ class OverviewScreen extends ConsumerWidget {
                             final quiz = quizzes[index];
                             return SizedBox(
                               child: InkWell(
-                                onTap: () => context.push('/quiz/${quiz.id}'),
+                                onTap: () => context.go('/quiz/${quiz.id}'),
                                 child: Card(
                                   child: Center(
                                     child: Padding(

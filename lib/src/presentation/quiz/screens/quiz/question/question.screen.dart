@@ -23,6 +23,7 @@ class QuestionScreen extends ConsumerWidget {
             final int questionCount = ref.read(quizControllerProvider(quizId: quizId)).value!.questions!.length;
             final int questionPosition =
                 ref.read(quizControllerProvider(quizId: quizId)).value!.questions!.indexOf(question) + 1;
+
             return Center(
               child: SizedBox(
                 width: 1000,
@@ -78,7 +79,7 @@ class QuestionScreen extends ConsumerWidget {
           },
           loading: () => const Loading(),
           error: (error, stackTrace) {
-            return AppError(error: error);
+            return AppError(error: stackTrace);
           },
         );
   }
