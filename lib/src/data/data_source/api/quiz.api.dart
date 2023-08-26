@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutterquiz/src/common/supabase/supabase.provider.dart';
 import 'package:flutterquiz/src/domain/models/quiz.dart';
+import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide Provider;
 
@@ -12,13 +11,15 @@ class QuizApi {
 
   final SupabaseClient supabaseClient;
 
+  final Logger _logger = Logger('QuizApi');
+
   // Quizzes #################################################################
   Future<List> getQuizzes() async {
     try {
       List list = await supabaseClient.from('quizzes').select();
       return list;
     } catch (e) {
-      log(e.toString());
+      _logger.info('GetQuizzes error: $e');
       return [];
     }
   }
@@ -27,7 +28,7 @@ class QuizApi {
     try {
       return await supabaseClient.from('quizzes').select().eq('id', quizId).single();
     } catch (e) {
-      log(e.toString());
+      _logger.info('GetQuizById error: $e');
     }
     return {};
   }
@@ -44,7 +45,7 @@ class QuizApi {
       List list = await supabaseClient.from('questions').select().eq('quiz_id', quizId);
       return list;
     } catch (e) {
-      log(e.toString());
+      _logger.info('GetQuestionsByQuizId error: $e');
       return [];
     }
   }
@@ -53,7 +54,7 @@ class QuizApi {
     try {
       return await supabaseClient.from('questions').select().eq('id', questionId).single();
     } catch (e) {
-      log(e.toString());
+      _logger.info('GetQuestionById error: $e');
       return {};
     }
   }
@@ -64,7 +65,7 @@ class QuizApi {
       List list = await supabaseClient.from('answers').select().eq('question_id', questionId);
       return list;
     } catch (e) {
-      log(e.toString());
+      _logger.info('GetAnswersByQuestionId error: $e');
       return [];
     }
   }

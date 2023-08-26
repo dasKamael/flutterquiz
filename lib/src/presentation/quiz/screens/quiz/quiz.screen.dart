@@ -26,12 +26,12 @@ class QuizScreen extends ConsumerWidget {
                 children: [
                   Text(
                     quiz.title,
-                    style: theme.textTheme.headlineLarge,
+                    style: theme.textTheme.displayLarge,
                   ),
                   const SizedBox(height: 40),
                   // TODO DESCRIPTION
                   ElevatedButton(
-                    child: const Text('Start Quiz'),
+                    child: Text('Start Quiz', style: theme.textTheme.labelMedium),
                     onPressed: () {
                       context.push('/quiz/$quizId/${question[0].id}');
                     },

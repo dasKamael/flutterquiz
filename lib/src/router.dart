@@ -50,9 +50,9 @@ Raw<GoRouter> router(RouterRef ref) {
             pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const OverviewScreen()),
           ),
           GoRoute(
-            path: '/quiz/:quiz_id',
+            path: '/quiz/:quizId',
             pageBuilder: (context, state) {
-              final quizId = state.pathParameters['quiz_id'] ?? '';
+              final quizId = state.pathParameters['quizId'] ?? '';
               return NoTransitionPage(
                 key: state.pageKey,
                 child: QuizScreen(quizId: quizId),
@@ -62,7 +62,7 @@ Raw<GoRouter> router(RouterRef ref) {
               GoRoute(
                 path: ':questionId',
                 pageBuilder: (context, state) {
-                  final quizId = state.pathParameters['quiz_id'] ?? '';
+                  final quizId = state.pathParameters['quizId'] ?? '';
                   final questionId = state.pathParameters['questionId'] ?? '';
                   return NoTransitionPage(
                     key: state.pageKey,
@@ -73,7 +73,7 @@ Raw<GoRouter> router(RouterRef ref) {
               GoRoute(
                 path: 'result',
                 pageBuilder: (context, state) {
-                  final quizId = state.pathParameters['quiz_id'] ?? '';
+                  final quizId = state.pathParameters['quizId'] ?? '';
                   return NoTransitionPage(
                     key: state.pageKey,
                     child: QuizResultScreen(quizId: quizId),

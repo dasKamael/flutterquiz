@@ -33,13 +33,25 @@ class QuestionScreen extends ConsumerWidget {
                       Container(
                         height: 20,
                         width: double.infinity,
-                        color: kSecondaryColor,
+                        decoration: const BoxDecoration(
+                          color: kSecondaryColor,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Container(
                             height: 20,
                             width: (1000 / questionCount) * questionPosition,
-                            color: kPrimaryColor,
+                            decoration: const BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -54,7 +66,10 @@ class QuestionScreen extends ConsumerWidget {
                         style: theme.textTheme.headlineLarge,
                       ),
                       if (question.answers!.isEmpty) const Text('No answers found'),
-                      QuestionUtil.getQuestionType(question.type, question),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        child: QuestionUtil.getQuestionType(question.type, question),
+                      ),
                     ],
                   ),
                 ),

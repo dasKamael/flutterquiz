@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/utils/url_launcher.util.dart';
 import 'package:flutterquiz/src/domain/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz.controller.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz_score.controller.dart';
 import 'package:go_router/go_router.dart';
 
 class QuestionResultDialog extends ConsumerWidget {
@@ -15,16 +16,17 @@ class QuestionResultDialog extends ConsumerWidget {
     final List<Question> questions = ref.read(quizControllerProvider(quizId: question.quizId)).value!.questions!;
     final int questionIndex = questions.indexOf(question);
     if (questionIndex + 1 < questions.length) {
-      context.pop();
       context.push('/quiz/${question.quizId}/${questions[questionIndex + 1].id}');
+      context.pop();
     } else {
-      // TODO Navigate to result screen
+      context.push('/quiz/${question.quizId}/result');
+      context.pop();
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final int quizscore = ref.read(quizControllerProvider(quizId: question.quizId).notifier).score;
+    final int quizscore = ref.read(quizScoreControllerProvider);
     return Center(
       child: Card(
         child: Padding(
@@ -42,12 +44,15 @@ class QuestionResultDialog extends ConsumerWidget {
                 children: [
                   ElevatedButton(
                     child: const Text('Next Question'),
-                    onPressed: () => navigateToNextQuestion(context, ref),
+                    onPressed: () {
+                      navigateToNextQuestion(context, ref);
+                    },
                   ),
                   const SizedBox(width: 20),
                   ElevatedButton(
-                      child: const Text('Explanation'),
-                      onPressed: () => UrlLauncherUtil.openUrl(question.explanationLink, context)),
+                    child: const Text('Explanation'),
+                    onPressed: () => UrlLauncherUtil.openUrl(question.explanationLink, context),
+                  ),
                 ],
               )
             ],
