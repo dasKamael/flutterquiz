@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterquiz/src/common/router/router_notifier.dart';
+import 'package:flutterquiz/src/common/theme/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/overview/overview.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz.screen.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz_result.screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -26,7 +28,18 @@ Raw<GoRouter> router(RouterRef ref) {
           return Scaffold(
             body: Column(
               children: [
-                Expanded(child: child),
+                Expanded(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [kSecondaryColor, kPrimaryColor],
+                      ),
+                    ),
+                    child: child,
+                  ),
+                ),
               ],
             ),
           );
@@ -56,7 +69,16 @@ Raw<GoRouter> router(RouterRef ref) {
                     child: QuestionScreen(quizId: quizId, questionId: questionId),
                   );
                 },
-                routes: const [],
+              ),
+              GoRoute(
+                path: 'result',
+                pageBuilder: (context, state) {
+                  final quizId = state.pathParameters['quiz_id'] ?? '';
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: QuizResultScreen(quizId: quizId),
+                  );
+                },
               ),
             ],
           ),

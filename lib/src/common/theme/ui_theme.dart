@@ -17,18 +17,18 @@ UiTheme uiTheme(UiThemeRef ref) {
 
 /// UI Constants
 const kFontFamily = 'Axia';
-const kPrimaryColor = Color(0xff132E5C);
-const kSecondaryColor = Color(0xff5EBB9C);
+const kPrimaryColor = Color(0xff042B59);
+const kSecondaryColor = Color(0xff3497FD);
 const kLightBackground = Color(0xffF9F8F7);
-const kLightCardColor = Color(0xffffffff);
+const kLightCardColor = Color(0xffFAFAFE);
 const kCardDeleteColor = Color(0xffFF2553);
 const kLightTextColor = Color(0xffF9F8F7);
 const kDarkPrimaryColor = Color(0xff97959f);
 const kDarkBackground = Color(0xff3E3E3E);
-const kDarkCardColor = Color(0xff1E1E20);
+const kDarkCardColor = Color(0xffFAFAFE);
 const kDarkTextColor = Color(0xffC2C2C2);
-const kCardBorderRadius = 14.0;
-const kButtonBorderRadius = 25.0;
+const kCardBorderRadius = 10.0;
+const kButtonBorderRadius = 10.0;
 
 const kScaleColorRed = Color(0xFFFF2553);
 const kScaleColorOrange = Color(0xFFFF6C18);
@@ -317,7 +317,7 @@ class UiTheme {
           fontFamily: 'AxiaLight',
           fontSize: 15,
           letterSpacing: 1.25,
-          color: kDarkTextColor,
+          color: kPrimaryColor,
           fontWeight: FontWeight.w400,
           fontFeatures: [const FontFeature.liningFigures()],
         ),
@@ -450,6 +450,14 @@ class UiTheme {
               return kSecondaryColor;
             },
           ),
+        ),
+      ),
+      cardTheme: CardTheme(
+        elevation: 0,
+        shadowColor: Colors.transparent,
+        color: kDarkCardColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kCardBorderRadius),
         ),
       ),
       inputDecorationTheme: baseDarkTheme.inputDecorationTheme.copyWith(

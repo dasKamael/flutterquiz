@@ -14,39 +14,36 @@ class QuizScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
-    return Container(
-      color: theme.scaffoldBackgroundColor,
-      child: ref.watch(quizControllerProvider(quizId: quizId)).when(
-            data: (quiz) {
-              final question = quiz.questions;
-              if (question!.isEmpty) {
-                return const Text('Question not found');
-              }
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      quiz.title,
-                      style: theme.textTheme.headlineLarge,
-                    ),
-                    const SizedBox(height: 40),
-                    // TODO DESCRIPTION
-                    OutlinedButton(
-                      child: const Text('Start Quiz'),
-                      onPressed: () {
-                        context.push('/quiz/$quizId/${question[0].id}');
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-            loading: () => const Loading(),
-            error: (error, stackTrace) {
-              return AppError(error: stackTrace);
-            },
-          ),
-    );
+    return ref.watch(quizControllerProvider(quizId: quizId)).when(
+          data: (quiz) {
+            final question = quiz.questions;
+            if (question!.isEmpty) {
+              return const Text('Question not found');
+            }
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    quiz.title,
+                    style: theme.textTheme.headlineLarge,
+                  ),
+                  const SizedBox(height: 40),
+                  // TODO DESCRIPTION
+                  ElevatedButton(
+                    child: const Text('Start Quiz'),
+                    onPressed: () {
+                      context.push('/quiz/$quizId/${question[0].id}');
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+          loading: () => const Loading(),
+          error: (error, stackTrace) {
+            return AppError(error: stackTrace);
+          },
+        );
   }
 }

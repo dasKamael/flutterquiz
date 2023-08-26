@@ -19,6 +19,8 @@ dependencies:
   go_router: ^10.1.0
   auto_size_text: ^3.0.0
   supabase_flutter: ^1.10.14
+  url_launcher: ^6.1.12
+  logging: ^1.2.0
 
 dev_dependencies:
   flutter_test:
