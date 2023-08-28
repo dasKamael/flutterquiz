@@ -22,6 +22,7 @@ const kSecondaryColor = Color(0xff3497FD);
 const kBackgroundColor = Color(0xffFAFAFE);
 const kCardColor = Color(0xffFAFAFE);
 const kTextColor = Color(0xff042B59);
+const kLightTextColor = Color(0xffFAFAFE);
 const kCardBorderRadius = 10.0;
 const kButtonBorderRadius = 10.0;
 
@@ -108,13 +109,13 @@ class UiTheme {
         bodySmall: baseDarkTheme.textTheme.bodySmall?.copyWith(
           fontFamily: 'Axia',
           height: 1.25,
-          fontSize: 18,
+          fontSize: 16,
           color: kTextColor,
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         bodyMedium: baseDarkTheme.textTheme.bodyMedium?.copyWith(
           fontFamily: 'Axia',
-          fontSize: 22,
+          fontSize: 18,
           letterSpacing: 1.83,
           color: kTextColor,
           fontWeight: FontWeight.w400,
@@ -123,7 +124,7 @@ class UiTheme {
         ),
         bodyLarge: baseDarkTheme.textTheme.bodyLarge?.copyWith(
           fontFamily: 'Axia',
-          fontSize: 25,
+          fontSize: 22,
           letterSpacing: 2.08,
           color: kTextColor,
           height: 1.5,
@@ -195,7 +196,7 @@ class UiTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           enableFeedback: true,
-          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 13, horizontal: 24)),
+          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 8, horizontal: 16)),
           elevation: MaterialStateProperty.all(2),
           shape: MaterialStateProperty.all(
             const RoundedRectangleBorder(
@@ -208,11 +209,11 @@ class UiTheme {
           foregroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
               if (states.contains(MaterialState.disabled)) return Colors.white38;
-              return kBackgroundColor;
+              return kPrimaryColor;
             },
           ),
           textStyle: MaterialStateProperty.all(darkBodyMedium),
-          shadowColor: MaterialStateProperty.all(Colors.transparent),
+          shadowColor: MaterialStateProperty.all(Colors.black),
         ),
       ),
       // textButtonTheme: TextButtonThemeData(
@@ -263,7 +264,7 @@ class UiTheme {
   TextStyle? getDarkHeadlineLarge(ThemeData baseDarkTheme) {
     return baseDarkTheme.textTheme.headlineLarge?.copyWith(
       fontFamily: 'AxiaBlack',
-      fontSize: 25,
+      fontSize: 32,
       letterSpacing: 2.08,
       color: kPrimaryColor,
       fontWeight: FontWeight.w800,

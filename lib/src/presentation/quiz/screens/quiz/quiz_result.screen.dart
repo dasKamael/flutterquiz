@@ -9,30 +9,31 @@ class QuizResultScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text('You finished the quiz!'),
-          const Text('Your score is: 10'),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                child: const Text('Leaderboard'),
-                onPressed: () => context.go('/quiz/$quizId/leaderboard'),
-              ),
-              const SizedBox(width: 20),
-              ElevatedButton(
-                child: const Text('Back to home'),
-                onPressed: () => context.go('/'),
-              ),
-            ],
-          )
-        ],
-      ),
+    final theme = Theme.of(context);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text('You finished the quiz!', style: theme.textTheme.headlineLarge),
+        const SizedBox(height: 16),
+        Text('Your score is: 10', style: theme.textTheme.headlineMedium),
+        const SizedBox(height: 40),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              child: const Text('Leaderboard'),
+              onPressed: () => context.go('/quiz/$quizId/leaderboard'),
+            ),
+            const SizedBox(width: 20),
+            ElevatedButton(
+              child: const Text('Back to home'),
+              onPressed: () => context.go('/'),
+            ),
+          ],
+        )
+      ],
     );
   }
 }

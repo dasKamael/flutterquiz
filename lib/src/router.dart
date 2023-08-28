@@ -69,6 +69,7 @@ Raw<GoRouter> router(RouterRef ref) {
                   );
                 },
               ),
+              // TODO Build Shell Route around to smooth out the progressbar while navigating
               GoRoute(
                 path: ':questionId',
                 pageBuilder: (context, state) {

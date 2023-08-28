@@ -25,7 +25,7 @@ class SingleAnswerQuestion extends ConsumerWidget {
                 builder: (context) {
                   return QuestionResultDialog(
                     question: question,
-                    answer: question.answers![index],
+                    answers: [question.answers![index]],
                   );
                 },
               );

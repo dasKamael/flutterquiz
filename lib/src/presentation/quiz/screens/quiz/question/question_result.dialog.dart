@@ -7,10 +7,10 @@ import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz_score.contro
 import 'package:go_router/go_router.dart';
 
 class QuestionResultDialog extends ConsumerWidget {
-  const QuestionResultDialog({super.key, required this.question, required this.answer});
+  const QuestionResultDialog({super.key, required this.question, required this.answers});
 
   final Question question;
-  final Answer answer;
+  final List<Answer> answers;
 
   void navigateToNextQuestion(BuildContext context, WidgetRef ref) {
     final List<Question> questions = ref.read(quizControllerProvider(quizId: question.quizId)).value!.questions!;
@@ -34,10 +34,15 @@ class QuestionResultDialog extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              if (answers.every((answer) => answer.isCorrect))
+                Text('Correct!', style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.green)),
+              if (answers.any((answer) => !answer.isCorrect))
+                Text('Incorrect!', style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.red)),
+              const SizedBox(height: 16),
               Text(question.question, style: Theme.of(context).textTheme.headlineMedium),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
               Text(question.explanation, style: Theme.of(context).textTheme.bodyMedium),
-              Text(quizscore.toString()),
+              const SizedBox(height: 24),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
