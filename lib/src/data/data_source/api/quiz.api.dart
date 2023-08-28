@@ -72,7 +72,7 @@ class QuizApi {
 }
 
 /// Providers
-@Riverpod(keepAlive: true)
+@riverpod
 QuizApi quizApi(QuizApiRef ref) {
   final supabaseClient = ref.watch(supabaseClientProvider);
   return QuizApi(supabaseClient: supabaseClient);

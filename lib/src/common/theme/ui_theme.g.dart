@@ -17,8 +17,7 @@ String _$uiThemeHash() => r'226cfd1dbfde58679b73b428c90d31a83a6f0f30';
 final uiThemeProvider = Provider<UiTheme>.internal(
   uiTheme,
   name: r'uiThemeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$uiThemeHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$uiThemeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
