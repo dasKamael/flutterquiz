@@ -72,16 +72,14 @@ class QuizControllerFamily extends Family<AsyncValue<Quiz>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'quizControllerProvider';
 }
 
 /// See also [QuizController].
-class QuizControllerProvider
-    extends AsyncNotifierProviderImpl<QuizController, Quiz> {
+class QuizControllerProvider extends AsyncNotifierProviderImpl<QuizController, Quiz> {
   /// See also [QuizController].
   QuizControllerProvider({
     required this.quizId,
@@ -89,13 +87,9 @@ class QuizControllerProvider
           () => QuizController()..quizId = quizId,
           from: quizControllerProvider,
           name: r'quizControllerProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$quizControllerHash,
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$quizControllerHash,
           dependencies: QuizControllerFamily._dependencies,
-          allTransitiveDependencies:
-              QuizControllerFamily._allTransitiveDependencies,
+          allTransitiveDependencies: QuizControllerFamily._allTransitiveDependencies,
         );
 
   final String quizId;

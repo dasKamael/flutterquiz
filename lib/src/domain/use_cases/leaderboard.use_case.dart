@@ -18,7 +18,6 @@ class LeaderBoardUseCase extends _$LeaderBoardUseCase {
     required String username,
     required int score,
   }) async {
-    // TODO implement
     await ref.read(leaderBoardRepositoryProvider).createLeaderboardEntry(
           quizId: quizId,
           userId: userId,

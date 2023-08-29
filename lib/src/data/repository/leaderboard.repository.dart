@@ -18,7 +18,6 @@ class LeaderBoardRepository {
     required String username,
     required int score,
   }) async {
-    // TODO implement
     await leaderboardApi.createLeaderboardEntry(
       quizId: quizId,
       userId: userId,
