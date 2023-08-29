@@ -48,7 +48,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
                       ElevatedButton(
                         child: const Text('Add'),
                         onPressed: () async {
-                          ref
+                          await ref
                               .read(LeaderboardControllerProvider(quizId: widget.quizId).notifier)
                               .createLeaderboardEntry(
                                 username: _usernameController.text,
@@ -65,7 +65,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        child: const Text('Back to Start'),
+                        child: const Text('Back to Home'),
                         onPressed: () => context.go('/'),
                       ),
                     ],

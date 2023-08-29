@@ -8,4 +8,12 @@ class QuizScoreController extends _$QuizScoreController {
   int build() {
     return 0;
   }
+
+  void incrementBy({required int value}) {
+    state += value;
+  }
+
+  void reset() {
+    state = 0;
+  }
 }

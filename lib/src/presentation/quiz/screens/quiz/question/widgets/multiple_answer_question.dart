@@ -74,19 +74,21 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
             backgroundColor: MaterialStateProperty.all<Color>(kSecondaryColor),
             foregroundColor: MaterialStateProperty.all<Color>(kLightTextColor),
           ),
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return QuestionResultDialog(
-                  question: widget.question,
-                  answers: widget.question.answers!
-                      .where((element) => _selected[widget.question.answers!.indexOf(element)])
-                      .toList(),
-                );
-              },
-            );
-          },
+          onPressed: _selected.any((element) => element == true)
+              ? () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return QuestionResultDialog(
+                        question: widget.question,
+                        answers: widget.question.answers!
+                            .where((element) => _selected[widget.question.answers!.indexOf(element)])
+                            .toList(),
+                      );
+                    },
+                  );
+                }
+              : null,
           child: const Text('Submit'),
         )
       ],

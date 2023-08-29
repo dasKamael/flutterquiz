@@ -27,6 +27,13 @@ class QuestionResultDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final int quizscore = ref.read(quizScoreControllerProvider);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (answers.every((answer) => answer.isCorrect)) {
+        ref.read(quizScoreControllerProvider.notifier).incrementBy(value: 1);
+      }
+    });
+
     return Center(
       child: Card(
         child: Padding(

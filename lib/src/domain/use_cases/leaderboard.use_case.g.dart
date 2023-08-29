@@ -7,7 +7,7 @@ part of 'leaderboard.use_case.dart';
 // **************************************************************************
 
 String _$leaderBoardUseCaseHash() =>
-    r'd748e1679029b12b24a3ad2636b6bdd9bf56d95f';
+    r'50c02278b33ab74876dd0379fbe641ec9f883b00';
 
 /// Copied from Dart SDK
 class _SystemHash {
