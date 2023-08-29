@@ -12,8 +12,12 @@ class LeaderBoardUseCase extends _$LeaderBoardUseCase {
     return entries;
   }
 
-  Future createLeaderboardEntry(
-      {required String quizId, required String userId, required String username, required int score}) async {
+  Future createLeaderboardEntry({
+    required String quizId,
+    String? userId,
+    required String username,
+    required int score,
+  }) async {
     // TODO implement
     await ref.read(leaderBoardRepositoryProvider).createLeaderboardEntry(
           quizId: quizId,

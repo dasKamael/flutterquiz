@@ -23,7 +23,7 @@ class LeaderBoardApi {
 
   Future<void> createLeaderboardEntry({
     required String quizId,
-    required String userId,
+    String? userId,
     required String username,
     required int score,
   }) async {
