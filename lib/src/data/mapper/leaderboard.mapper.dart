@@ -6,7 +6,7 @@ class LeaderboardMapper extends Mapper<LeaderboardEntry, Map> {
   LeaderboardEntry toModel(Map dto) {
     return LeaderboardEntry(
       id: dto['id'],
-      userId: dto['user_id'],
+      userId: dto['user_id'] ?? '',
       quizId: dto['quiz_id'],
       username: dto['username'],
       score: dto['score'],
