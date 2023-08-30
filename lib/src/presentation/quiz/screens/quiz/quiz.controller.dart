@@ -1,5 +1,5 @@
 import 'package:flutterquiz/src/domain/models/quiz.dart';
-import 'package:flutterquiz/src/domain/use_cases/quiz.use_case.dart';
+import 'package:flutterquiz/src/domain/services/quiz.services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'quiz.controller.g.dart';
@@ -16,6 +16,6 @@ class QuizController extends _$QuizController {
 
   Future<Quiz> fetchCompleteQuiz() async {
     state = const AsyncValue.loading();
-    return await ref.read(quizUseCaseProvider.notifier).getCompleteQuizById(quizId: quizId);
+    return await ref.read(quizServiceProvider.notifier).getCompleteQuizById(quizId: quizId);
   }
 }

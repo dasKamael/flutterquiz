@@ -15,8 +15,7 @@ String _$quizApiHash() => r'713cba1177b44944111c89255db415968b4202c3';
 final quizApiProvider = AutoDisposeProvider<QuizApi>.internal(
   quizApi,
   name: r'quizApiProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$quizApiHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$quizApiHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

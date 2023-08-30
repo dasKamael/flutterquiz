@@ -1,6 +1,6 @@
 import 'package:flutterquiz/src/domain/models/leaderboard_entry.dart';
 import 'package:flutterquiz/src/domain/models/quiz.dart';
-import 'package:flutterquiz/src/domain/use_cases/leaderboard.use_case.dart';
+import 'package:flutterquiz/src/domain/services/leaderboard.service.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.state.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz.controller.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz_score.controller.dart';
@@ -34,7 +34,7 @@ class LeaderboardController extends _$LeaderboardController {
   }
 
   Future<List<LeaderboardEntry>> getLeaderboardEntriesByQuizId({required String quizId}) async {
-    return ref.watch(leaderBoardUseCaseProvider(quizId: quizId)).value ?? [];
+    return ref.watch(leaderBoardServiceProvider(quizId: quizId)).value ?? [];
   }
 
   Future<void> createLeaderboardEntry({required String username}) async {
@@ -43,7 +43,7 @@ class LeaderboardController extends _$LeaderboardController {
     // TODO Check if user is logged in and get userid
     //final userId = ref.read(quizControllerProvider(quizId: quizId)).value!.userId;
 
-    await ref.read(leaderBoardUseCaseProvider(quizId: quizId).notifier).createLeaderboardEntry(
+    await ref.read(leaderBoardServiceProvider(quizId: quizId).notifier).createLeaderboardEntry(
           quizId: quizId,
           // userId: userId,
           username: username,

@@ -6,8 +6,7 @@ part of 'leaderboard.controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$leaderboardControllerHash() =>
-    r'897cbe95816c6ae7654e1062389b2d3e27c9a8d6';
+String _$leaderboardControllerHash() => r'7d5f99dcf64181c96c2bfb52b19d7c8c8b73a595';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,8 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$LeaderboardController
-    extends BuildlessAutoDisposeAsyncNotifier<LeaderboardState> {
+abstract class _$LeaderboardController extends BuildlessAutoDisposeAsyncNotifier<LeaderboardState> {
   late final String quizId;
 
   FutureOr<LeaderboardState> build({
@@ -74,8 +72,7 @@ class LeaderboardControllerFamily extends Family<AsyncValue<LeaderboardState>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'leaderboardControllerProvider';
@@ -83,8 +80,7 @@ class LeaderboardControllerFamily extends Family<AsyncValue<LeaderboardState>> {
 
 /// See also [LeaderboardController].
 class LeaderboardControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<LeaderboardController,
-        LeaderboardState> {
+    extends AutoDisposeAsyncNotifierProviderImpl<LeaderboardController, LeaderboardState> {
   /// See also [LeaderboardController].
   LeaderboardControllerProvider({
     required this.quizId,
@@ -92,13 +88,9 @@ class LeaderboardControllerProvider
           () => LeaderboardController()..quizId = quizId,
           from: leaderboardControllerProvider,
           name: r'leaderboardControllerProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$leaderboardControllerHash,
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$leaderboardControllerHash,
           dependencies: LeaderboardControllerFamily._dependencies,
-          allTransitiveDependencies:
-              LeaderboardControllerFamily._allTransitiveDependencies,
+          allTransitiveDependencies: LeaderboardControllerFamily._allTransitiveDependencies,
         );
 
   final String quizId;

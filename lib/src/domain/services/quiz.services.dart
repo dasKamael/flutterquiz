@@ -2,10 +2,10 @@ import 'package:flutterquiz/src/data/repository/quiz.repository.dart';
 import 'package:flutterquiz/src/domain/models/quiz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'quiz.use_case.g.dart';
+part 'quiz.services.g.dart';
 
 @riverpod
-class QuizUseCase extends _$QuizUseCase {
+class QuizService extends _$QuizService {
   @override
   build() {}
 

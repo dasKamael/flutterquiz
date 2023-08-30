@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'leaderboard.use_case.dart';
+part of 'leaderboard.service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$leaderBoardUseCaseHash() =>
-    r'50c02278b33ab74876dd0379fbe641ec9f883b00';
+String _$leaderBoardServiceHash() => r'db62bd066cbb504634b55c16dbeb95cd955a9de1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,8 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$LeaderBoardUseCase
-    extends BuildlessAutoDisposeAsyncNotifier<List<LeaderboardEntry>> {
+abstract class _$LeaderBoardService extends BuildlessAutoDisposeAsyncNotifier<List<LeaderboardEntry>> {
   late final String quizId;
 
   FutureOr<List<LeaderboardEntry>> build({
@@ -39,28 +37,27 @@ abstract class _$LeaderBoardUseCase
   });
 }
 
-/// See also [LeaderBoardUseCase].
-@ProviderFor(LeaderBoardUseCase)
-const leaderBoardUseCaseProvider = LeaderBoardUseCaseFamily();
+/// See also [LeaderBoardService].
+@ProviderFor(LeaderBoardService)
+const leaderBoardServiceProvider = LeaderBoardServiceFamily();
 
-/// See also [LeaderBoardUseCase].
-class LeaderBoardUseCaseFamily
-    extends Family<AsyncValue<List<LeaderboardEntry>>> {
-  /// See also [LeaderBoardUseCase].
-  const LeaderBoardUseCaseFamily();
+/// See also [LeaderBoardService].
+class LeaderBoardServiceFamily extends Family<AsyncValue<List<LeaderboardEntry>>> {
+  /// See also [LeaderBoardService].
+  const LeaderBoardServiceFamily();
 
-  /// See also [LeaderBoardUseCase].
-  LeaderBoardUseCaseProvider call({
+  /// See also [LeaderBoardService].
+  LeaderBoardServiceProvider call({
     required String quizId,
   }) {
-    return LeaderBoardUseCaseProvider(
+    return LeaderBoardServiceProvider(
       quizId: quizId,
     );
   }
 
   @override
-  LeaderBoardUseCaseProvider getProviderOverride(
-    covariant LeaderBoardUseCaseProvider provider,
+  LeaderBoardServiceProvider getProviderOverride(
+    covariant LeaderBoardServiceProvider provider,
   ) {
     return call(
       quizId: provider.quizId,
@@ -75,37 +72,32 @@ class LeaderBoardUseCaseFamily
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
-  String? get name => r'leaderBoardUseCaseProvider';
+  String? get name => r'leaderBoardServiceProvider';
 }
 
-/// See also [LeaderBoardUseCase].
-class LeaderBoardUseCaseProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    LeaderBoardUseCase, List<LeaderboardEntry>> {
-  /// See also [LeaderBoardUseCase].
-  LeaderBoardUseCaseProvider({
+/// See also [LeaderBoardService].
+class LeaderBoardServiceProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<LeaderBoardService, List<LeaderboardEntry>> {
+  /// See also [LeaderBoardService].
+  LeaderBoardServiceProvider({
     required this.quizId,
   }) : super.internal(
-          () => LeaderBoardUseCase()..quizId = quizId,
-          from: leaderBoardUseCaseProvider,
-          name: r'leaderBoardUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$leaderBoardUseCaseHash,
-          dependencies: LeaderBoardUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              LeaderBoardUseCaseFamily._allTransitiveDependencies,
+          () => LeaderBoardService()..quizId = quizId,
+          from: leaderBoardServiceProvider,
+          name: r'leaderBoardServiceProvider',
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$leaderBoardServiceHash,
+          dependencies: LeaderBoardServiceFamily._dependencies,
+          allTransitiveDependencies: LeaderBoardServiceFamily._allTransitiveDependencies,
         );
 
   final String quizId;
 
   @override
   bool operator ==(Object other) {
-    return other is LeaderBoardUseCaseProvider && other.quizId == quizId;
+    return other is LeaderBoardServiceProvider && other.quizId == quizId;
   }
 
   @override
@@ -118,7 +110,7 @@ class LeaderBoardUseCaseProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
   @override
   FutureOr<List<LeaderboardEntry>> runNotifierBuild(
-    covariant LeaderBoardUseCase notifier,
+    covariant LeaderBoardService notifier,
   ) {
     return notifier.build(
       quizId: quizId,

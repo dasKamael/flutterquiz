@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterquiz/src/common/layouts/default_layout.dart';
 import 'package:flutterquiz/src/common/router/router_notifier.dart';
-import 'package:flutterquiz/src/common/theme/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/overview/overview.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.screen.dart';
@@ -26,24 +26,7 @@ Raw<GoRouter> router(RouterRef ref) {
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
-          return Scaffold(
-            body: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [kSecondaryColor, kPrimaryColor],
-                      ),
-                    ),
-                    child: child,
-                  ),
-                ),
-              ],
-            ),
-          );
+          return DefaultLayout(child: child);
         },
         routes: [
           GoRoute(

@@ -6,18 +6,14 @@ part of 'quiz_score.controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$quizScoreControllerHash() =>
-    r'aa0443bd58d8da9cdf21390e6b42abd4bad9c686';
+String _$quizScoreControllerHash() => r'aa0443bd58d8da9cdf21390e6b42abd4bad9c686';
 
 /// See also [QuizScoreController].
 @ProviderFor(QuizScoreController)
-final quizScoreControllerProvider =
-    NotifierProvider<QuizScoreController, int>.internal(
+final quizScoreControllerProvider = NotifierProvider<QuizScoreController, int>.internal(
   QuizScoreController.new,
   name: r'quizScoreControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$quizScoreControllerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$quizScoreControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

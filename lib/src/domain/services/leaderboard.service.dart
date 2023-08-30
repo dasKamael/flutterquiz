@@ -2,13 +2,13 @@ import 'package:flutterquiz/src/data/repository/leaderboard.repository.dart';
 import 'package:flutterquiz/src/domain/models/leaderboard_entry.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'leaderboard.use_case.g.dart';
+part 'leaderboard.service.g.dart';
 
 @riverpod
-class LeaderBoardUseCase extends _$LeaderBoardUseCase {
+class LeaderBoardService extends _$LeaderBoardService {
   @override
   FutureOr<List<LeaderboardEntry>> build({required String quizId}) async {
-    List<LeaderboardEntry> entries = await getLeaderboardByQuizId(quizId: quizId);
+    List<LeaderboardEntry> entries = await ref.read(leaderBoardRepositoryProvider).getLeaderboardByQuizId(quizId);
     return entries;
   }
 
@@ -24,9 +24,6 @@ class LeaderBoardUseCase extends _$LeaderBoardUseCase {
           username: username,
           score: score,
         );
-  }
-
-  Future<List<LeaderboardEntry>> getLeaderboardByQuizId({required String quizId}) async {
-    return await ref.read(leaderBoardRepositoryProvider).getLeaderboardByQuizId(quizId);
+    // Change state
   }
 }

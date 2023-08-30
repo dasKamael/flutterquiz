@@ -15,9 +15,7 @@ String _$quizRepositoryHash() => r'a6c6b408ea3df984afdf7f14646351523d06e354';
 final quizRepositoryProvider = AutoDisposeProvider<QuizRepository>.internal(
   quizRepository,
   name: r'quizRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$quizRepositoryHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$quizRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
