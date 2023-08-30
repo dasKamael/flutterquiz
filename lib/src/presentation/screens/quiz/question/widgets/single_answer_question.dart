@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/theme/ui_theme.dart';
-import 'package:flutterquiz/src/domain/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/screens/quiz/question/question_result.dialog.dart';
 
 class SingleAnswerQuestion extends ConsumerWidget {

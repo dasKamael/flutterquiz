@@ -1,5 +1,5 @@
 import 'package:flutterquiz/src/common/supabase/supabase.provider.dart';
-import 'package:flutterquiz/src/domain/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide Provider;

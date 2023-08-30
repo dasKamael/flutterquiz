@@ -1,4 +1,3 @@
-import 'package:flutterquiz/src/domain/enums/question_type.enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'quiz.freezed.dart';

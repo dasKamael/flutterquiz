@@ -6,14 +6,18 @@ part of 'overview.controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$overviewControllerHash() => r'd52acf3a2786412c3c82070cf13ef40ebfcbfcfc';
+String _$overviewControllerHash() =>
+    r'3dc69c945e884e471d5ab76809f84271e7d50f82';
 
 /// See also [OverviewController].
 @ProviderFor(OverviewController)
-final overviewControllerProvider = AutoDisposeAsyncNotifierProvider<OverviewController, List<Quiz>>.internal(
+final overviewControllerProvider =
+    AutoDisposeAsyncNotifierProvider<OverviewController, List<Quiz>>.internal(
   OverviewController.new,
   name: r'overviewControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$overviewControllerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$overviewControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

@@ -1,5 +1,5 @@
-import 'package:flutterquiz/src/domain/models/quiz.dart';
-import 'package:flutterquiz/src/domain/services/quiz.services.dart';
+import 'package:flutterquiz/src/domain/quiz/services/quiz.services.dart';
+import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'quiz.controller.g.dart';

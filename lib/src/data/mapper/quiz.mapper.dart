@@ -1,5 +1,5 @@
 import 'package:flutterquiz/src/common/mapper/dto_mapper.dart';
-import 'package:flutterquiz/src/domain/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 
 class QuizMapper extends Mapper<Quiz, Map> {
   @override

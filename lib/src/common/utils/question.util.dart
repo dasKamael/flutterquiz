@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterquiz/src/domain/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/screens/quiz/question/widgets/multiple_answer_question.dart';
 import 'package:flutterquiz/src/presentation/screens/quiz/question/widgets/single_answer_question.dart';
 

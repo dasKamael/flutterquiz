@@ -13,7 +13,9 @@ String _$leaderBoardApiHash() => r'b571582bf44edc7e4d2788238248c35daeb27fb4';
 final leaderBoardApiProvider = AutoDisposeProvider<LeaderBoardApi>.internal(
   leaderBoardApi,
   name: r'leaderBoardApiProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$leaderBoardApiHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$leaderBoardApiHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

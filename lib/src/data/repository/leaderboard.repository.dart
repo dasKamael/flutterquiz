@@ -1,6 +1,6 @@
 import 'package:flutterquiz/src/data/data_source/api/leaderboard.api.dart';
 import 'package:flutterquiz/src/data/mapper/leaderboard.mapper.dart';
-import 'package:flutterquiz/src/domain/models/leaderboard_entry.dart';
+import 'package:flutterquiz/src/domain/quiz/leaderboard/models/leaderboard_entry.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'leaderboard.repository.g.dart';

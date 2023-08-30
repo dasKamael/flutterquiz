@@ -13,7 +13,8 @@ class LeaderBoardApi {
 
   Future<List> getLeaderboardByQuizId(String quizId) async {
     try {
-      List list = await supabaseClient.from('leaderboard').select().eq('quiz_id', quizId);
+      List list =
+          await supabaseClient.from('leaderboard').select().eq('quiz_id', quizId).order('score', ascending: false);
       return list;
     } catch (e) {
       _logger.info('Error getting leaderboard by quiz id: $e');

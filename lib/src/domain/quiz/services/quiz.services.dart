@@ -1,5 +1,5 @@
 import 'package:flutterquiz/src/data/repository/quiz.repository.dart';
-import 'package:flutterquiz/src/domain/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'quiz.services.g.dart';
@@ -7,13 +7,11 @@ part 'quiz.services.g.dart';
 @riverpod
 class QuizService extends _$QuizService {
   @override
-  build() {}
-
-  // Quizzes #################################################################
-  Future<List<Quiz>> getQuizzes() async {
+  Future<List<Quiz>> build() async {
     return await ref.read(quizRepositoryProvider).getQuizzes();
   }
 
+  // Quizzes #################################################################
   Future<Quiz> getCompleteQuizById({required String quizId}) async {
     Quiz quiz = await ref.read(quizRepositoryProvider).getQuizById(quizId: quizId);
 
