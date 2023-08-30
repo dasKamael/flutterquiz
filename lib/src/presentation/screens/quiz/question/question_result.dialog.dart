@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/utils/url_launcher.util.dart';
 import 'package:flutterquiz/src/domain/models/quiz.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz.controller.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz_score.controller.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/quiz.controller.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/quiz_score.controller.dart';
 import 'package:go_router/go_router.dart';
 
 class QuestionResultDialog extends ConsumerWidget {

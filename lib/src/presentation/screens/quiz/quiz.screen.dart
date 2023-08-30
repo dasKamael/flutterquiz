@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz.controller.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz_score.controller.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/quiz.controller.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/quiz_score.controller.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
 import 'package:go_router/go_router.dart';

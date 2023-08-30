@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterquiz/src/common/layouts/default_layout.dart';
 import 'package:flutterquiz/src/common/router/router_notifier.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/overview/overview.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz_result.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/leaderboard/leaderboard.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/overview/overview.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/question/question.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/quiz.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/quiz_result.screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
