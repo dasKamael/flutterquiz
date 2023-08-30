@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/theme/ui_theme.dart';
+import 'package:go_router/go_router.dart';
 
 class DefaultLayout extends ConsumerWidget {
   const DefaultLayout({super.key, required this.child});
@@ -34,7 +35,7 @@ class DefaultLayout extends ConsumerWidget {
                         ),
                         ElevatedButton(
                           child: const Text('LogIn'),
-                          onPressed: () {},
+                          onPressed: () => context.go('/management'),
                         ),
                       ],
                     ),

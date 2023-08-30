@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterquiz/src/common/layouts/default_layout.dart';
 import 'package:flutterquiz/src/common/router/router_notifier.dart';
+import 'package:flutterquiz/src/presentation/management/screens/management_dashboard.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/overview/overview.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.screen.dart';
@@ -33,6 +34,7 @@ Raw<GoRouter> router(RouterRef ref) {
             path: '/',
             pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const OverviewScreen()),
           ),
+          // Quiz ######################################################################################################
           GoRoute(
             path: '/quiz/:quizId',
             pageBuilder: (context, state) {
@@ -76,6 +78,16 @@ Raw<GoRouter> router(RouterRef ref) {
                 },
               ),
             ],
+          ),
+          // Management ################################################################################################
+          GoRoute(
+            path: '/management',
+            pageBuilder: (context, state) {
+              return NoTransitionPage(
+                key: state.pageKey,
+                child: const ManagementDashboardScreen(),
+              );
+            },
           ),
         ],
       )

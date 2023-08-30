@@ -22,14 +22,13 @@ const kSecondaryColor = Color(0xff3497FD);
 const kBackgroundColor = Color(0xffFAFAFE);
 const kCardColor = Color(0xffFAFAFE);
 const kTextColor = Color(0xff042B59);
+const kTextColorLight = Color(0xffFAFAFE);
 const kLightTextColor = Color(0xffFAFAFE);
 const kCardBorderRadius = 10.0;
 const kButtonBorderRadius = 10.0;
 
-const kScaleColorRed = Color(0xFFFF2553);
-const kScaleColorOrange = Color(0xFFFF6C18);
-const kScaleColorYellow = Color(0xFFFFCC00);
-const kScaleColorGreen = Color(0xFF1ED640);
+const kErrorColor = Color(0xFFCB3333);
+const kWarnColor = Color(0xFFFFCC00);
 
 const kInputBorderSize = 1.0;
 
@@ -78,6 +77,7 @@ class UiTheme {
 
     final darkHeadlineLarge = getDarkHeadlineLarge(baseDarkTheme);
     final darkBodyMedium = getDarkBodyMedium(baseDarkTheme);
+    final darkLabelMedium = getDarkLabelMedium(baseDarkTheme);
 
     // overrides
     return baseDarkTheme.copyWith(
@@ -90,14 +90,7 @@ class UiTheme {
           color: kTextColor,
           fontFeatures: [const FontFeature.liningFigures()],
         ),
-        labelMedium: baseDarkTheme.textTheme.labelMedium?.copyWith(
-          fontFamily: 'AxiaLight',
-          fontSize: 15,
-          letterSpacing: 1.25,
-          color: kPrimaryColor,
-          fontWeight: FontWeight.w400,
-          fontFeatures: [const FontFeature.liningFigures()],
-        ),
+        labelMedium: darkLabelMedium,
         labelLarge: baseDarkTheme.textTheme.labelLarge?.copyWith(
           fontFamily: 'AxiaLight',
           fontSize: 22,
@@ -212,7 +205,7 @@ class UiTheme {
               return kPrimaryColor;
             },
           ),
-          textStyle: MaterialStateProperty.all(darkBodyMedium),
+          textStyle: MaterialStateProperty.all(darkLabelMedium),
           shadowColor: MaterialStateProperty.all(Colors.black),
         ),
       ),
@@ -280,6 +273,17 @@ class UiTheme {
       color: kTextColor,
       fontWeight: FontWeight.w500,
       height: 1.5,
+      fontFeatures: [const FontFeature.liningFigures()],
+    );
+  }
+
+  TextStyle? getDarkLabelMedium(ThemeData baseDarkTheme) {
+    return baseDarkTheme.textTheme.labelMedium?.copyWith(
+      fontFamily: 'AxiaLight',
+      fontSize: 15,
+      letterSpacing: 1.25,
+      color: kPrimaryColor,
+      fontWeight: FontWeight.w400,
       fontFeatures: [const FontFeature.liningFigures()],
     );
   }
