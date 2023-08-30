@@ -21,7 +21,27 @@ class DefaultLayout extends ConsumerWidget {
                   colors: [kSecondaryColor, kPrimaryColor],
                 ),
               ),
-              child: child,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          child: const Text('Registrieren'),
+                          onPressed: () {},
+                        ),
+                        ElevatedButton(
+                          child: const Text('LogIn'),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(child: child),
+                ],
+              ),
             ),
           ),
         ],

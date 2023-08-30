@@ -3,7 +3,7 @@ import 'package:flutterquiz/src/domain/leaderboard/services/leaderboard.service.
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
-import 'package:flutterquiz/src/presentation/screens/leaderboard/leaderboard.state.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'leaderboard.controller.g.dart';

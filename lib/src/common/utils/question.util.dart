@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
-import 'package:flutterquiz/src/presentation/screens/quiz/question/widgets/multiple_answer_question.dart';
-import 'package:flutterquiz/src/presentation/screens/quiz/question/widgets/single_answer_question.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/widgets/multiple_answer_question.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/widgets/single_answer_question.dart';
+import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
 
 class QuestionUtil {
   static Widget getQuestionType(String questionType, Question question) {
@@ -11,10 +12,9 @@ class QuestionUtil {
       case 'multiple':
         return MultipleAnswerQuestion(question: question);
       default:
-        return SingleAnswerQuestion(question: question);
-      // return const AppError(
-      //   error: 'No Questiontype found',
-      // );
+        return const AppError(
+          error: 'No Questiontype found',
+        );
     }
   }
 }
