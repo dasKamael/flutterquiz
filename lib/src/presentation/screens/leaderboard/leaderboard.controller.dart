@@ -1,9 +1,9 @@
-import 'package:flutterquiz/src/domain/quiz/leaderboard/models/leaderboard_entry.dart';
-import 'package:flutterquiz/src/domain/quiz/leaderboard/services/leaderboard.service.dart';
+import 'package:flutterquiz/src/domain/leaderboard/models/leaderboard_entry.dart';
+import 'package:flutterquiz/src/domain/leaderboard/services/leaderboard.service.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
 import 'package:flutterquiz/src/presentation/screens/leaderboard/leaderboard.state.dart';
 import 'package:flutterquiz/src/presentation/screens/quiz/quiz.controller.dart';
-import 'package:flutterquiz/src/presentation/screens/quiz/quiz_score.controller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'leaderboard.controller.g.dart';

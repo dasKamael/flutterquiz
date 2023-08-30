@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/presentation/screens/overview/overview.controller.dart';
+import 'package:flutterquiz/src/domain/quiz/services/get_quizzes.service.dart';
 import 'package:flutterquiz/src/presentation/screens/overview/widgets/overview_rotation_header.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
@@ -15,7 +15,7 @@ class OverviewScreen extends ConsumerWidget {
     final isDesktop = MediaQuery.of(context).size.width > 600;
 
     return Container(
-      child: ref.watch(overviewControllerProvider).when(
+      child: ref.watch(getQuizzesServiceProvider).when(
             data: (quizzes) {
               if (quizzes.isEmpty) {
                 return const Text('No quizzes');

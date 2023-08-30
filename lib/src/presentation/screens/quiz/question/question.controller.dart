@@ -1,5 +1,5 @@
-import 'package:flutterquiz/src/domain/quiz/services/quiz.services.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/services/get_quizzes.service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'question.controller.g.dart';
@@ -13,10 +13,10 @@ class QuestionController extends _$QuestionController {
   }
 
   Future<Question> getCompleteQuestionById() async {
-    Question question = await ref.read(quizServiceProvider.notifier).getQuestionById(questionId: questionId);
+    Question question = await ref.read(getQuizzesServiceProvider.notifier).getQuestionById(questionId: questionId);
 
     final List<Answer> answers =
-        await ref.read(quizServiceProvider.notifier).getAnswersByQuestionId(questionId: question.id);
+        await ref.read(getQuizzesServiceProvider.notifier).getAnswersByQuestionId(questionId: question.id);
 
     question = question.copyWith(answers: answers);
 

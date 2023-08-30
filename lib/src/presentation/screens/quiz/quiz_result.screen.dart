@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/presentation/screens/quiz/quiz_score.controller.dart';
+import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
 import 'package:go_router/go_router.dart';
 
 class QuizResultScreen extends ConsumerWidget {

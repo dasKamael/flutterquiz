@@ -1,5 +1,5 @@
 import 'package:flutterquiz/src/common/mapper/dto_mapper.dart';
-import 'package:flutterquiz/src/domain/quiz/leaderboard/models/leaderboard_entry.dart';
+import 'package:flutterquiz/src/domain/leaderboard/models/leaderboard_entry.dart';
 
 class LeaderboardMapper extends Mapper<LeaderboardEntry, Map> {
   @override

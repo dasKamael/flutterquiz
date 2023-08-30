@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'overview.controller.dart';
+part of 'get_quizzes.service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$overviewControllerHash() =>
-    r'3dc69c945e884e471d5ab76809f84271e7d50f82';
+String _$getQuizzesServiceHash() => r'a41c75bc56338e7073fd1a83c0a8d8a55b067df8';
 
-/// See also [OverviewController].
-@ProviderFor(OverviewController)
-final overviewControllerProvider =
-    AutoDisposeAsyncNotifierProvider<OverviewController, List<Quiz>>.internal(
-  OverviewController.new,
-  name: r'overviewControllerProvider',
+/// See also [GetQuizzesService].
+@ProviderFor(GetQuizzesService)
+final getQuizzesServiceProvider =
+    AutoDisposeAsyncNotifierProvider<GetQuizzesService, List<Quiz>>.internal(
+  GetQuizzesService.new,
+  name: r'getQuizzesServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$overviewControllerHash,
+      : _$getQuizzesServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$OverviewController = AutoDisposeAsyncNotifier<List<Quiz>>;
+typedef _$GetQuizzesService = AutoDisposeAsyncNotifier<List<Quiz>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

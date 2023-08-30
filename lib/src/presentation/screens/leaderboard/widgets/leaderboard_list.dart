@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/domain/quiz/leaderboard/models/leaderboard_entry.dart';
+import 'package:flutterquiz/src/domain/leaderboard/models/leaderboard_entry.dart';
 
 class LeaderboardList extends ConsumerWidget {
   const LeaderboardList({super.key, required this.entries});
