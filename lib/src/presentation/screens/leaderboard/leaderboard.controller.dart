@@ -1,9 +1,9 @@
 import 'package:flutterquiz/src/domain/leaderboard/models/leaderboard_entry.dart';
 import 'package:flutterquiz/src/domain/leaderboard/services/leaderboard.service.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
 import 'package:flutterquiz/src/presentation/screens/leaderboard/leaderboard.state.dart';
-import 'package:flutterquiz/src/presentation/screens/quiz/quiz.controller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'leaderboard.controller.g.dart';
@@ -21,7 +21,7 @@ class LeaderboardController extends _$LeaderboardController {
   FutureOr<LeaderboardState> build({required String quizId}) async {
     final List<LeaderboardEntry> entries = await getLeaderboardEntriesByQuizId(quizId: quizId);
 
-    final Quiz quiz = ref.watch(quizControllerProvider(quizId: quizId)).value!;
+    final Quiz quiz = ref.watch(getCompleteQuizProvider(quizId: quizId)).value!;
 
     leaderboardState = leaderboardState.copyWith(
       score: ref.read(quizScoreControllerProvider),

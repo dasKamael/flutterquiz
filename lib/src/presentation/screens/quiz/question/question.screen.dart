@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/theme/ui_theme.dart';
 import 'package:flutterquiz/src/common/utils/question.util.dart';
+import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/presentation/screens/quiz/question/question.controller.dart';
-import 'package:flutterquiz/src/presentation/screens/quiz/quiz.controller.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
 
@@ -19,9 +19,9 @@ class QuestionScreen extends ConsumerWidget {
 
     return ref.watch(questionControllerProvider(quizId: quizId, questionId: questionId)).when(
           data: (question) {
-            final int questionCount = ref.read(quizControllerProvider(quizId: quizId)).value!.questions!.length;
+            final int questionCount = ref.read(getCompleteQuizProvider(quizId: quizId)).value!.questions!.length;
             final int questionPosition =
-                ref.read(quizControllerProvider(quizId: quizId)).value!.questions!.indexOf(question) + 1;
+                ref.read(getCompleteQuizProvider(quizId: quizId)).value!.questions!.indexOf(question) + 1;
 
             return Center(
               child: SizedBox(

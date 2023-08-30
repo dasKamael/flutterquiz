@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'question.controller.dart';
+part of 'get_question.service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$questionControllerHash() =>
-    r'ac626458b5fed5f07c877f206ceac743c997889c';
+String _$getQuestionServiceHash() =>
+    r'9423c9437fb0d529465537a1ce02603e5d91c714';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,43 +30,38 @@ class _SystemHash {
   }
 }
 
-abstract class _$QuestionController
+abstract class _$GetQuestionService
     extends BuildlessAutoDisposeAsyncNotifier<Question> {
-  late final dynamic quizId;
   late final dynamic questionId;
 
   FutureOr<Question> build({
-    required dynamic quizId,
     required dynamic questionId,
   });
 }
 
-/// See also [QuestionController].
-@ProviderFor(QuestionController)
-const questionControllerProvider = QuestionControllerFamily();
+/// See also [GetQuestionService].
+@ProviderFor(GetQuestionService)
+const getQuestionServiceProvider = GetQuestionServiceFamily();
 
-/// See also [QuestionController].
-class QuestionControllerFamily extends Family<AsyncValue<Question>> {
-  /// See also [QuestionController].
-  const QuestionControllerFamily();
+/// See also [GetQuestionService].
+class GetQuestionServiceFamily extends Family<AsyncValue<Question>> {
+  /// See also [GetQuestionService].
+  const GetQuestionServiceFamily();
 
-  /// See also [QuestionController].
-  QuestionControllerProvider call({
-    required dynamic quizId,
+  /// See also [GetQuestionService].
+  GetQuestionServiceProvider call({
     required dynamic questionId,
   }) {
-    return QuestionControllerProvider(
-      quizId: quizId,
+    return GetQuestionServiceProvider(
       questionId: questionId,
     );
   }
 
   @override
-  QuestionControllerProvider getProviderOverride(
-    covariant QuestionControllerProvider provider,
+  GetQuestionServiceProvider getProviderOverride(
+    covariant GetQuestionServiceProvider provider,
   ) {
     return call(
-      quizId: provider.quizId,
       questionId: provider.questionId,
     );
   }
@@ -83,45 +78,39 @@ class QuestionControllerFamily extends Family<AsyncValue<Question>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'questionControllerProvider';
+  String? get name => r'getQuestionServiceProvider';
 }
 
-/// See also [QuestionController].
-class QuestionControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<QuestionController, Question> {
-  /// See also [QuestionController].
-  QuestionControllerProvider({
-    required this.quizId,
+/// See also [GetQuestionService].
+class GetQuestionServiceProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<GetQuestionService, Question> {
+  /// See also [GetQuestionService].
+  GetQuestionServiceProvider({
     required this.questionId,
   }) : super.internal(
-          () => QuestionController()
-            ..quizId = quizId
-            ..questionId = questionId,
-          from: questionControllerProvider,
-          name: r'questionControllerProvider',
+          () => GetQuestionService()..questionId = questionId,
+          from: getQuestionServiceProvider,
+          name: r'getQuestionServiceProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$questionControllerHash,
-          dependencies: QuestionControllerFamily._dependencies,
+                  : _$getQuestionServiceHash,
+          dependencies: GetQuestionServiceFamily._dependencies,
           allTransitiveDependencies:
-              QuestionControllerFamily._allTransitiveDependencies,
+              GetQuestionServiceFamily._allTransitiveDependencies,
         );
 
-  final dynamic quizId;
   final dynamic questionId;
 
   @override
   bool operator ==(Object other) {
-    return other is QuestionControllerProvider &&
-        other.quizId == quizId &&
+    return other is GetQuestionServiceProvider &&
         other.questionId == questionId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, quizId.hashCode);
     hash = _SystemHash.combine(hash, questionId.hashCode);
 
     return _SystemHash.finish(hash);
@@ -129,10 +118,9 @@ class QuestionControllerProvider
 
   @override
   FutureOr<Question> runNotifierBuild(
-    covariant QuestionController notifier,
+    covariant GetQuestionService notifier,
   ) {
     return notifier.build(
-      quizId: quizId,
       questionId: questionId,
     );
   }

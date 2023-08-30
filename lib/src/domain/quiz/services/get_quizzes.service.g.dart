@@ -6,7 +6,7 @@ part of 'get_quizzes.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getQuizzesServiceHash() => r'a41c75bc56338e7073fd1a83c0a8d8a55b067df8';
+String _$getQuizzesServiceHash() => r'133f1bf5b72cd94b389c7b9bc3b063cbaed79630';
 
 /// See also [GetQuizzesService].
 @ProviderFor(GetQuizzesService)

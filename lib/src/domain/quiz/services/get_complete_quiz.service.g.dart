@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'quiz.controller.dart';
+part of 'get_complete_quiz.service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$quizControllerHash() => r'1d273c7325d118bfb68d6d251be504afeef7ba3f';
+String _$getCompleteQuizHash() => r'1ae1f029324ef9b75ef214a4b7318e3564bbbaa6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +29,8 @@ class _SystemHash {
   }
 }
 
-abstract class _$QuizController extends BuildlessAsyncNotifier<Quiz> {
+abstract class _$GetCompleteQuiz
+    extends BuildlessAutoDisposeAsyncNotifier<Quiz> {
   late final String quizId;
 
   FutureOr<Quiz> build({
@@ -37,27 +38,27 @@ abstract class _$QuizController extends BuildlessAsyncNotifier<Quiz> {
   });
 }
 
-/// See also [QuizController].
-@ProviderFor(QuizController)
-const quizControllerProvider = QuizControllerFamily();
+/// See also [GetCompleteQuiz].
+@ProviderFor(GetCompleteQuiz)
+const getCompleteQuizProvider = GetCompleteQuizFamily();
 
-/// See also [QuizController].
-class QuizControllerFamily extends Family<AsyncValue<Quiz>> {
-  /// See also [QuizController].
-  const QuizControllerFamily();
+/// See also [GetCompleteQuiz].
+class GetCompleteQuizFamily extends Family<AsyncValue<Quiz>> {
+  /// See also [GetCompleteQuiz].
+  const GetCompleteQuizFamily();
 
-  /// See also [QuizController].
-  QuizControllerProvider call({
+  /// See also [GetCompleteQuiz].
+  GetCompleteQuizProvider call({
     required String quizId,
   }) {
-    return QuizControllerProvider(
+    return GetCompleteQuizProvider(
       quizId: quizId,
     );
   }
 
   @override
-  QuizControllerProvider getProviderOverride(
-    covariant QuizControllerProvider provider,
+  GetCompleteQuizProvider getProviderOverride(
+    covariant GetCompleteQuizProvider provider,
   ) {
     return call(
       quizId: provider.quizId,
@@ -76,33 +77,33 @@ class QuizControllerFamily extends Family<AsyncValue<Quiz>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'quizControllerProvider';
+  String? get name => r'getCompleteQuizProvider';
 }
 
-/// See also [QuizController].
-class QuizControllerProvider
-    extends AsyncNotifierProviderImpl<QuizController, Quiz> {
-  /// See also [QuizController].
-  QuizControllerProvider({
+/// See also [GetCompleteQuiz].
+class GetCompleteQuizProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<GetCompleteQuiz, Quiz> {
+  /// See also [GetCompleteQuiz].
+  GetCompleteQuizProvider({
     required this.quizId,
   }) : super.internal(
-          () => QuizController()..quizId = quizId,
-          from: quizControllerProvider,
-          name: r'quizControllerProvider',
+          () => GetCompleteQuiz()..quizId = quizId,
+          from: getCompleteQuizProvider,
+          name: r'getCompleteQuizProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$quizControllerHash,
-          dependencies: QuizControllerFamily._dependencies,
+                  : _$getCompleteQuizHash,
+          dependencies: GetCompleteQuizFamily._dependencies,
           allTransitiveDependencies:
-              QuizControllerFamily._allTransitiveDependencies,
+              GetCompleteQuizFamily._allTransitiveDependencies,
         );
 
   final String quizId;
 
   @override
   bool operator ==(Object other) {
-    return other is QuizControllerProvider && other.quizId == quizId;
+    return other is GetCompleteQuizProvider && other.quizId == quizId;
   }
 
   @override
@@ -115,7 +116,7 @@ class QuizControllerProvider
 
   @override
   FutureOr<Quiz> runNotifierBuild(
-    covariant QuizController notifier,
+    covariant GetCompleteQuiz notifier,
   ) {
     return notifier.build(
       quizId: quizId,

@@ -21,10 +21,11 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    const double fixWidth = 400;
     return ref.watch(LeaderboardControllerProvider(quizId: widget.quizId)).when(
           data: (state) {
-            return Container(
-              constraints: const BoxConstraints(maxWidth: 1000),
+            return SizedBox(
+              width: fixWidth,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,43 +34,41 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
                   const SizedBox(height: 16),
                   Text('Your score is: ${state.score}', style: theme.textTheme.headlineMedium),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 200,
-                        child: TextFormField(
-                          controller: _usernameController,
-                          decoration: const InputDecoration(hintText: 'Enter username'),
+                  SizedBox(
+                    width: fixWidth,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _usernameController,
+                            decoration: const InputDecoration(hintText: 'Enter username'),
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      ElevatedButton(
-                        child: const Text('Add'),
-                        onPressed: () async {
-                          await ref
-                              .read(LeaderboardControllerProvider(quizId: widget.quizId).notifier)
-                              .createLeaderboardEntry(
-                                username: _usernameController.text,
-                              );
-                        },
-                      ),
-                    ],
+                        const SizedBox(width: 8),
+                        ElevatedButton(
+                          child: const Text('Add'),
+                          onPressed: () async {
+                            await ref
+                                .read(LeaderboardControllerProvider(quizId: widget.quizId).notifier)
+                                .createLeaderboardEntry(
+                                  username: _usernameController.text,
+                                );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  LeaderboardList(entries: state.entries),
+                  SizedBox(width: fixWidth, child: LeaderboardList(entries: state.entries)),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        child: const Text('Back to Home'),
-                        onPressed: () => context.go('/'),
-                      ),
-                    ],
-                  )
+                  SizedBox(
+                    width: fixWidth,
+                    child: ElevatedButton(
+                      child: const Text('Back to Home'),
+                      onPressed: () => context.go('/'),
+                    ),
+                  ),
                 ],
               ),
             );
