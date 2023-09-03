@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/common/theme/ui_theme.dart';
-import 'package:flutterquiz/src/presentation/management/widgets/quiz_overview.dart';
+import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/create_quiz_side_nav.dart';
+import 'package:flutterquiz/src/presentation/management/widgets/quiz_overview/quiz_overview.dart';
+import 'package:flutterquiz/src/presentation/management/widgets/quiz_overview/quiz_overview_side_nav.dart';
 
 class ManagementDashboardScreen extends ConsumerStatefulWidget {
   const ManagementDashboardScreen({super.key});
@@ -11,7 +12,20 @@ class ManagementDashboardScreen extends ConsumerStatefulWidget {
 }
 
 class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardScreen> {
-  final PageController _pageController = PageController();
+  final PageController _pageController = PageController(initialPage: 0);
+
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPage = 0;
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page!.toInt();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,15 +71,8 @@ class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardS
                 ),
               ),
               const Spacer(),
-              SizedBox(
-                  width: 200,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: theme.elevatedButtonTheme.style?.copyWith(
-                      backgroundColor: MaterialStateProperty.all(kSecondaryColor),
-                    ),
-                    child: Text('Create Quiz', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
-                  )),
+              if (_currentPage == 0) const QuizOverviewSideNav(),
+              if (_currentPage == 1) const CreateQuizSideNav()
             ],
           ),
         ),
