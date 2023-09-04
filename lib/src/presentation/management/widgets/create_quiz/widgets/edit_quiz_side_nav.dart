@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/theme/ui_theme.dart';
 
-class CreateQuizSideNav extends ConsumerWidget {
-  const CreateQuizSideNav({super.key});
+class EditQuizSideNav extends ConsumerWidget {
+  const EditQuizSideNav({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -6,6 +6,7 @@ import 'package:flutterquiz/src/domain/quiz/services/get_quizzes.service.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/management_page_card.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
+import 'package:go_router/go_router.dart';
 
 class QuizOverview extends ConsumerWidget {
   const QuizOverview({super.key});
@@ -18,14 +19,25 @@ class QuizOverview extends ConsumerWidget {
             data: (quizzes) {
               return Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: ListView.separated(
-                  itemCount: quizzes.length,
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  separatorBuilder: (context, index) => const SizedBox(height: 8),
-                  itemBuilder: (context, index) {
-                    return QuizOverviewWidget(index: index, quiz: quizzes[index]);
-                  },
+                child: Column(
+                  children: [
+                    ListView.separated(
+                      itemCount: quizzes.length,
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      separatorBuilder: (context, index) => const SizedBox(height: 8),
+                      itemBuilder: (context, index) {
+                        return QuizOverviewWidget(index: index, quiz: quizzes[index]);
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.go('/management/edit-quiz');
+                      },
+                      child: const Text('Create Quiz'),
+                    )
+                  ],
                 ),
               );
             },
@@ -60,13 +72,16 @@ class QuizOverviewWidget extends ConsumerWidget {
           ),
         ),
         const SizedBox(width: 8),
-        const SizedBox(
+        SizedBox(
           height: 64,
           width: 40,
-          child: Expanded(
-            child: Card(
-              color: kPrimaryColor,
-              child: Icon(Icons.edit),
+          child: InkWell(
+            onTap: () => context.go('/management/edit-quiz/${quiz.id}'),
+            child: const Expanded(
+              child: Card(
+                color: kPrimaryColor,
+                child: Icon(Icons.edit),
+              ),
             ),
           ),
         ),

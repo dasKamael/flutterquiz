@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterquiz/src/common/layouts/default_layout.dart';
 import 'package:flutterquiz/src/common/router/router_notifier.dart';
 import 'package:flutterquiz/src/presentation/management/screens/management_dashboard.screen.dart';
+import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/edit_quiz.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/overview/overview.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.screen.dart';
@@ -88,6 +89,27 @@ Raw<GoRouter> router(RouterRef ref) {
                 child: const ManagementDashboardScreen(),
               );
             },
+            routes: [
+              GoRoute(
+                path: 'edit-quiz',
+                pageBuilder: (context, state) {
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: const EditQuizScreen(),
+                  );
+                },
+              ),
+              GoRoute(
+                path: 'edit-quiz/:quizId',
+                pageBuilder: (context, state) {
+                  final quizId = state.pathParameters['quizId'] ?? '';
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: EditQuizScreen(quizId: quizId),
+                  );
+                },
+              ),
+            ],
           ),
         ],
       )

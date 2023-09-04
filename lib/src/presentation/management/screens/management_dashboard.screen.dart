@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/create_quiz_side_nav.dart';
+import 'package:flutterquiz/src/common/theme/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/management/widgets/management_page_card.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/quiz_overview/quiz_overview.dart';
-import 'package:flutterquiz/src/presentation/management/widgets/quiz_overview/quiz_overview_side_nav.dart';
 
 class ManagementDashboardScreen extends ConsumerStatefulWidget {
   const ManagementDashboardScreen({super.key});
@@ -12,13 +12,14 @@ class ManagementDashboardScreen extends ConsumerStatefulWidget {
 }
 
 class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardScreen> {
-  final PageController _pageController = PageController(initialPage: 0);
+  late final PageController _pageController;
 
   int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController(initialPage: 0);
     _currentPage = 0;
     _pageController.addListener(() {
       setState(() {
@@ -71,8 +72,8 @@ class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardS
                 ),
               ),
               const Spacer(),
-              if (_currentPage == 0) const QuizOverviewSideNav(),
-              if (_currentPage == 1) const CreateQuizSideNav()
+              // if (_currentPage == 1) const CreateQuizSideNav(),
+              // if (_currentPage == 1) const QuizOverviewSideNav(),
             ],
           ),
         ),
@@ -81,21 +82,27 @@ class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardS
           width: 1000,
           height: 600,
           child: Expanded(
-            child: PageView(
-              scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
-              controller: _pageController,
-              children: [
-                const QuizOverview(),
-                Expanded(
-                  child: Container(
-                    color: Colors.red,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(kCardBorderRadius),
+              child: PageView(
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _pageController,
+                children: [
+                  ManagementPageCard(
+                    title: '',
+                    child: Expanded(
+                      child: Container(
+                        color: Colors.red,
+                      ),
+                    ),
                   ),
-                ),
-                Container(
-                  color: Colors.blue,
-                ),
-              ],
+                  const QuizOverview(),
+                  Container(
+                    color: Colors.blue,
+                  ),
+                ],
+              ),
             ),
           ),
         )
