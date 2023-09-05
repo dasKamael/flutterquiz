@@ -1,5 +1,4 @@
 enum QuestionType {
-  singleAnswer,
-  multipleAnswer,
-  fillInBlank,
+  single,
+  multiple,
 }

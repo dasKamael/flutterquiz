@@ -33,10 +33,10 @@ class QuizApi {
     return {};
   }
 
-  Future<void> createQuiz({required Quiz quiz}) async {
+  Future<Map<String, dynamic>> createQuiz({required Quiz quiz}) async {
     final userId = supabaseClient.auth.currentUser?.id;
     // TODO createQuiz
-    await supabaseClient.from('quizzes').insert(quiz);
+    return await supabaseClient.from('quizzes').insert(quiz).select().single();
   }
 
   // Questions ###############################################################

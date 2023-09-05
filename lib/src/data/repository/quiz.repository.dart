@@ -27,6 +27,11 @@ class QuizRepository {
     return QuizMapper().toModel(quiz);
   }
 
+  Future<Quiz> createQuiz({required Quiz quiz}) async {
+    Map<String, dynamic> data = await quizApi.createQuiz(quiz: quiz);
+    return QuizMapper().toModel(data);
+  }
+
   // Questions ###############################################################
   Future<Question> getQuestionById(String questionId) async {
     Map<String, dynamic> question = await quizApi.getQuestionById(questionId: questionId);

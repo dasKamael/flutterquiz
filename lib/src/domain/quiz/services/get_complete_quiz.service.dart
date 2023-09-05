@@ -14,7 +14,7 @@ class GetCompleteQuiz extends _$GetCompleteQuiz {
   Future<Quiz> getCompleteQuizById({required String quizId}) async {
     Quiz quiz = await ref.read(quizRepositoryProvider).getQuizById(quizId: quizId);
 
-    final List<Question> questions = await ref.read(quizRepositoryProvider).getQuestionsByQuizId(quiz.id);
+    final List<Question> questions = await ref.read(quizRepositoryProvider).getQuestionsByQuizId(quiz.id!);
     List<Question> questionsWithAnswers = [];
 
     for (Question question in questions) {

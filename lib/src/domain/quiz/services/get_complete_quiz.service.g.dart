@@ -6,7 +6,7 @@ part of 'get_complete_quiz.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getCompleteQuizHash() => r'1ae1f029324ef9b75ef214a4b7318e3564bbbaa6';
+String _$getCompleteQuizHash() => r'5f447936bedecdaeac23e11e3e595e3b8fcc3b5f';
 
 /// Copied from Dart SDK
 class _SystemHash {

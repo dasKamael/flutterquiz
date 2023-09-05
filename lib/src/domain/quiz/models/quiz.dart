@@ -5,7 +5,7 @@ part 'quiz.freezed.dart';
 @freezed
 class Quiz with _$Quiz {
   const factory Quiz({
-    required String id,
+    String? id,
     required String title,
     required String createdBy,
     required DateTime createdAt,

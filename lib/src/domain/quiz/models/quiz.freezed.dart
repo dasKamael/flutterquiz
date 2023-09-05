@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Quiz {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get createdBy => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $QuizCopyWith<$Res> {
       _$QuizCopyWithImpl<$Res, Quiz>;
   @useResult
   $Res call(
-      {String id,
+      {String? id,
       String title,
       String createdBy,
       DateTime createdAt,
@@ -56,7 +56,7 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? createdBy = null,
     Object? createdAt = null,
@@ -65,10 +65,10 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
     Object? questions = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -104,7 +104,7 @@ abstract class _$$_QuizCopyWith<$Res> implements $QuizCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {String? id,
       String title,
       String createdBy,
       DateTime createdAt,
@@ -122,7 +122,7 @@ class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? createdBy = null,
     Object? createdAt = null,
@@ -131,10 +131,10 @@ class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz>
     Object? questions = freezed,
   }) {
     return _then(_$_Quiz(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz>
 
 class _$_Quiz implements _Quiz {
   const _$_Quiz(
-      {required this.id,
+      {this.id,
       required this.title,
       required this.createdBy,
       required this.createdAt,
@@ -177,7 +177,7 @@ class _$_Quiz implements _Quiz {
       : _questions = questions;
 
   @override
-  final String id;
+  final String? id;
   @override
   final String title;
   @override
@@ -235,7 +235,7 @@ class _$_Quiz implements _Quiz {
 
 abstract class _Quiz implements Quiz {
   const factory _Quiz(
-      {required final String id,
+      {final String? id,
       required final String title,
       required final String createdBy,
       required final DateTime createdAt,
@@ -244,7 +244,7 @@ abstract class _Quiz implements Quiz {
       final List<Question>? questions}) = _$_Quiz;
 
   @override
-  String get id;
+  String? get id;
   @override
   String get title;
   @override
