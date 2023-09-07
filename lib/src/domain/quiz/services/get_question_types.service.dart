@@ -1,4 +1,4 @@
-import 'package:flutterquiz/src/domain/enums/question_type.enum.dart';
+import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'get_question_types.service.g.dart';

@@ -1,4 +1,4 @@
-import 'package:flutterquiz/src/domain/enums/question_type.enum.dart';
+import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
