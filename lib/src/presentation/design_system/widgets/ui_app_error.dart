@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppError extends StatelessWidget {
-  const AppError({Key? key, this.error}) : super(key: key);
+class UiAppError extends StatelessWidget {
+  const UiAppError({Key? key, this.error}) : super(key: key);
 
   final dynamic error;
 

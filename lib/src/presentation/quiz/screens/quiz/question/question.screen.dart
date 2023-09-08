@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/utils/question.util.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
+import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.controller.dart';
-import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
-import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
-import 'package:flutterquiz/src/presentation/theme/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 
 class QuestionScreen extends ConsumerWidget {
   const QuestionScreen({super.key, required this.quizId, required this.questionId});
@@ -76,9 +76,9 @@ class QuestionScreen extends ConsumerWidget {
               ),
             );
           },
-          loading: () => const Loading(),
+          loading: () => const UiLoading(),
           error: (error, stackTrace) {
-            return AppError(error: stackTrace);
+            return UiAppError(error: stackTrace);
           },
         );
   }

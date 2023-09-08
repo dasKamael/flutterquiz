@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.controller.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/widgets/leaderboard_list.dart';
-import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
-import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 import 'package:go_router/go_router.dart';
 
 class LeaderboardScreen extends ConsumerStatefulWidget {
@@ -73,9 +73,9 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
               ),
             );
           },
-          loading: () => const Loading(),
+          loading: () => const UiLoading(),
           error: (error, stackTrace) {
-            return AppError(error: stackTrace);
+            return UiAppError(error: stackTrace);
           },
         );
   }

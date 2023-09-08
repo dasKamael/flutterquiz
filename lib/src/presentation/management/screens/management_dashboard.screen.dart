@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/presentation/theme/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/management_page_card.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/quiz_overview/quiz_overview.dart';
 

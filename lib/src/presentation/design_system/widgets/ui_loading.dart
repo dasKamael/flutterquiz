@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Loading extends StatelessWidget {
-  const Loading({
+class UiLoading extends StatelessWidget {
+  const UiLoading({
     Key? key,
     this.isLoading = true,
     this.child,

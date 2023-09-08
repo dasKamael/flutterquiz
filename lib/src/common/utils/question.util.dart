@@ -12,7 +12,7 @@ class QuestionUtil {
         return MultipleAnswerQuestion(question: question);
       default:
         return SingleAnswerQuestion(question: question);
-      // return const AppError(
+      // return const UiAppError(
       //   error: 'No Questiontype found',
       // );
     }
