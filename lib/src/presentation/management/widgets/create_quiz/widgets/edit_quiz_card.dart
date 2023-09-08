@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/common/theme/ui_theme.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/edit_quiz.controller.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/widgets/add_question_dialog.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/widgets/questions/edit_single_question.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/management_page_card.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
+import 'package:flutterquiz/src/presentation/theme/ui_theme.dart';
 
 class EditQuizCard extends ConsumerStatefulWidget {
   const EditQuizCard({super.key, this.quizId});

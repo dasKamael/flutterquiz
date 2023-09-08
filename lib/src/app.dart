@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/common/theme/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/theme/ui_theme.dart';
 import 'package:flutterquiz/src/router.dart';
 
 class App extends ConsumerWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/common/theme/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/theme/ui_theme.dart';
 
 class ManagementPageCard extends ConsumerWidget {
   const ManagementPageCard({super.key, required this.title, required this.child});

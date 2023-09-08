@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/common/theme/ui_theme.dart';
 import 'package:flutterquiz/src/common/utils/question.util.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.controller.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/app_error.dart';
 import 'package:flutterquiz/src/presentation/shared_widgets/loading.dart';
+import 'package:flutterquiz/src/presentation/theme/ui_theme.dart';
 
 class QuestionScreen extends ConsumerWidget {
   const QuestionScreen({super.key, required this.quizId, required this.questionId});
