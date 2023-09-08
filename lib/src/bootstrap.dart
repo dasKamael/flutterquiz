@@ -2,6 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:flutterquiz/src/common/logging/logger.dart';
+import 'package:flutterquiz/src/common/utils/ui_plattform.dart';
+import 'package:logging/logging.dart';
 // ignore: depend_on_referenced_packages
 import 'package:stack_trace/stack_trace.dart' as stack_trace;
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -17,6 +21,13 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   // Run app in zone to catch application errors
   await runZonedGuarded(
     () async {
+      // Setup Logger
+      setupLogger(level: UiPlatform.isDebugMode ? Level.INFO : Level.WARNING);
+      Logger.root.info('main: Quiz app started');
+
+      // Path strategy for Flutter Web e.g. no # in url
+      usePathUrlStrategy();
+
       // Supabase client
       await Supabase.initialize(
         url: 'https://ihnibvlskzwiubulxmlt.supabase.co',

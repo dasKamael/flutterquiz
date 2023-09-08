@@ -12,6 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Web
+  flutter_web_plugins:
+    sdk: flutter
+
   cupertino_icons: ^1.0.2
   flutter_riverpod: ^2.3.7
   riverpod_annotation: ^2.1.2
@@ -20,7 +24,10 @@ dependencies:
   auto_size_text: ^3.0.0
   supabase_flutter: ^1.10.14
   url_launcher: ^6.1.12
+
+  # Logging
   logging: ^1.2.0
+  logging_appenders: ^1.2.0+1
 
 dev_dependencies:
   flutter_test:
