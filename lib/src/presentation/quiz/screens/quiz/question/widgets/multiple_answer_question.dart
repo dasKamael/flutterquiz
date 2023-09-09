@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question_result.dialog.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question_result.dialog.dart';
 
 class MultipleAnswerQuestion extends ConsumerStatefulWidget {
   const MultipleAnswerQuestion({super.key, required this.question});
@@ -72,7 +72,7 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
         ElevatedButton(
           style: theme.elevatedButtonTheme.style?.copyWith(
             backgroundColor: MaterialStateProperty.all<Color>(kSecondaryColor),
-            foregroundColor: MaterialStateProperty.all<Color>(kLightTextColor),
+            foregroundColor: MaterialStateProperty.all<Color>(kTextColorLight),
           ),
           onPressed: _selected.any((element) => element == true)
               ? () {

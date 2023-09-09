@@ -2,39 +2,31 @@ import 'package:flutter/material.dart';
 
 class UiLoading extends StatelessWidget {
   const UiLoading({
-    Key? key,
-    this.isLoading = true,
-    this.child,
-    this.value,
-    this.radius = 26,
-  }) : super(key: key);
+    super.key,
+    this.color,
+    this.padding = const EdgeInsets.all(20),
+    this.size = 24,
+    this.strokeWidth = 3,
+  });
 
-  final bool? isLoading;
-  final Widget? child;
-  final double? value;
-  final double? radius;
+  final EdgeInsets padding;
+  final Color? color;
+  final double size;
+  final double strokeWidth;
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Opacity(
-            opacity: isLoading! ? 1.0 : 0.0,
-            child: SizedBox(
-              height: radius,
-              width: radius,
-              child: CircularProgressIndicator(
-                strokeWidth: 3,
-                value: value,
-              ),
-            ),
+      child: Padding(
+        padding: padding,
+        child: SizedBox(
+          width: size,
+          height: size,
+          child: CircularProgressIndicator(
+            strokeWidth: strokeWidth,
+            color: color,
           ),
-          child != null ? const SizedBox(height: 16) : Container(),
-          child != null ? child! : Container()
-        ],
+        ),
       ),
     );
   }

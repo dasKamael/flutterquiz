@@ -18,7 +18,7 @@ class EditQuizSideNav extends ConsumerWidget {
             style: theme.elevatedButtonTheme.style?.copyWith(
               backgroundColor: MaterialStateProperty.all(kPrimaryColor),
             ),
-            child: Text('Verwerfen', style: theme.textTheme.labelMedium?.copyWith(color: kLightTextColor)),
+            child: Text('Verwerfen', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
           ),
         ),
         const SizedBox(height: 8),

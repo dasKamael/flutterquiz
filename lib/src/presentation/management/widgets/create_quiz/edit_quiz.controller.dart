@@ -17,6 +17,7 @@ class EditQuizController extends _$EditQuizController {
             quiz: Quiz(
               id: '',
               title: '',
+              description: '',
               createdBy: '',
               createdAt: DateTime.now(),
               isPrivate: true,

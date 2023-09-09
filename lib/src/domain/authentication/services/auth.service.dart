@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutterquiz/src/common/supabase/supabase.provider.dart';
 import 'package:flutterquiz/src/domain/authentication/models/auth_profile.dart';
 import 'package:logging/logging.dart';
@@ -64,5 +65,41 @@ class AuthService extends _$AuthService {
   Future<bool> userAlreadyExists({required String email}) async {
     final supabaseClient = ref.watch(supabaseClientProvider);
     return await supabaseClient.rpc('user_exists', params: {'email': email});
+  }
+
+  /// Login with user and pw
+  Future<(bool, String?)> login({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
+    final supabaseClient = ref.watch(supabaseClientProvider);
+    try {
+      final response = await supabaseClient.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+      if (response.user != null) {
+        state = _authProfileFromJwt(response.user!);
+      }
+      return (true, null);
+    } catch (e, stackStrace) {
+      log.severe('Login Error: ', e, stackStrace);
+      String msg = e.toString();
+      String submsg1 = 'Invalid login credentials';
+      String submsg2 = 'Email not confirmed';
+
+      String? sendMsg;
+
+      if (msg.contains(submsg1) && context.mounted) {
+        //sendMsg = context.translations.auth_login_invalid_credentials;
+      } else if (msg.contains(submsg2) && context.mounted) {
+        //sendMsg = context.translations.auth_login_mail_not_confirmed;
+      } else {
+        sendMsg = null;
+      }
+
+      return (false, sendMsg);
+    }
   }
 }

@@ -7,6 +7,7 @@ class Quiz with _$Quiz {
   const factory Quiz({
     String? id,
     required String title,
+    required String description,
     required String createdBy,
     required DateTime createdAt,
     required bool isPrivate,

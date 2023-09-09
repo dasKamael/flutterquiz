@@ -50,11 +50,11 @@ class QuizRepository {
   // Answers #################################################################
   Future<List<Answer>> getAnswersByQuestionId(String questionId) async {
     List answersMap = await quizApi.getAnswersByQuestionId(questionId: questionId);
-    List<Answer> questions = [];
+    List<Answer> answers = [];
     for (Map answer in answersMap) {
-      questions.add(AnswerMapper().toModel(answer));
+      answers.add(AnswerMapper().toModel(answer));
     }
-    return questions;
+    return answers;
   }
 }
 

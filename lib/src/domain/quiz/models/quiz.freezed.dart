@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Quiz {
   String? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   String get createdBy => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   bool get isPrivate => throw _privateConstructorUsedError;
@@ -36,6 +37,7 @@ abstract class $QuizCopyWith<$Res> {
   $Res call(
       {String? id,
       String title,
+      String description,
       String createdBy,
       DateTime createdAt,
       bool isPrivate,
@@ -58,6 +60,7 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
   $Res call({
     Object? id = freezed,
     Object? title = null,
+    Object? description = null,
     Object? createdBy = null,
     Object? createdAt = null,
     Object? isPrivate = null,
@@ -72,6 +75,10 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       createdBy: null == createdBy
           ? _value.createdBy
@@ -106,6 +113,7 @@ abstract class _$$_QuizCopyWith<$Res> implements $QuizCopyWith<$Res> {
   $Res call(
       {String? id,
       String title,
+      String description,
       String createdBy,
       DateTime createdAt,
       bool isPrivate,
@@ -124,6 +132,7 @@ class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz>
   $Res call({
     Object? id = freezed,
     Object? title = null,
+    Object? description = null,
     Object? createdBy = null,
     Object? createdAt = null,
     Object? isPrivate = null,
@@ -138,6 +147,10 @@ class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       createdBy: null == createdBy
           ? _value.createdBy
@@ -169,6 +182,7 @@ class _$_Quiz implements _Quiz {
   const _$_Quiz(
       {this.id,
       required this.title,
+      required this.description,
       required this.createdBy,
       required this.createdAt,
       required this.isPrivate,
@@ -180,6 +194,8 @@ class _$_Quiz implements _Quiz {
   final String? id;
   @override
   final String title;
+  @override
+  final String description;
   @override
   final String createdBy;
   @override
@@ -200,7 +216,7 @@ class _$_Quiz implements _Quiz {
 
   @override
   String toString() {
-    return 'Quiz(id: $id, title: $title, createdBy: $createdBy, createdAt: $createdAt, isPrivate: $isPrivate, updatedAt: $updatedAt, questions: $questions)';
+    return 'Quiz(id: $id, title: $title, description: $description, createdBy: $createdBy, createdAt: $createdAt, isPrivate: $isPrivate, updatedAt: $updatedAt, questions: $questions)';
   }
 
   @override
@@ -210,6 +226,8 @@ class _$_Quiz implements _Quiz {
             other is _$_Quiz &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
             (identical(other.createdAt, createdAt) ||
@@ -223,8 +241,16 @@ class _$_Quiz implements _Quiz {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, createdBy, createdAt,
-      isPrivate, updatedAt, const DeepCollectionEquality().hash(_questions));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      description,
+      createdBy,
+      createdAt,
+      isPrivate,
+      updatedAt,
+      const DeepCollectionEquality().hash(_questions));
 
   @JsonKey(ignore: true)
   @override
@@ -237,6 +263,7 @@ abstract class _Quiz implements Quiz {
   const factory _Quiz(
       {final String? id,
       required final String title,
+      required final String description,
       required final String createdBy,
       required final DateTime createdAt,
       required final bool isPrivate,
@@ -247,6 +274,8 @@ abstract class _Quiz implements Quiz {
   String? get id;
   @override
   String get title;
+  @override
+  String get description;
   @override
   String get createdBy;
   @override
