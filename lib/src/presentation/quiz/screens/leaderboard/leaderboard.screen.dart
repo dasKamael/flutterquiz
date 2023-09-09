@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.controller.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/widgets/leaderboard_list.dart';
-import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 import 'package:go_router/go_router.dart';
 
 class LeaderboardScreen extends ConsumerStatefulWidget {
@@ -26,50 +27,53 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
           data: (state) {
             return SizedBox(
               width: fixWidth,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('${state.quizTitle} Leaderboard', style: theme.textTheme.headlineLarge),
-                  const SizedBox(height: 16),
-                  Text('Your score is: ${state.score}', style: theme.textTheme.headlineMedium),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: fixWidth,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            controller: _usernameController,
-                            decoration: const InputDecoration(hintText: 'Enter username'),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('${state.quizTitle} Leaderboard', style: theme.textTheme.headlineLarge),
+                    const SizedBox(height: 16),
+                    Text('Your score is: ${state.score}', style: theme.textTheme.headlineMedium),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: fixWidth,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: _usernameController,
+                              decoration: const InputDecoration(hintText: 'Enter username'),
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 8),
-                        ElevatedButton(
-                          child: const Text('Add'),
-                          onPressed: () async {
-                            await ref
-                                .read(LeaderboardControllerProvider(quizId: widget.quizId).notifier)
-                                .createLeaderboardEntry(
-                                  username: _usernameController.text,
-                                );
-                          },
-                        ),
-                      ],
+                          const SizedBox(width: 8),
+                          UiElevatedButton(
+                            loading: state.isSubmitting,
+                            onPressed: () async {
+                              await ref
+                                  .read(LeaderboardControllerProvider(quizId: widget.quizId).notifier)
+                                  .createLeaderboardEntry(
+                                    username: _usernameController.text,
+                                  );
+                            },
+                            child: const Text('Add'),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(width: fixWidth, child: LeaderboardList(entries: state.entries)),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: fixWidth,
-                    child: ElevatedButton(
-                      child: const Text('Back to Home'),
-                      onPressed: () => context.go('/'),
+                    const SizedBox(height: 16),
+                    SizedBox(width: fixWidth, child: LeaderboardList(entries: state.entries)),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: fixWidth,
+                      child: ElevatedButton(
+                        child: const Text('Back to Home'),
+                        onPressed: () => context.go('/'),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

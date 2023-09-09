@@ -10,5 +10,6 @@ class LeaderboardState with _$LeaderboardState {
     required String quizTitle,
     required int score,
     required List<LeaderboardEntry> entries,
+    @Default(false) bool isSubmitting,
   }) = _LeaderboardState;
 }

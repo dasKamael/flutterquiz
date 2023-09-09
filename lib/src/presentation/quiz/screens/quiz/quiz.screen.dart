@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
+import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +28,7 @@ class QuizScreen extends ConsumerWidget {
                 children: [
                   Text(
                     quiz.title,
-                    style: theme.textTheme.displayLarge,
+                    style: theme.textTheme.displayLarge?.copyWith(color: kTextColorLight),
                   ),
                   const SizedBox(height: 40),
                   // TODO DESCRIPTION

@@ -16,7 +16,7 @@ class QuestionController extends _$QuestionController {
   Future<Question> getCompleteQuestionById() async {
     Question question = await ref.read(getQuestionServiceProvider(questionId: questionId).future);
 
-    final List<Answer> answers = ref.read(getAnswersServiceProvider(questionId: question.id)).value ?? [];
+    final List<Answer> answers = await ref.read(getAnswersServiceProvider(questionId: question.id).future) ?? [];
 
     question = question.copyWith(answers: answers);
 

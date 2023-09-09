@@ -46,7 +46,7 @@ class QuestionResultDialog extends ConsumerWidget {
               const SizedBox(height: 16),
               Text(question.question, style: Theme.of(context).textTheme.headlineMedium),
               const SizedBox(height: 16),
-              Text(question.explanation, style: Theme.of(context).textTheme.bodyMedium),
+              Text(question.explanation, style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 24),
               Row(
                 mainAxisSize: MainAxisSize.min,

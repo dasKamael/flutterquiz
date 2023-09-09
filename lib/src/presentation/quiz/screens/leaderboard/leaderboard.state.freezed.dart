@@ -20,6 +20,7 @@ mixin _$LeaderboardState {
   String get quizTitle => throw _privateConstructorUsedError;
   int get score => throw _privateConstructorUsedError;
   List<LeaderboardEntry> get entries => throw _privateConstructorUsedError;
+  bool get isSubmitting => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LeaderboardStateCopyWith<LeaderboardState> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $LeaderboardStateCopyWith<$Res> {
       {String quizId,
       String quizTitle,
       int score,
-      List<LeaderboardEntry> entries});
+      List<LeaderboardEntry> entries,
+      bool isSubmitting});
 }
 
 /// @nodoc
@@ -56,6 +58,7 @@ class _$LeaderboardStateCopyWithImpl<$Res, $Val extends LeaderboardState>
     Object? quizTitle = null,
     Object? score = null,
     Object? entries = null,
+    Object? isSubmitting = null,
   }) {
     return _then(_value.copyWith(
       quizId: null == quizId
@@ -74,6 +77,10 @@ class _$LeaderboardStateCopyWithImpl<$Res, $Val extends LeaderboardState>
           ? _value.entries
           : entries // ignore: cast_nullable_to_non_nullable
               as List<LeaderboardEntry>,
+      isSubmitting: null == isSubmitting
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -90,7 +97,8 @@ abstract class _$$_LeaderboardStateCopyWith<$Res>
       {String quizId,
       String quizTitle,
       int score,
-      List<LeaderboardEntry> entries});
+      List<LeaderboardEntry> entries,
+      bool isSubmitting});
 }
 
 /// @nodoc
@@ -108,6 +116,7 @@ class __$$_LeaderboardStateCopyWithImpl<$Res>
     Object? quizTitle = null,
     Object? score = null,
     Object? entries = null,
+    Object? isSubmitting = null,
   }) {
     return _then(_$_LeaderboardState(
       quizId: null == quizId
@@ -126,6 +135,10 @@ class __$$_LeaderboardStateCopyWithImpl<$Res>
           ? _value._entries
           : entries // ignore: cast_nullable_to_non_nullable
               as List<LeaderboardEntry>,
+      isSubmitting: null == isSubmitting
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -137,7 +150,8 @@ class _$_LeaderboardState implements _LeaderboardState {
       {required this.quizId,
       required this.quizTitle,
       required this.score,
-      required final List<LeaderboardEntry> entries})
+      required final List<LeaderboardEntry> entries,
+      this.isSubmitting = false})
       : _entries = entries;
 
   @override
@@ -155,8 +169,12 @@ class _$_LeaderboardState implements _LeaderboardState {
   }
 
   @override
+  @JsonKey()
+  final bool isSubmitting;
+
+  @override
   String toString() {
-    return 'LeaderboardState(quizId: $quizId, quizTitle: $quizTitle, score: $score, entries: $entries)';
+    return 'LeaderboardState(quizId: $quizId, quizTitle: $quizTitle, score: $score, entries: $entries, isSubmitting: $isSubmitting)';
   }
 
   @override
@@ -168,12 +186,14 @@ class _$_LeaderboardState implements _LeaderboardState {
             (identical(other.quizTitle, quizTitle) ||
                 other.quizTitle == quizTitle) &&
             (identical(other.score, score) || other.score == score) &&
-            const DeepCollectionEquality().equals(other._entries, _entries));
+            const DeepCollectionEquality().equals(other._entries, _entries) &&
+            (identical(other.isSubmitting, isSubmitting) ||
+                other.isSubmitting == isSubmitting));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, quizId, quizTitle, score,
-      const DeepCollectionEquality().hash(_entries));
+      const DeepCollectionEquality().hash(_entries), isSubmitting);
 
   @JsonKey(ignore: true)
   @override
@@ -187,7 +207,8 @@ abstract class _LeaderboardState implements LeaderboardState {
       {required final String quizId,
       required final String quizTitle,
       required final int score,
-      required final List<LeaderboardEntry> entries}) = _$_LeaderboardState;
+      required final List<LeaderboardEntry> entries,
+      final bool isSubmitting}) = _$_LeaderboardState;
 
   @override
   String get quizId;
@@ -197,6 +218,8 @@ abstract class _LeaderboardState implements LeaderboardState {
   int get score;
   @override
   List<LeaderboardEntry> get entries;
+  @override
+  bool get isSubmitting;
   @override
   @JsonKey(ignore: true)
   _$$_LeaderboardStateCopyWith<_$_LeaderboardState> get copyWith =>

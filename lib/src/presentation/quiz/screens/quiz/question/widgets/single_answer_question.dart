@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question_result.dialog.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question_result.dialog.dart';
 
 class SingleAnswerQuestion extends ConsumerWidget {
   const SingleAnswerQuestion({super.key, required this.question});
@@ -22,6 +22,7 @@ class SingleAnswerQuestion extends ConsumerWidget {
             onTap: () {
               showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (context) {
                   return QuestionResultDialog(
                     question: question,
