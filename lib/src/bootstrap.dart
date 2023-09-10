@@ -42,6 +42,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       );
     },
     (error, stackTrace) {
+      Logger.root.severe('bootstrap: zone-error', error, stackTrace);
       // if (UiPlatform.isWeb || UiPlatform.isDebugMode) {
       //   Logger.root.severe('bootstrap: zone-error', error, stackTrace);
       // } else {

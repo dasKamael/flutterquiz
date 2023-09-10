@@ -11,6 +11,7 @@ class DefaultLayout extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: Column(
         children: [
@@ -31,13 +32,14 @@ class DefaultLayout extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
-                          child: const Text('Home'),
+                          child: Text('Home', style: theme.textTheme.labelMedium),
                           onPressed: () => context.go('/'),
                         ),
-                        TextButton(
-                          child: const Text('Management'),
-                          onPressed: () => context.go('/management'),
-                        ),
+                        if (ref.read(authServiceProvider) != null)
+                          TextButton(
+                            child: Text('Dashboard', style: theme.textTheme.labelMedium),
+                            onPressed: () => context.go('/management'),
+                          ),
                         const Spacer(),
                         if (ref.read(authServiceProvider) == null)
                           ElevatedButton(

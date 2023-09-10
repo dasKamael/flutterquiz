@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
@@ -17,7 +18,14 @@ class LeaderboardScreen extends ConsumerStatefulWidget {
 }
 
 class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
-  final TextEditingController _usernameController = TextEditingController();
+  late final TextEditingController _usernameController;
+
+  @override
+  void initState() {
+    super.initState();
+    final username = ref.read(authServiceProvider) != null ? ref.read(authServiceProvider)!.username : '';
+    _usernameController = TextEditingController(text: username);
+  }
 
   @override
   Widget build(BuildContext context) {
