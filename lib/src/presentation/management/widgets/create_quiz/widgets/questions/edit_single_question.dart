@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
+import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/edit_quiz.controller.dart';
 
 class EditSingleQuestion extends ConsumerStatefulWidget {
@@ -41,7 +42,8 @@ class _EditSingleQuestionState extends ConsumerState<EditSingleQuestion> {
             separatorBuilder: (context, index) => const SizedBox(height: 8),
             itemBuilder: (context, index) {
               final controller = _answersControllers[index];
-              return CheckboxListTile(
+              return RadioListTile(
+                groupValue: true,
                 controlAffinity: ListTileControlAffinity.leading,
                 value: question.answers![index].isCorrect,
                 onChanged: (value) {},
@@ -53,13 +55,16 @@ class _EditSingleQuestionState extends ConsumerState<EditSingleQuestion> {
               );
             },
           ),
-          ElevatedButton(
-            onPressed: () {
-              // TODO ADD ANSWER
-              _answersControllers.add(TextEditingController());
-              ref.read(editQuizControllerProvider().notifier).addAnswerToQuestion(question: question);
-            },
-            child: const Text('Add answer'),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: UiElevatedButton(
+              onPressed: () {
+                // TODO ADD ANSWER
+                _answersControllers.add(TextEditingController());
+                ref.read(editQuizControllerProvider().notifier).addAnswerToQuestion(question: question);
+              },
+              child: const Text('Add answer'),
+            ),
           ),
           const SizedBox(height: 8),
           Material(

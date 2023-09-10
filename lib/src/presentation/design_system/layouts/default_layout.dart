@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:go_router/go_router.dart';
 
@@ -30,13 +31,24 @@ class DefaultLayout extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
-                          child: const Text('Registrieren'),
-                          onPressed: () {},
+                          child: const Text('Home'),
+                          onPressed: () => context.go('/'),
                         ),
-                        ElevatedButton(
-                          child: const Text('LogIn'),
+                        TextButton(
+                          child: const Text('Management'),
                           onPressed: () => context.go('/management'),
                         ),
+                        const Spacer(),
+                        if (ref.read(authServiceProvider) == null)
+                          ElevatedButton(
+                            child: const Text('LogIn'),
+                            onPressed: () => context.go('/auth'),
+                          )
+                        else
+                          ElevatedButton(
+                            child: const Text('LogOut'),
+                            onPressed: () => context.go('/auth'),
+                          ),
                       ],
                     ),
                   ),

@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterquiz/src/presentation/design_system/layouts/default_layout.dart';
 import 'package:flutterquiz/src/common/router/router_notifier.dart';
+import 'package:flutterquiz/src/presentation/authentication/screens/auth.screen.dart';
+import 'package:flutterquiz/src/presentation/design_system/layouts/default_layout.dart';
 import 'package:flutterquiz/src/presentation/management/screens/management_dashboard.screen.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/edit_quiz.screen.dart';
 import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.screen.dart';
@@ -111,8 +112,18 @@ Raw<GoRouter> router(RouterRef ref) {
               ),
             ],
           ),
+          // Auth ######################################################################################################
+          GoRoute(
+            path: '/auth',
+            pageBuilder: (context, state) {
+              return NoTransitionPage(
+                key: state.pageKey,
+                child: const AuthScreen(),
+              );
+            },
+          ),
         ],
-      )
+      ),
     ],
     redirect: (context, state) {
       return null;

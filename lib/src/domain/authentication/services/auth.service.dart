@@ -13,8 +13,9 @@ class AuthService extends _$AuthService {
   @override
   AuthProfile? build() {
     final supabaseClient = ref.watch(supabaseClientProvider);
+    listenToAuthChanges();
 
-    return const AuthProfile(id: '', username: 'Kevin', email: 'kev@kev.de');
+    return null;
   }
 
   void listenToAuthChanges() {

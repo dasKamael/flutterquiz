@@ -68,13 +68,13 @@ class UiTheme {
           : baseDarkTheme.elevatedButtonTheme.style?.splashFactory,
       textTheme: baseDarkTheme.textTheme.copyWith(
         labelSmall: baseDarkTheme.textTheme.labelSmall?.copyWith(
-          fontFamily: 'RobotoLight',
+          fontFamily: 'AxiaLight',
           color: kTextColor,
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         labelMedium: darkLabelMedium,
         labelLarge: baseDarkTheme.textTheme.labelLarge?.copyWith(
-          fontFamily: 'RobotoLight',
+          fontFamily: 'AxiaLight',
           fontSize: 22,
           letterSpacing: 1.25,
           color: kTextColor,
@@ -82,7 +82,7 @@ class UiTheme {
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         bodySmall: baseDarkTheme.textTheme.bodySmall?.copyWith(
-          fontFamily: 'Roboto',
+          fontFamily: 'Axia',
           height: 1.25,
           fontSize: 16,
           color: kTextColor,
@@ -90,7 +90,7 @@ class UiTheme {
         ),
         bodyMedium: darkBodyMedium,
         bodyLarge: baseDarkTheme.textTheme.bodyLarge?.copyWith(
-          fontFamily: 'Roboto',
+          fontFamily: 'Axia',
           fontSize: 22,
           letterSpacing: 2.08,
           color: kTextColor,
@@ -98,7 +98,7 @@ class UiTheme {
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         headlineSmall: baseDarkTheme.textTheme.headlineSmall?.copyWith(
-          fontFamily: 'RobotoBlack',
+          fontFamily: 'AxiaBlack',
           fontSize: 18,
           fontWeight: FontWeight.w400,
           letterSpacing: 1.83,
@@ -106,7 +106,7 @@ class UiTheme {
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         headlineMedium: baseDarkTheme.textTheme.headlineMedium?.copyWith(
-          fontFamily: 'RobotoBlack',
+          fontFamily: 'AxiaBlack',
           fontSize: 22,
           fontWeight: FontWeight.w400,
           letterSpacing: 1.83,
@@ -115,19 +115,19 @@ class UiTheme {
         ),
         headlineLarge: darkHeadlineLarge,
         titleSmall: baseDarkTheme.textTheme.titleSmall?.copyWith(
-          fontFamily: 'RobotoBlack',
+          fontFamily: 'AxiaBlack',
           fontWeight: FontWeight.w400,
           color: kTextColor,
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         titleMedium: baseDarkTheme.textTheme.titleMedium?.copyWith(
-          fontFamily: 'RobotoBlack',
+          fontFamily: 'AxiaBlack',
           fontWeight: FontWeight.w400,
           color: kTextColor,
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         titleLarge: baseDarkTheme.textTheme.titleLarge?.copyWith(
-          fontFamily: 'RobotoBlack',
+          fontFamily: 'AxiaBlack',
           fontSize: 36,
           letterSpacing: 2.38,
           color: kTextColor,
@@ -135,7 +135,7 @@ class UiTheme {
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         displaySmall: baseDarkTheme.textTheme.displaySmall?.copyWith(
-          fontFamily: 'RobotoBlack',
+          fontFamily: 'AxiaBlack',
           fontSize: 30,
           fontWeight: FontWeight.w400,
           letterSpacing: 3.5,
@@ -144,7 +144,7 @@ class UiTheme {
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         displayMedium: baseDarkTheme.textTheme.displayMedium?.copyWith(
-          fontFamily: 'RobotoBlack',
+          fontFamily: 'AxiaBlack',
           fontSize: 42,
           fontWeight: FontWeight.w400,
           letterSpacing: 3.5,
@@ -153,7 +153,7 @@ class UiTheme {
           fontFeatures: [const FontFeature.liningFigures()],
         ),
         displayLarge: baseDarkTheme.textTheme.displayLarge?.copyWith(
-          fontFamily: 'RobotoBlack',
+          fontFamily: 'AxiaBlack',
           fontWeight: FontWeight.w400,
           height: 1.0,
           color: kPrimaryColor,
@@ -217,7 +217,7 @@ class UiTheme {
 
   TextStyle? getDarkHeadlineLarge(ThemeData baseDarkTheme) {
     return baseDarkTheme.textTheme.headlineLarge?.copyWith(
-      fontFamily: 'RobotoBlack',
+      fontFamily: 'AxiaBlack',
       fontSize: 32,
       letterSpacing: 2.08,
       color: kPrimaryColor,
@@ -228,7 +228,7 @@ class UiTheme {
 
   TextStyle? getDarkBodyMedium(ThemeData baseDarkTheme) {
     return baseDarkTheme.textTheme.bodyMedium?.copyWith(
-      fontFamily: 'Roboto',
+      fontFamily: 'Axia',
       fontSize: 20,
       letterSpacing: 1.83,
       color: kTextColor,
@@ -240,7 +240,7 @@ class UiTheme {
 
   TextStyle? getDarkLabelMedium(ThemeData baseDarkTheme) {
     return baseDarkTheme.textTheme.labelMedium?.copyWith(
-      fontFamily: 'RobotoLight',
+      fontFamily: 'AxiaLight',
       fontSize: 15,
       letterSpacing: 1.25,
       color: kPrimaryColor,
