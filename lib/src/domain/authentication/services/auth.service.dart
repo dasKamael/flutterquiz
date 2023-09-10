@@ -68,6 +68,11 @@ class AuthService extends _$AuthService {
     return await supabaseClient.rpc('user_exists', params: {'email': email});
   }
 
+  Future<bool> userNameAlreadyExists({required String username}) async {
+    final supabaseClient = ref.watch(supabaseClientProvider);
+    return await supabaseClient.rpc('username_exists', params: {'username': username});
+  }
+
   /// Login with user and pw
   Future<(bool, String?)> login({
     required String email,
@@ -94,13 +99,41 @@ class AuthService extends _$AuthService {
 
       if (msg.contains(submsg1) && context.mounted) {
         //sendMsg = context.translations.auth_login_invalid_credentials;
+        sendMsg = 'Invalid login credentials';
       } else if (msg.contains(submsg2) && context.mounted) {
         //sendMsg = context.translations.auth_login_mail_not_confirmed;
+        sendMsg = 'Email not confirmed';
       } else {
         sendMsg = null;
       }
 
       return (false, sendMsg);
     }
+  }
+
+  Future<(bool, String?)> signUp({required String email, required String password, required String username}) async {
+    final supabaseClient = ref.watch(supabaseClientProvider);
+
+    final bool userExists = await userAlreadyExists(email: email);
+    final bool usernameExists = await userNameAlreadyExists(username: username);
+    if (usernameExists) {
+      return (false, 'username');
+    }
+    if (!userExists) {
+      try {
+        await supabaseClient.auth.signUp(
+          email: email,
+          password: password,
+          data: {
+            'username': username,
+          },
+        );
+        return (true, null);
+      } catch (e, stackStrace) {
+        log.severe('Sign Up Error: ', e, stackStrace);
+        return (false, null);
+      }
+    }
+    return (false, 'mail');
   }
 }

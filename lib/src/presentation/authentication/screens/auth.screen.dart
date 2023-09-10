@@ -52,7 +52,7 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          if (showSignIn) SignInForm() else SignUpForm(),
+          if (showSignIn) SignInForm() else const SignUpForm(),
         ],
       ),
     );
