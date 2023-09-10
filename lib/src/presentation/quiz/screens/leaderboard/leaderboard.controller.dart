@@ -45,10 +45,6 @@ class LeaderboardController extends _$LeaderboardController {
     });
   }
 
-  Future<List<LeaderboardEntry>> getLeaderboardEntriesByQuizId({required String quizId}) async {
-    return ref.watch(leaderBoardServiceProvider(quizId: quizId)).value ?? [];
-  }
-
   Future<void> createLeaderboardEntry({required String username}) async {
     state = AsyncValue.data(state.value!.copyWith(isSubmitting: true));
     final quizId = leaderboardState.quizId;

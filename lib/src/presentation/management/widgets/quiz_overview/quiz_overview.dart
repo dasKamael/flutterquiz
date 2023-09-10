@@ -4,8 +4,8 @@ import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_quizzes.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
-import 'package:flutterquiz/src/presentation/management/widgets/management_page_card.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
+import 'package:flutterquiz/src/presentation/management/widgets/management_page_card.dart';
 import 'package:go_router/go_router.dart';
 
 class QuizOverview extends ConsumerWidget {
@@ -27,7 +27,7 @@ class QuizOverview extends ConsumerWidget {
                       physics: const BouncingScrollPhysics(),
                       separatorBuilder: (context, index) => const SizedBox(height: 8),
                       itemBuilder: (context, index) {
-                        return QuizOverviewWidget(index: index, quiz: quizzes[index]);
+                        return QuizOverviewListTile(index: index, quiz: quizzes[index]);
                       },
                     ),
                     const SizedBox(height: 8),
@@ -50,8 +50,8 @@ class QuizOverview extends ConsumerWidget {
   }
 }
 
-class QuizOverviewWidget extends ConsumerWidget {
-  const QuizOverviewWidget({super.key, required this.index, required this.quiz});
+class QuizOverviewListTile extends ConsumerWidget {
+  const QuizOverviewListTile({super.key, required this.index, required this.quiz});
 
   final int index;
   final Quiz quiz;

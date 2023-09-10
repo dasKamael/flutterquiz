@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/widgets/edit_quiz_card.dart';
 import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/widgets/edit_quiz_side_nav.dart';
-import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 
 class EditQuizScreen extends ConsumerWidget {
   const EditQuizScreen({super.key, this.quizId});

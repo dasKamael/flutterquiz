@@ -22,9 +22,9 @@ class UiElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final defaultLoadingWidget =
         UiLoading(padding: const EdgeInsets.all(3), color: isPrimary ? kSecondaryColor : kPrimaryColor);
+
     late final Widget button;
     if (loading) {
       button = ElevatedButton(onPressed: onPressed, child: loadingWidget ?? defaultLoadingWidget);

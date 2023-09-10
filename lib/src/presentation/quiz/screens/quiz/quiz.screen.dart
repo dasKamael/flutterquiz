@@ -4,6 +4,7 @@ import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.d
 import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,21 +25,25 @@ class QuizScreen extends ConsumerWidget {
             }
             return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     quiz.title,
                     style: theme.textTheme.displayLarge?.copyWith(color: kTextColorLight),
                   ),
                   const SizedBox(height: 40),
-                  // TODO DESCRIPTION
-                  ElevatedButton(
+                  Text(
+                    quiz.description,
+                    style: theme.textTheme.bodyMedium?.copyWith(color: kTextColorLight),
+                  ),
+                  const Spacer(),
+                  UiElevatedButton(
                     child: Text('Start Quiz', style: theme.textTheme.labelMedium),
                     onPressed: () {
                       ref.read(quizScoreControllerProvider.notifier).reset();
                       context.go('/quiz/$quizId/${question[0].id}');
                     },
                   ),
+                  const Spacer(),
                 ],
               ),
             );
