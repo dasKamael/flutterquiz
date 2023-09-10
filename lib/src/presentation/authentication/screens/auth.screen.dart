@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterquiz/src/presentation/authentication/widgets/sign_in_form.dart';
+import 'package:flutterquiz/src/presentation/authentication/widgets/sign_up_form.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -9,7 +11,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final _formKey = GlobalKey<FormState>();
+  bool showSignIn = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 width: 150,
                 child: UiElevatedButton(
                   isPrimary: true,
+                  onPressed: () => setState(() => showSignIn = false),
                   child: Text('REGISTRIEREN', style: theme.textTheme.labelSmall),
                 ),
               ),
@@ -33,51 +36,14 @@ class _AuthScreenState extends State<AuthScreen> {
                 width: 150,
                 child: UiElevatedButton(
                   isPrimary: true,
+                  onPressed: () => setState(() => showSignIn = true),
                   child: Text('LOGIN', style: theme.textTheme.labelSmall),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          SizedBox(
-            width: 308,
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Bitte gib eine Email ein';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Passwort',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Bitte gib eine Email ein';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  UiElevatedButton(
-                    isPrimary: true,
-                    fullWidth: true,
-                    child: Text('REGISTRIEREN', style: theme.textTheme.labelMedium),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          if (showSignIn) SignInForm() else const SignUpForm(),
         ],
       ),
     );
