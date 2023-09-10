@@ -196,6 +196,7 @@ class UiTheme {
         fillColor: kCardColor,
         floatingLabelBehavior: FloatingLabelBehavior.never,
         contentPadding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 16.0, right: 16.0),
+        errorStyle: baseDarkTheme.textTheme.bodySmall?.copyWith(color: kErrorColor),
         hintStyle: baseDarkTheme.textTheme.bodySmall?.copyWith(color: kPrimaryColor.withOpacity(0.5)),
         labelStyle: baseDarkTheme.textTheme.bodySmall?.copyWith(color: kTextColor),
         enabledBorder: const OutlineInputBorder(

@@ -20,30 +20,39 @@ class _AuthScreenState extends State<AuthScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 150,
-                child: UiElevatedButton(
-                  isPrimary: true,
-                  onPressed: () => setState(() => showSignIn = false),
-                  child: Text('REGISTRIEREN', style: theme.textTheme.labelSmall),
+          SizedBox(
+            width: 400,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: showSignIn ? 32 : 48,
+                    child: UiElevatedButton(
+                      isPrimary: true,
+                      onPressed: () => setState(() => showSignIn = false),
+                      child: Text('REGISTRIEREN', style: theme.textTheme.labelMedium),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              SizedBox(
-                width: 150,
-                child: UiElevatedButton(
-                  isPrimary: true,
-                  onPressed: () => setState(() => showSignIn = true),
-                  child: Text('LOGIN', style: theme.textTheme.labelSmall),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: SizedBox(
+                    height: showSignIn ? 48 : 32,
+                    child: UiElevatedButton(
+                      isPrimary: true,
+                      onPressed: () => setState(() => showSignIn = true),
+                      child: Text('LOGIN', style: theme.textTheme.labelMedium),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: 16),
-          if (showSignIn) SignInForm() else const SignUpForm(),
+          if (showSignIn) SignInForm() else SignUpForm(),
         ],
       ),
     );
