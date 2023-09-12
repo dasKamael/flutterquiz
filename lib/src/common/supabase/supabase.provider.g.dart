@@ -13,9 +13,7 @@ String _$supabaseClientHash() => r'81a31999ffbf88ca32333548621bd26bb39f2187';
 final supabaseClientProvider = Provider<SupabaseClient>.internal(
   supabaseClient,
   name: r'supabaseClientProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$supabaseClientHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$supabaseClientHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

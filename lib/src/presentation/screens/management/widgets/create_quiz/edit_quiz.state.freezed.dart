@@ -20,22 +20,19 @@ mixin _$EditQuizState {
   List<Question> get questions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $EditQuizStateCopyWith<EditQuizState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $EditQuizStateCopyWith<EditQuizState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $EditQuizStateCopyWith<$Res> {
-  factory $EditQuizStateCopyWith(
-          EditQuizState value, $Res Function(EditQuizState) then) =
+  factory $EditQuizStateCopyWith(EditQuizState value, $Res Function(EditQuizState) then) =
       _$EditQuizStateCopyWithImpl<$Res, EditQuizState>;
   @useResult
   $Res call({String title, List<Question> questions});
 }
 
 /// @nodoc
-class _$EditQuizStateCopyWithImpl<$Res, $Val extends EditQuizState>
-    implements $EditQuizStateCopyWith<$Res> {
+class _$EditQuizStateCopyWithImpl<$Res, $Val extends EditQuizState> implements $EditQuizStateCopyWith<$Res> {
   _$EditQuizStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -63,10 +60,8 @@ class _$EditQuizStateCopyWithImpl<$Res, $Val extends EditQuizState>
 }
 
 /// @nodoc
-abstract class _$$_EditQuizStateCopyWith<$Res>
-    implements $EditQuizStateCopyWith<$Res> {
-  factory _$$_EditQuizStateCopyWith(
-          _$_EditQuizState value, $Res Function(_$_EditQuizState) then) =
+abstract class _$$_EditQuizStateCopyWith<$Res> implements $EditQuizStateCopyWith<$Res> {
+  factory _$$_EditQuizStateCopyWith(_$_EditQuizState value, $Res Function(_$_EditQuizState) then) =
       __$$_EditQuizStateCopyWithImpl<$Res>;
   @override
   @useResult
@@ -74,12 +69,9 @@ abstract class _$$_EditQuizStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_EditQuizStateCopyWithImpl<$Res>
-    extends _$EditQuizStateCopyWithImpl<$Res, _$_EditQuizState>
+class __$$_EditQuizStateCopyWithImpl<$Res> extends _$EditQuizStateCopyWithImpl<$Res, _$_EditQuizState>
     implements _$$_EditQuizStateCopyWith<$Res> {
-  __$$_EditQuizStateCopyWithImpl(
-      _$_EditQuizState _value, $Res Function(_$_EditQuizState) _then)
-      : super(_value, _then);
+  __$$_EditQuizStateCopyWithImpl(_$_EditQuizState _value, $Res Function(_$_EditQuizState) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -103,9 +95,7 @@ class __$$_EditQuizStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_EditQuizState implements _EditQuizState {
-  const _$_EditQuizState(
-      {this.title = '', final List<Question> questions = const []})
-      : _questions = questions;
+  const _$_EditQuizState({this.title = '', final List<Question> questions = const []}) : _questions = questions;
 
   @override
   @JsonKey()
@@ -130,13 +120,11 @@ class _$_EditQuizState implements _EditQuizState {
         (other.runtimeType == runtimeType &&
             other is _$_EditQuizState &&
             (identical(other.title, title) || other.title == title) &&
-            const DeepCollectionEquality()
-                .equals(other._questions, _questions));
+            const DeepCollectionEquality().equals(other._questions, _questions));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, title, const DeepCollectionEquality().hash(_questions));
+  int get hashCode => Object.hash(runtimeType, title, const DeepCollectionEquality().hash(_questions));
 
   @JsonKey(ignore: true)
   @override
@@ -146,8 +134,7 @@ class _$_EditQuizState implements _EditQuizState {
 }
 
 abstract class _EditQuizState implements EditQuizState {
-  const factory _EditQuizState(
-      {final String title, final List<Question> questions}) = _$_EditQuizState;
+  const factory _EditQuizState({final String title, final List<Question> questions}) = _$_EditQuizState;
 
   @override
   String get title;
@@ -155,6 +142,5 @@ abstract class _EditQuizState implements EditQuizState {
   List<Question> get questions;
   @override
   @JsonKey(ignore: true)
-  _$$_EditQuizStateCopyWith<_$_EditQuizState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_EditQuizStateCopyWith<_$_EditQuizState> get copyWith => throw _privateConstructorUsedError;
 }

@@ -5,7 +5,7 @@ import 'package:flutterquiz/src/domain/quiz/services/get_quizzes.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
-import 'package:flutterquiz/src/presentation/management/widgets/management_page_card.dart';
+import 'package:flutterquiz/src/presentation/screens/management/widgets/management_page_card.dart';
 import 'package:go_router/go_router.dart';
 
 class QuizOverview extends ConsumerWidget {

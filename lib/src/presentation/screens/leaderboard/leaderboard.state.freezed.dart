@@ -23,27 +23,19 @@ mixin _$LeaderboardState {
   bool get isSubmitting => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LeaderboardStateCopyWith<LeaderboardState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $LeaderboardStateCopyWith<LeaderboardState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LeaderboardStateCopyWith<$Res> {
-  factory $LeaderboardStateCopyWith(
-          LeaderboardState value, $Res Function(LeaderboardState) then) =
+  factory $LeaderboardStateCopyWith(LeaderboardState value, $Res Function(LeaderboardState) then) =
       _$LeaderboardStateCopyWithImpl<$Res, LeaderboardState>;
   @useResult
-  $Res call(
-      {String quizId,
-      String quizTitle,
-      int score,
-      List<LeaderboardEntry> entries,
-      bool isSubmitting});
+  $Res call({String quizId, String quizTitle, int score, List<LeaderboardEntry> entries, bool isSubmitting});
 }
 
 /// @nodoc
-class _$LeaderboardStateCopyWithImpl<$Res, $Val extends LeaderboardState>
-    implements $LeaderboardStateCopyWith<$Res> {
+class _$LeaderboardStateCopyWithImpl<$Res, $Val extends LeaderboardState> implements $LeaderboardStateCopyWith<$Res> {
   _$LeaderboardStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -86,27 +78,18 @@ class _$LeaderboardStateCopyWithImpl<$Res, $Val extends LeaderboardState>
 }
 
 /// @nodoc
-abstract class _$$_LeaderboardStateCopyWith<$Res>
-    implements $LeaderboardStateCopyWith<$Res> {
-  factory _$$_LeaderboardStateCopyWith(
-          _$_LeaderboardState value, $Res Function(_$_LeaderboardState) then) =
+abstract class _$$_LeaderboardStateCopyWith<$Res> implements $LeaderboardStateCopyWith<$Res> {
+  factory _$$_LeaderboardStateCopyWith(_$_LeaderboardState value, $Res Function(_$_LeaderboardState) then) =
       __$$_LeaderboardStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String quizId,
-      String quizTitle,
-      int score,
-      List<LeaderboardEntry> entries,
-      bool isSubmitting});
+  $Res call({String quizId, String quizTitle, int score, List<LeaderboardEntry> entries, bool isSubmitting});
 }
 
 /// @nodoc
-class __$$_LeaderboardStateCopyWithImpl<$Res>
-    extends _$LeaderboardStateCopyWithImpl<$Res, _$_LeaderboardState>
+class __$$_LeaderboardStateCopyWithImpl<$Res> extends _$LeaderboardStateCopyWithImpl<$Res, _$_LeaderboardState>
     implements _$$_LeaderboardStateCopyWith<$Res> {
-  __$$_LeaderboardStateCopyWithImpl(
-      _$_LeaderboardState _value, $Res Function(_$_LeaderboardState) _then)
+  __$$_LeaderboardStateCopyWithImpl(_$_LeaderboardState _value, $Res Function(_$_LeaderboardState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -183,17 +166,15 @@ class _$_LeaderboardState implements _LeaderboardState {
         (other.runtimeType == runtimeType &&
             other is _$_LeaderboardState &&
             (identical(other.quizId, quizId) || other.quizId == quizId) &&
-            (identical(other.quizTitle, quizTitle) ||
-                other.quizTitle == quizTitle) &&
+            (identical(other.quizTitle, quizTitle) || other.quizTitle == quizTitle) &&
             (identical(other.score, score) || other.score == score) &&
             const DeepCollectionEquality().equals(other._entries, _entries) &&
-            (identical(other.isSubmitting, isSubmitting) ||
-                other.isSubmitting == isSubmitting));
+            (identical(other.isSubmitting, isSubmitting) || other.isSubmitting == isSubmitting));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, quizId, quizTitle, score,
-      const DeepCollectionEquality().hash(_entries), isSubmitting);
+  int get hashCode =>
+      Object.hash(runtimeType, quizId, quizTitle, score, const DeepCollectionEquality().hash(_entries), isSubmitting);
 
   @JsonKey(ignore: true)
   @override
@@ -222,6 +203,5 @@ abstract class _LeaderboardState implements LeaderboardState {
   bool get isSubmitting;
   @override
   @JsonKey(ignore: true)
-  _$$_LeaderboardStateCopyWith<_$_LeaderboardState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_LeaderboardStateCopyWith<_$_LeaderboardState> get copyWith => throw _privateConstructorUsedError;
 }

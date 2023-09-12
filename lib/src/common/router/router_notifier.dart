@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 
 /// Creates a Notifier to be used in GoRouter
 ///
@@ -20,8 +21,8 @@ class RouterNotifier extends ChangeNotifier {
   final Ref _ref;
 
   RouterNotifier(this._ref) {
-    // _ref.listen(authUseCaseProvider, (previous, next) {
-    //   notifyListeners();
-    // });
+    _ref.listen(authServiceProvider, (previous, next) {
+      notifyListeners();
+    });
   }
 }

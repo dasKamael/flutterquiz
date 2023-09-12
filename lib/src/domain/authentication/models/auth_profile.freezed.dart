@@ -21,22 +21,19 @@ mixin _$AuthProfile {
   String get email => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AuthProfileCopyWith<AuthProfile> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AuthProfileCopyWith<AuthProfile> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthProfileCopyWith<$Res> {
-  factory $AuthProfileCopyWith(
-          AuthProfile value, $Res Function(AuthProfile) then) =
+  factory $AuthProfileCopyWith(AuthProfile value, $Res Function(AuthProfile) then) =
       _$AuthProfileCopyWithImpl<$Res, AuthProfile>;
   @useResult
   $Res call({String id, String username, String email});
 }
 
 /// @nodoc
-class _$AuthProfileCopyWithImpl<$Res, $Val extends AuthProfile>
-    implements $AuthProfileCopyWith<$Res> {
+class _$AuthProfileCopyWithImpl<$Res, $Val extends AuthProfile> implements $AuthProfileCopyWith<$Res> {
   _$AuthProfileCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -69,10 +66,8 @@ class _$AuthProfileCopyWithImpl<$Res, $Val extends AuthProfile>
 }
 
 /// @nodoc
-abstract class _$$_AuthProfileCopyWith<$Res>
-    implements $AuthProfileCopyWith<$Res> {
-  factory _$$_AuthProfileCopyWith(
-          _$_AuthProfile value, $Res Function(_$_AuthProfile) then) =
+abstract class _$$_AuthProfileCopyWith<$Res> implements $AuthProfileCopyWith<$Res> {
+  factory _$$_AuthProfileCopyWith(_$_AuthProfile value, $Res Function(_$_AuthProfile) then) =
       __$$_AuthProfileCopyWithImpl<$Res>;
   @override
   @useResult
@@ -80,12 +75,9 @@ abstract class _$$_AuthProfileCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AuthProfileCopyWithImpl<$Res>
-    extends _$AuthProfileCopyWithImpl<$Res, _$_AuthProfile>
+class __$$_AuthProfileCopyWithImpl<$Res> extends _$AuthProfileCopyWithImpl<$Res, _$_AuthProfile>
     implements _$$_AuthProfileCopyWith<$Res> {
-  __$$_AuthProfileCopyWithImpl(
-      _$_AuthProfile _value, $Res Function(_$_AuthProfile) _then)
-      : super(_value, _then);
+  __$$_AuthProfileCopyWithImpl(_$_AuthProfile _value, $Res Function(_$_AuthProfile) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -114,8 +106,7 @@ class __$$_AuthProfileCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthProfile implements _AuthProfile {
-  const _$_AuthProfile(
-      {required this.id, required this.username, required this.email});
+  const _$_AuthProfile({required this.id, required this.username, required this.email});
 
   @override
   final String id;
@@ -135,8 +126,7 @@ class _$_AuthProfile implements _AuthProfile {
         (other.runtimeType == runtimeType &&
             other is _$_AuthProfile &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.username, username) || other.username == username) &&
             (identical(other.email, email) || other.email == email));
   }
 
@@ -151,10 +141,8 @@ class _$_AuthProfile implements _AuthProfile {
 }
 
 abstract class _AuthProfile implements AuthProfile {
-  const factory _AuthProfile(
-      {required final String id,
-      required final String username,
-      required final String email}) = _$_AuthProfile;
+  const factory _AuthProfile({required final String id, required final String username, required final String email}) =
+      _$_AuthProfile;
 
   @override
   String get id;
@@ -164,6 +152,5 @@ abstract class _AuthProfile implements AuthProfile {
   String get email;
   @override
   @JsonKey(ignore: true)
-  _$$_AuthProfileCopyWith<_$_AuthProfile> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AuthProfileCopyWith<_$_AuthProfile> get copyWith => throw _privateConstructorUsedError;
 }

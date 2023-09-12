@@ -6,8 +6,7 @@ part of 'edit_quiz.controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$editQuizControllerHash() =>
-    r'f817b3292b6684afd767278f0ea94e038da1fc8e';
+String _$editQuizControllerHash() => r'f817b3292b6684afd767278f0ea94e038da1fc8e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,8 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$EditQuizController
-    extends BuildlessAutoDisposeAsyncNotifier<Quiz> {
+abstract class _$EditQuizController extends BuildlessAutoDisposeAsyncNotifier<Quiz> {
   late final String? quizId;
 
   FutureOr<Quiz> build({
@@ -74,16 +72,14 @@ class EditQuizControllerFamily extends Family<AsyncValue<Quiz>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'editQuizControllerProvider';
 }
 
 /// See also [EditQuizController].
-class EditQuizControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<EditQuizController, Quiz> {
+class EditQuizControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<EditQuizController, Quiz> {
   /// See also [EditQuizController].
   EditQuizControllerProvider({
     this.quizId,
@@ -91,13 +87,9 @@ class EditQuizControllerProvider
           () => EditQuizController()..quizId = quizId,
           from: editQuizControllerProvider,
           name: r'editQuizControllerProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$editQuizControllerHash,
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$editQuizControllerHash,
           dependencies: EditQuizControllerFamily._dependencies,
-          allTransitiveDependencies:
-              EditQuizControllerFamily._allTransitiveDependencies,
+          allTransitiveDependencies: EditQuizControllerFamily._allTransitiveDependencies,
         );
 
   final String? quizId;

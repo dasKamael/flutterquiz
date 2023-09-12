@@ -1,16 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterquiz/src/common/router/router_notifier.dart';
-import 'package:flutterquiz/src/presentation/authentication/screens/auth.screen.dart';
+import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/layouts/default_layout.dart';
-import 'package:flutterquiz/src/presentation/management/screens/management_dashboard.screen.dart';
-import 'package:flutterquiz/src/presentation/management/widgets/create_quiz/edit_quiz.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/overview/overview.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz.screen.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/quiz_result.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/authentication/auth.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/leaderboard/leaderboard.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/management/management_dashboard.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/overview/overview.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/question/question.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/quiz.screen.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/quiz_result.screen.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router.g.dart';
@@ -126,6 +130,13 @@ Raw<GoRouter> router(RouterRef ref) {
       ),
     ],
     redirect: (context, state) {
+      Logger.root.info('Redirecting: ${state.path.toString()}');
+
+      log('Redirecting: ${state.fullPath!}');
+      final bool isLoggedIn = ref.watch(authServiceProvider) != null;
+      if (state.fullPath!.contains('management') && isLoggedIn == false) {
+        return '/auth';
+      }
       return null;
     },
   );

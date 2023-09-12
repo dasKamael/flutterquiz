@@ -4,8 +4,8 @@ import 'package:flutterquiz/src/common/utils/question.util.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/quiz/question/question.controller.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
+import 'package:flutterquiz/src/presentation/screens/quiz/question/question.controller.dart';
 
 class QuestionScreen extends ConsumerWidget {
   const QuestionScreen({super.key, required this.quizId, required this.questionId});

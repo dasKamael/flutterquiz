@@ -31,8 +31,7 @@ mixin _$Quiz {
 
 /// @nodoc
 abstract class $QuizCopyWith<$Res> {
-  factory $QuizCopyWith(Quiz value, $Res Function(Quiz) then) =
-      _$QuizCopyWithImpl<$Res, Quiz>;
+  factory $QuizCopyWith(Quiz value, $Res Function(Quiz) then) = _$QuizCopyWithImpl<$Res, Quiz>;
   @useResult
   $Res call(
       {String? id,
@@ -46,8 +45,7 @@ abstract class $QuizCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
-    implements $QuizCopyWith<$Res> {
+class _$QuizCopyWithImpl<$Res, $Val extends Quiz> implements $QuizCopyWith<$Res> {
   _$QuizCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -106,8 +104,7 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
 
 /// @nodoc
 abstract class _$$_QuizCopyWith<$Res> implements $QuizCopyWith<$Res> {
-  factory _$$_QuizCopyWith(_$_Quiz value, $Res Function(_$_Quiz) then) =
-      __$$_QuizCopyWithImpl<$Res>;
+  factory _$$_QuizCopyWith(_$_Quiz value, $Res Function(_$_Quiz) then) = __$$_QuizCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -122,10 +119,8 @@ abstract class _$$_QuizCopyWith<$Res> implements $QuizCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz>
-    implements _$$_QuizCopyWith<$Res> {
-  __$$_QuizCopyWithImpl(_$_Quiz _value, $Res Function(_$_Quiz) _then)
-      : super(_value, _then);
+class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz> implements _$$_QuizCopyWith<$Res> {
+  __$$_QuizCopyWithImpl(_$_Quiz _value, $Res Function(_$_Quiz) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -226,37 +221,22 @@ class _$_Quiz implements _Quiz {
             other is _$_Quiz &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.createdBy, createdBy) ||
-                other.createdBy == createdBy) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.isPrivate, isPrivate) ||
-                other.isPrivate == isPrivate) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            const DeepCollectionEquality()
-                .equals(other._questions, _questions));
+            (identical(other.description, description) || other.description == description) &&
+            (identical(other.createdBy, createdBy) || other.createdBy == createdBy) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.isPrivate, isPrivate) || other.isPrivate == isPrivate) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
+            const DeepCollectionEquality().equals(other._questions, _questions));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      description,
-      createdBy,
-      createdAt,
-      isPrivate,
-      updatedAt,
+  int get hashCode => Object.hash(runtimeType, id, title, description, createdBy, createdAt, isPrivate, updatedAt,
       const DeepCollectionEquality().hash(_questions));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_QuizCopyWith<_$_Quiz> get copyWith =>
-      __$$_QuizCopyWithImpl<_$_Quiz>(this, _$identity);
+  _$$_QuizCopyWith<_$_Quiz> get copyWith => __$$_QuizCopyWithImpl<_$_Quiz>(this, _$identity);
 }
 
 abstract class _Quiz implements Quiz {
@@ -304,14 +284,12 @@ mixin _$Question {
   List<Answer>? get answers => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $QuestionCopyWith<Question> get copyWith =>
-      throw _privateConstructorUsedError;
+  $QuestionCopyWith<Question> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $QuestionCopyWith<$Res> {
-  factory $QuestionCopyWith(Question value, $Res Function(Question) then) =
-      _$QuestionCopyWithImpl<$Res, Question>;
+  factory $QuestionCopyWith(Question value, $Res Function(Question) then) = _$QuestionCopyWithImpl<$Res, Question>;
   @useResult
   $Res call(
       {String id,
@@ -326,8 +304,7 @@ abstract class $QuestionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$QuestionCopyWithImpl<$Res, $Val extends Question>
-    implements $QuestionCopyWith<$Res> {
+class _$QuestionCopyWithImpl<$Res, $Val extends Question> implements $QuestionCopyWith<$Res> {
   _$QuestionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -391,9 +368,7 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
 
 /// @nodoc
 abstract class _$$_QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
-  factory _$$_QuestionCopyWith(
-          _$_Question value, $Res Function(_$_Question) then) =
-      __$$_QuestionCopyWithImpl<$Res>;
+  factory _$$_QuestionCopyWith(_$_Question value, $Res Function(_$_Question) then) = __$$_QuestionCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -409,12 +384,9 @@ abstract class _$$_QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_QuestionCopyWithImpl<$Res>
-    extends _$QuestionCopyWithImpl<$Res, _$_Question>
+class __$$_QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res, _$_Question>
     implements _$$_QuestionCopyWith<$Res> {
-  __$$_QuestionCopyWithImpl(
-      _$_Question _value, $Res Function(_$_Question) _then)
-      : super(_value, _then);
+  __$$_QuestionCopyWithImpl(_$_Question _value, $Res Function(_$_Question) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -523,38 +495,23 @@ class _$_Question implements _Question {
             other is _$_Question &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.quizId, quizId) || other.quizId == quizId) &&
-            (identical(other.question, question) ||
-                other.question == question) &&
-            (identical(other.explanation, explanation) ||
-                other.explanation == explanation) &&
-            (identical(other.explanationLink, explanationLink) ||
-                other.explanationLink == explanationLink) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
+            (identical(other.question, question) || other.question == question) &&
+            (identical(other.explanation, explanation) || other.explanation == explanation) &&
+            (identical(other.explanationLink, explanationLink) || other.explanationLink == explanationLink) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
             (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality().equals(other._answers, _answers));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      quizId,
-      question,
-      explanation,
-      explanationLink,
-      createdAt,
-      updatedAt,
-      type,
-      const DeepCollectionEquality().hash(_answers));
+  int get hashCode => Object.hash(runtimeType, id, quizId, question, explanation, explanationLink, createdAt, updatedAt,
+      type, const DeepCollectionEquality().hash(_answers));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_QuestionCopyWith<_$_Question> get copyWith =>
-      __$$_QuestionCopyWithImpl<_$_Question>(this, _$identity);
+  _$$_QuestionCopyWith<_$_Question> get copyWith => __$$_QuestionCopyWithImpl<_$_Question>(this, _$identity);
 }
 
 abstract class _Question implements Question {
@@ -589,8 +546,7 @@ abstract class _Question implements Question {
   List<Answer>? get answers;
   @override
   @JsonKey(ignore: true)
-  _$$_QuestionCopyWith<_$_Question> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_QuestionCopyWith<_$_Question> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -608,21 +564,13 @@ mixin _$Answer {
 
 /// @nodoc
 abstract class $AnswerCopyWith<$Res> {
-  factory $AnswerCopyWith(Answer value, $Res Function(Answer) then) =
-      _$AnswerCopyWithImpl<$Res, Answer>;
+  factory $AnswerCopyWith(Answer value, $Res Function(Answer) then) = _$AnswerCopyWithImpl<$Res, Answer>;
   @useResult
-  $Res call(
-      {String id,
-      String answer,
-      bool isCorrect,
-      String questionId,
-      DateTime createdAt,
-      DateTime? updatedAt});
+  $Res call({String id, String answer, bool isCorrect, String questionId, DateTime createdAt, DateTime? updatedAt});
 }
 
 /// @nodoc
-class _$AnswerCopyWithImpl<$Res, $Val extends Answer>
-    implements $AnswerCopyWith<$Res> {
+class _$AnswerCopyWithImpl<$Res, $Val extends Answer> implements $AnswerCopyWith<$Res> {
   _$AnswerCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -671,25 +619,15 @@ class _$AnswerCopyWithImpl<$Res, $Val extends Answer>
 
 /// @nodoc
 abstract class _$$_AnswerCopyWith<$Res> implements $AnswerCopyWith<$Res> {
-  factory _$$_AnswerCopyWith(_$_Answer value, $Res Function(_$_Answer) then) =
-      __$$_AnswerCopyWithImpl<$Res>;
+  factory _$$_AnswerCopyWith(_$_Answer value, $Res Function(_$_Answer) then) = __$$_AnswerCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String answer,
-      bool isCorrect,
-      String questionId,
-      DateTime createdAt,
-      DateTime? updatedAt});
+  $Res call({String id, String answer, bool isCorrect, String questionId, DateTime createdAt, DateTime? updatedAt});
 }
 
 /// @nodoc
-class __$$_AnswerCopyWithImpl<$Res>
-    extends _$AnswerCopyWithImpl<$Res, _$_Answer>
-    implements _$$_AnswerCopyWith<$Res> {
-  __$$_AnswerCopyWithImpl(_$_Answer _value, $Res Function(_$_Answer) _then)
-      : super(_value, _then);
+class __$$_AnswerCopyWithImpl<$Res> extends _$AnswerCopyWithImpl<$Res, _$_Answer> implements _$$_AnswerCopyWith<$Res> {
+  __$$_AnswerCopyWithImpl(_$_Answer _value, $Res Function(_$_Answer) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -766,25 +704,19 @@ class _$_Answer implements _Answer {
             other is _$_Answer &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.isCorrect, isCorrect) ||
-                other.isCorrect == isCorrect) &&
-            (identical(other.questionId, questionId) ||
-                other.questionId == questionId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.isCorrect, isCorrect) || other.isCorrect == isCorrect) &&
+            (identical(other.questionId, questionId) || other.questionId == questionId) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, answer, isCorrect, questionId, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, answer, isCorrect, questionId, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AnswerCopyWith<_$_Answer> get copyWith =>
-      __$$_AnswerCopyWithImpl<_$_Answer>(this, _$identity);
+  _$$_AnswerCopyWith<_$_Answer> get copyWith => __$$_AnswerCopyWithImpl<_$_Answer>(this, _$identity);
 }
 
 abstract class _Answer implements Answer {
@@ -810,6 +742,5 @@ abstract class _Answer implements Answer {
   DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$_AnswerCopyWith<_$_Answer> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AnswerCopyWith<_$_Answer> get copyWith => throw _privateConstructorUsedError;
 }

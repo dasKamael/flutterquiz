@@ -4,8 +4,8 @@ import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/leaderboard.controller.dart';
-import 'package:flutterquiz/src/presentation/quiz/screens/leaderboard/widgets/leaderboard_list.dart';
+import 'package:flutterquiz/src/presentation/screens/leaderboard/leaderboard.controller.dart';
+import 'package:flutterquiz/src/presentation/screens/leaderboard/widgets/leaderboard_list.dart';
 import 'package:go_router/go_router.dart';
 
 class LeaderboardScreen extends ConsumerStatefulWidget {

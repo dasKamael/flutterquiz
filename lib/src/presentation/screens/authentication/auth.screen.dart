@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterquiz/src/presentation/authentication/widgets/sign_in_form.dart';
-import 'package:flutterquiz/src/presentation/authentication/widgets/sign_up_form.dart';
+import 'package:flutterquiz/src/presentation/screens/authentication/widgets/sign_in_form.dart';
+import 'package:flutterquiz/src/presentation/screens/authentication/widgets/sign_up_form.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 
 class AuthScreen extends StatefulWidget {

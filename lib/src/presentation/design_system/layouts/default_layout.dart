@@ -43,13 +43,15 @@ class DefaultLayout extends ConsumerWidget {
                         const Spacer(),
                         if (ref.read(authServiceProvider) == null)
                           ElevatedButton(
-                            child: const Text('LogIn'),
+                            child: const Text('Anmelden'),
                             onPressed: () => context.go('/auth'),
                           )
                         else
                           ElevatedButton(
-                            child: const Text('LogOut'),
-                            onPressed: () => context.go('/auth'),
+                            child: const Text('Abmelden'),
+                            onPressed: () {
+                              ref.read(authServiceProvider.notifier).signOut();
+                            },
                           ),
                       ],
                     ),
