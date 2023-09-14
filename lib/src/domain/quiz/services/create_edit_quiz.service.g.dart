@@ -6,14 +6,18 @@ part of 'create_edit_quiz.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$createEditQuizServiceHash() => r'68b9e4674baf14ef693a360abb15e11a496fcc60';
+String _$createEditQuizServiceHash() =>
+    r'68b9e4674baf14ef693a360abb15e11a496fcc60';
 
 /// See also [CreateEditQuizService].
 @ProviderFor(CreateEditQuizService)
-final createEditQuizServiceProvider = AutoDisposeNotifierProvider<CreateEditQuizService, dynamic>.internal(
+final createEditQuizServiceProvider =
+    AutoDisposeNotifierProvider<CreateEditQuizService, dynamic>.internal(
   CreateEditQuizService.new,
   name: r'createEditQuizServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createEditQuizServiceHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$createEditQuizServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

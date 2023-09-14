@@ -46,6 +46,12 @@ class QuestionResultDialog extends ConsumerWidget {
               const SizedBox(height: 16),
               Text(question.question, style: Theme.of(context).textTheme.headlineMedium),
               const SizedBox(height: 16),
+              if (answers.any((answer) => !answer.isCorrect))
+                Text('Die richtigen Antworten lauten:', style: Theme.of(context).textTheme.bodySmall),
+              if (answers.any((answer) => !answer.isCorrect))
+                for (final answer in question.answers!)
+                  if (answer.isCorrect) Text(answer.answer, style: Theme.of(context).textTheme.bodySmall),
+              const SizedBox(width: 200, child: Divider()),
               Text(question.explanation, style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 24),
               Row(

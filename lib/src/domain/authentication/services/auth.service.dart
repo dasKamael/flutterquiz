@@ -116,6 +116,9 @@ class AuthService extends _$AuthService {
 
     final bool userExists = await userAlreadyExists(email: email);
     final bool usernameExists = await userNameAlreadyExists(username: username);
+    if (userExists) {
+      return (false, 'mail');
+    }
     if (usernameExists) {
       return (false, 'username');
     }
@@ -134,6 +137,6 @@ class AuthService extends _$AuthService {
         return (false, null);
       }
     }
-    return (false, 'mail');
+    return (false, null);
   }
 }

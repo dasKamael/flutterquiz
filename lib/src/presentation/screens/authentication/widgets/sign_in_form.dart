@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInForm extends ConsumerWidget {
   SignInForm({super.key});
@@ -49,13 +50,17 @@ class SignInForm extends ConsumerWidget {
               isPrimary: true,
               fullWidth: true,
               child: Text('LOGIN', style: theme.textTheme.labelMedium),
-              onPressed: () {
+              onPressed: () async {
                 if (formKey.currentState!.validate()) {
-                  ref.read(authServiceProvider.notifier).login(
+                  final (bool, String?) result = await ref.read(authServiceProvider.notifier).login(
                         email: emailController.text,
                         password: passwordController.text,
                         context: context,
                       );
+
+                  if (result.$1 == true && context.mounted) {
+                    context.go('/management');
+                  }
                 }
               },
             ),

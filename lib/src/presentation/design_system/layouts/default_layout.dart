@@ -41,16 +41,30 @@ class DefaultLayout extends ConsumerWidget {
                             onPressed: () => context.go('/management'),
                           ),
                         const Spacer(),
+                        if (ref.read(authServiceProvider) != null)
+                          Text(
+                            'Hello ${ref.read(authServiceProvider)?.username ?? ''}',
+                            style: theme.textTheme.labelMedium,
+                          ),
+                        const SizedBox(width: 8),
                         if (ref.read(authServiceProvider) == null)
                           ElevatedButton(
                             child: const Text('Anmelden'),
                             onPressed: () => context.go('/auth'),
                           )
                         else
-                          ElevatedButton(
-                            child: const Text('Abmelden'),
+                          TextButton(
+                            child: Text(
+                              'Abmelden',
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                color: theme.textTheme.labelMedium?.color?.withOpacity(
+                                  0.5,
+                                ),
+                              ),
+                            ),
                             onPressed: () {
                               ref.read(authServiceProvider.notifier).signOut();
+                              context.go('/');
                             },
                           ),
                       ],

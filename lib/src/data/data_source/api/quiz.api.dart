@@ -1,4 +1,5 @@
 import 'package:flutterquiz/src/common/supabase/supabase.provider.dart';
+import 'package:flutterquiz/src/data/dtos/CreateUpdateQuestionWithAnswers.dto.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -57,6 +58,19 @@ class QuizApi {
       _logger.info('GetQuestionById error: $e');
       return {};
     }
+  }
+
+  Future<Map<String, dynamic>> createUpdateQuestionWithAnswers(
+      {required CreateUpdateQuestionWithAnswersDto question}) async {
+    final userId = supabaseClient.auth.currentUser?.id;
+    supabaseClient.rpc('create_update_question_with_answers', params: {
+      'question_id': question.questionId,
+      'question_title': question.questionTitle,
+      'quiz_id': question.quizId,
+      'answers': question.answers,
+      'user_id': userId,
+    });
+    return {};
   }
 
   // Answers #################################################################

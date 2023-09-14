@@ -5,7 +5,7 @@ import 'package:flutterquiz/src/domain/quiz/services/get_quizzes.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutterquiz/src/presentation/screens/overview/widgets/overview_quiz_card.dart';
 
 class OverviewScreen extends ConsumerWidget {
   const OverviewScreen({super.key});
@@ -37,41 +37,17 @@ class OverviewScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 100),
                       SizedBox(
-                        width: isDesktop ? 300 : 200,
-                        child: ListView.separated(
-                          itemCount: quizzes.length,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          separatorBuilder: (context, index) => const SizedBox(height: 20),
-                          itemBuilder: (context, index) {
-                            final quiz = quizzes[index];
-                            return SizedBox(
-                              child: InkWell(
-                                onTap: () => context.go('/quiz/${quiz.id}'),
-                                child: Card(
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        children: [
-                                          AutoSizeText(
-                                            quiz.title,
-                                            textAlign: TextAlign.center,
-                                            style: theme.textTheme.labelMedium,
-                                          ),
-                                          Text(
-                                            quiz.description,
-                                            style: theme.textTheme.labelSmall,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                        width: isDesktop ? 1000 : double.infinity,
+                        child: GridView.builder(
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: quizzes.length >= 8 ? 4 : 2, childAspectRatio: 16 / 9),
+                            itemCount: quizzes.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              final quiz = quizzes[index];
+                              return OverviewQuizCard(quiz: quiz);
+                            }),
                       ),
                     ],
                   ),

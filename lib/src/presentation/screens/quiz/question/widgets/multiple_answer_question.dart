@@ -78,6 +78,7 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
               ? () {
                   showDialog(
                     context: context,
+                    barrierDismissible: false,
                     builder: (context) {
                       return QuestionResultDialog(
                         question: widget.question,

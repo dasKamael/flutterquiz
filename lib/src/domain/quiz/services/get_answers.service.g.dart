@@ -29,7 +29,8 @@ class _SystemHash {
   }
 }
 
-abstract class _$GetAnswersService extends BuildlessAutoDisposeAsyncNotifier<List<Answer>> {
+abstract class _$GetAnswersService
+    extends BuildlessAutoDisposeAsyncNotifier<List<Answer>> {
   late final String questionId;
 
   FutureOr<List<Answer>> build({
@@ -72,14 +73,16 @@ class GetAnswersServiceFamily extends Family<AsyncValue<List<Answer>>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'getAnswersServiceProvider';
 }
 
 /// See also [GetAnswersService].
-class GetAnswersServiceProvider extends AutoDisposeAsyncNotifierProviderImpl<GetAnswersService, List<Answer>> {
+class GetAnswersServiceProvider extends AutoDisposeAsyncNotifierProviderImpl<
+    GetAnswersService, List<Answer>> {
   /// See also [GetAnswersService].
   GetAnswersServiceProvider({
     required this.questionId,
@@ -87,9 +90,13 @@ class GetAnswersServiceProvider extends AutoDisposeAsyncNotifierProviderImpl<Get
           () => GetAnswersService()..questionId = questionId,
           from: getAnswersServiceProvider,
           name: r'getAnswersServiceProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$getAnswersServiceHash,
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getAnswersServiceHash,
           dependencies: GetAnswersServiceFamily._dependencies,
-          allTransitiveDependencies: GetAnswersServiceFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              GetAnswersServiceFamily._allTransitiveDependencies,
         );
 
   final String questionId;

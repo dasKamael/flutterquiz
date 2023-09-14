@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
+import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpForm extends ConsumerStatefulWidget {
   const SignUpForm({super.key});
@@ -92,6 +92,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                   if (passwordController.text != passwordrepeatController.text) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
+                        backgroundColor: kWarnColor,
                         content: Text('Passwörter stimmen nicht überein'),
                       ),
                     );
@@ -103,7 +104,28 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                         username: userNameController.text,
                       );
 
-                  log(result.$2.toString());
+                  if (result.$1 == false && mounted) {
+                    if (result.$2 == 'mail') {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: kWarnColor,
+                          content: Text('Email bereits vergeben'),
+                        ),
+                      );
+                    }
+                    if (result.$2 == 'username') {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: kWarnColor,
+                          content: Text('Username bereits vergeben'),
+                        ),
+                      );
+                    }
+                    return;
+                  }
+                  if (result.$1 == true && mounted) {
+                    context.go('/management');
+                  }
                 }
               },
               child: Text('REGISTRIEREN', style: theme.textTheme.labelMedium),

@@ -1,5 +1,6 @@
 import 'package:flutterquiz/src/common/supabase/supabase.provider.dart';
 import 'package:flutterquiz/src/data/mapper/leaderboard.mapper.dart';
+import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/domain/leaderboard/models/leaderboard_entry.dart';
 import 'package:flutterquiz/src/domain/leaderboard/services/leaderboard.service.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
@@ -40,7 +41,7 @@ class LeaderboardController extends _$LeaderboardController {
       for (final entry in event) {
         entries.add(LeaderboardMapper().toModel(entry));
       }
-
+      entries.sort((a, b) => b.score.compareTo(a.score));
       state = AsyncValue.data(state.value!.copyWith(entries: entries));
     });
   }
@@ -50,10 +51,10 @@ class LeaderboardController extends _$LeaderboardController {
     final quizId = leaderboardState.quizId;
     final score = leaderboardState.score;
     // TODO Check if user is logged in and get userid
-    //final userId = ref.read(quizControllerProvider(quizId: quizId)).value!.userId;
+    final userId = ref.read(authServiceProvider)?.id;
     await ref.read(leaderBoardServiceProvider(quizId: quizId).notifier).createLeaderboardEntry(
           quizId: quizId,
-          // userId: userId,
+          userId: userId ?? '',
           username: username,
           score: score,
         );

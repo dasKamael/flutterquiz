@@ -24,27 +24,33 @@ class QuizScreen extends ConsumerWidget {
               return const Text('Question not found');
             }
             return Center(
-              child: Column(
-                children: [
-                  Text(
-                    quiz.title,
-                    style: theme.textTheme.displayLarge?.copyWith(color: kTextColorLight),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SizedBox(
+                  width: 1000,
+                  child: Column(
+                    children: [
+                      Text(
+                        quiz.title,
+                        style: theme.textTheme.displayLarge?.copyWith(color: kTextColorLight),
+                      ),
+                      const SizedBox(height: 40),
+                      Text(
+                        quiz.description,
+                        style: theme.textTheme.bodySmall?.copyWith(color: kTextColorLight),
+                      ),
+                      const Spacer(),
+                      UiElevatedButton(
+                        child: Text('Start Quiz', style: theme.textTheme.labelMedium),
+                        onPressed: () {
+                          ref.read(quizScoreControllerProvider.notifier).reset();
+                          context.go('/quiz/$quizId/${question[0].id}');
+                        },
+                      ),
+                      const Spacer(),
+                    ],
                   ),
-                  const SizedBox(height: 40),
-                  Text(
-                    quiz.description,
-                    style: theme.textTheme.bodyMedium?.copyWith(color: kTextColorLight),
-                  ),
-                  const Spacer(),
-                  UiElevatedButton(
-                    child: Text('Start Quiz', style: theme.textTheme.labelMedium),
-                    onPressed: () {
-                      ref.read(quizScoreControllerProvider.notifier).reset();
-                      context.go('/quiz/$quizId/${question[0].id}');
-                    },
-                  ),
-                  const Spacer(),
-                ],
+                ),
               ),
             );
           },

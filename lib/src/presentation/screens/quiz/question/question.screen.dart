@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/utils/question.util.dart';
@@ -78,6 +80,7 @@ class QuestionScreen extends ConsumerWidget {
           },
           loading: () => const UiLoading(),
           error: (error, stackTrace) {
+            log(error.toString());
             return UiAppError(error: stackTrace);
           },
         );
