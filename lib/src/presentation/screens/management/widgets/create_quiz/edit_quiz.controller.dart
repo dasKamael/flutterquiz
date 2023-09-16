@@ -61,4 +61,12 @@ class EditQuizController extends _$EditQuizController {
     question.answers![answerIndex] = answer;
     state.value!.questions![questionIndex] = question;
   }
+
+  void removeQuestion({required int index}) {
+    List<Question> temp = state.value!.questions!.toList();
+    temp.removeAt(index);
+    state = AsyncValue.data(
+      state.value!.copyWith(questions: temp),
+    );
+  }
 }

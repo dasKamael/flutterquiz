@@ -56,6 +56,10 @@ class QuizRepository {
     }
     return answers;
   }
+
+  Future<void> createUpdateQuestionWithAnswers({required Question question}) async {
+    await quizApi.createUpdateQuestionWithAnswers(question: question);
+  }
 }
 
 /// Providers

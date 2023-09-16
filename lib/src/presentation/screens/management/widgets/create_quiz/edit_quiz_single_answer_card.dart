@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 
 class EditQuizSingleAnswerCard extends ConsumerStatefulWidget {
-  const EditQuizSingleAnswerCard({super.key, required this.question});
+  const EditQuizSingleAnswerCard({super.key, required this.question, required this.onRemoveQuestion});
 
   final Question question;
+  final VoidCallback onRemoveQuestion;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _EditQuizSingleAnswerCardState();
 }
 
 class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerCard> {
+  late Question question;
   List<Answer> answers = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    if (widget.question.answers == null) answers = [];
-    answers = widget.question.answers!.toList();
+    question = widget.question;
+    if (question.answers == null) answers = [];
+    answers = question.answers!.toList();
   }
 
   void setIsCorrectAndRemoveFromOldOne(int index) {
@@ -44,10 +48,14 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     answers = temp;
   }
 
+  Future<void> saveQuestion() async {
+    question = question.copyWith(answers: answers);
+    ref.read(createEditQuizServiceProvider.notifier).createUpdateQuestionWithAnswers(question: question);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final Question question = widget.question;
     return Card(
       margin: EdgeInsets.zero,
       child: Column(
@@ -65,13 +73,25 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              initialValue: question.question,
-              style: theme.textTheme.bodyMedium,
-              decoration: const InputDecoration(
-                hintText: 'Question Title...',
-                contentPadding: EdgeInsets.all(16),
-              ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    initialValue: question.question,
+                    style: theme.textTheme.bodyMedium,
+                    decoration: const InputDecoration(
+                      hintText: 'Question Title...',
+                      contentPadding: EdgeInsets.all(16),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    widget.onRemoveQuestion();
+                  },
+                  icon: const Icon(Icons.close),
+                ),
+              ],
             ),
           ),
           const Divider(indent: 20, endIndent: 20),

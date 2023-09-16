@@ -7,7 +7,7 @@ part of 'create_edit_quiz.service.dart';
 // **************************************************************************
 
 String _$createEditQuizServiceHash() =>
-    r'68b9e4674baf14ef693a360abb15e11a496fcc60';
+    r'97e1915a988c78c373027bad8b19ba78619349e1';
 
 /// See also [CreateEditQuizService].
 @ProviderFor(CreateEditQuizService)

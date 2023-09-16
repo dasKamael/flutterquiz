@@ -38,7 +38,12 @@ class _EditQuizViewState extends ConsumerState<EditQuizView> {
                     itemCount: quiz.questions!.length,
                     separatorBuilder: (context, index) => const SizedBox(height: 8),
                     itemBuilder: (context, index) {
-                      return EditQuizSingleAnswerCard(question: quiz.questions![index]);
+                      return EditQuizSingleAnswerCard(
+                        question: quiz.questions![index],
+                        onRemoveQuestion: () {
+                          ref.read(editQuizControllerProvider().notifier).removeQuestion(index: index);
+                        },
+                      );
                     },
                   ),
                   const SizedBox(height: 8),

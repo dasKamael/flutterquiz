@@ -12,4 +12,8 @@ class CreateEditQuizService extends _$CreateEditQuizService {
   Future<Quiz> createQuiz({required Quiz quiz}) async {
     return await ref.read(quizRepositoryProvider).createQuiz(quiz: quiz);
   }
+
+  Future<void> createUpdateQuestionWithAnswers({required Question question}) async {
+    await ref.read(quizRepositoryProvider).createUpdateQuestionWithAnswers(question: question);
+  }
 }
