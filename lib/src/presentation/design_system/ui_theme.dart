@@ -200,11 +200,11 @@ class UiTheme {
         hintStyle: baseDarkTheme.textTheme.bodySmall?.copyWith(color: kPrimaryColor.withOpacity(0.5)),
         labelStyle: baseDarkTheme.textTheme.bodySmall?.copyWith(color: kTextColor),
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: kCardColor, width: kInputBorderSize),
+          borderSide: BorderSide(color: Colors.grey, width: kInputBorderSize),
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         border: const OutlineInputBorder(
-          borderSide: BorderSide(color: kCardColor, width: kInputBorderSize),
+          borderSide: BorderSide(color: Colors.grey, width: kInputBorderSize),
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         focusedBorder: const OutlineInputBorder(
@@ -230,7 +230,7 @@ class UiTheme {
   TextStyle? getDarkBodyMedium(ThemeData baseDarkTheme) {
     return baseDarkTheme.textTheme.bodyMedium?.copyWith(
       fontFamily: 'Axia',
-      fontSize: 20,
+      fontSize: 18,
       letterSpacing: 1.83,
       color: kTextColor,
       fontWeight: FontWeight.w500,

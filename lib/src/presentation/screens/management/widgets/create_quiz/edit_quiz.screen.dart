@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
-import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/edit_quiz_card.dart';
+import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.view.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/edit_quiz_side_nav.dart';
 
 class EditQuizScreen extends ConsumerWidget {
@@ -37,14 +37,12 @@ class EditQuizScreen extends ConsumerWidget {
           ),
         ),
         const SizedBox(width: 8),
-        SizedBox(
-          width: 1000,
-          height: 600,
-          child: Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(kCardBorderRadius),
-              child: EditQuizCard(quizId: quizId),
-            ),
+        Container(
+          constraints: const BoxConstraints(maxWidth: 1000),
+          height: MediaQuery.of(context).size.height,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(kCardBorderRadius),
+            child: EditQuizView(quizId: quizId),
           ),
         ),
       ],

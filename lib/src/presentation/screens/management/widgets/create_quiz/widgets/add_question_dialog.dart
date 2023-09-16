@@ -4,8 +4,8 @@ import 'package:flutterquiz/src/domain/quiz/services/get_question_types.service.
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
 import 'package:go_router/go_router.dart';
 
-class AddQuestionDialog extends ConsumerWidget {
-  const AddQuestionDialog({super.key, this.quizId});
+class AddQuestionDialogContent extends ConsumerWidget {
+  const AddQuestionDialogContent({super.key, this.quizId});
 
   final String? quizId;
 
