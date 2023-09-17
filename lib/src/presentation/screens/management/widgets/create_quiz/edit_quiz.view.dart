@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
+import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
-import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz_single_answer_card.dart';
-import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/add_question_dialog.dart';
+import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/edit_quiz_single_answer_card.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/edit_quiz_title_card.dart';
 
 class EditQuizView extends ConsumerStatefulWidget {
@@ -25,7 +26,7 @@ class _EditQuizViewState extends ConsumerState<EditQuizView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return ref.watch(editQuizControllerProvider(quizId: widget.quizId)).when(
+    return ref.watch(getCompleteQuizProvider(quizId: widget.quizId)).when(
           data: (quiz) {
             return SingleChildScrollView(
               child: Column(
@@ -41,7 +42,9 @@ class _EditQuizViewState extends ConsumerState<EditQuizView> {
                       return EditQuizSingleAnswerCard(
                         question: quiz.questions![index],
                         onRemoveQuestion: () {
-                          ref.read(editQuizControllerProvider().notifier).removeQuestion(index: index);
+                          ref
+                              .read(editQuizControllerProvider(quizId: widget.quizId).notifier)
+                              .removeQuestion(index: index);
                         },
                       );
                     },
@@ -50,10 +53,13 @@ class _EditQuizViewState extends ConsumerState<EditQuizView> {
                   FloatingActionButton(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
                     onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => const AddQuestionDialogContent(),
-                      );
+                      ref
+                          .read(editQuizControllerProvider(quizId: widget.quizId).notifier)
+                          .addQuestion(questionType: QuestionType.single);
+                      // showDialog(
+                      //   context: context,
+                      //   builder: (context) => const AddQuestionDialogContent(),
+                      // );
                     },
                     child: const Icon(Icons.add),
                   ),

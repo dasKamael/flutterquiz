@@ -6,7 +6,7 @@ part of 'get_complete_quiz.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getCompleteQuizHash() => r'5f447936bedecdaeac23e11e3e595e3b8fcc3b5f';
+String _$getCompleteQuizHash() => r'6017f3a2b6b56ac967a0f19e3de3509b87603d3b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 
 abstract class _$GetCompleteQuiz
     extends BuildlessAutoDisposeAsyncNotifier<Quiz> {
-  late final String quizId;
+  late final String? quizId;
 
   FutureOr<Quiz> build({
-    required String quizId,
+    required String? quizId,
   });
 }
 
@@ -49,7 +49,7 @@ class GetCompleteQuizFamily extends Family<AsyncValue<Quiz>> {
 
   /// See also [GetCompleteQuiz].
   GetCompleteQuizProvider call({
-    required String quizId,
+    required String? quizId,
   }) {
     return GetCompleteQuizProvider(
       quizId: quizId,
@@ -99,7 +99,7 @@ class GetCompleteQuizProvider
               GetCompleteQuizFamily._allTransitiveDependencies,
         );
 
-  final String quizId;
+  final String? quizId;
 
   @override
   bool operator ==(Object other) {

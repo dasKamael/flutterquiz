@@ -7,11 +7,23 @@ part 'get_complete_quiz.service.g.dart';
 @riverpod
 class GetCompleteQuiz extends _$GetCompleteQuiz {
   @override
-  FutureOr<Quiz> build({required String quizId}) async {
+  FutureOr<Quiz> build({required String? quizId}) async {
     return await getCompleteQuizById(quizId: quizId);
   }
 
-  Future<Quiz> getCompleteQuizById({required String quizId}) async {
+  Future<Quiz> getCompleteQuizById({required String? quizId}) async {
+    if (quizId == null) {
+      return Quiz(
+        id: '',
+        title: '',
+        description: '',
+        createdBy: '',
+        createdAt: DateTime.now(),
+        isPrivate: false,
+        questions: [],
+      );
+    }
+
     Quiz quiz = await ref.read(quizRepositoryProvider).getQuizById(quizId: quizId);
 
     final List<Question> questions = await ref.read(quizRepositoryProvider).getQuestionsByQuizId(quiz.id!);

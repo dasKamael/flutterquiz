@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
 
 class EditQuizSingleAnswerCard extends ConsumerStatefulWidget {
   const EditQuizSingleAnswerCard({super.key, required this.question, required this.onRemoveQuestion});
@@ -43,9 +44,13 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     List<Answer> temp = answers;
     setState(() {
       temp.removeAt(index);
+      answers = temp;
     });
+  }
 
-    answers = temp;
+  void updateQuestion() {
+    question = question.copyWith(answers: answers);
+    ref.read(editQuizControllerProvider(quizId: question.quizId).notifier).updateQuestion(question: question);
   }
 
   Future<void> saveQuestion() async {
@@ -130,6 +135,46 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                 ],
               );
             },
+          ),
+          const SizedBox(height: 8),
+          InkWell(
+            onTap: () {
+              setState(() {
+                answers = [
+                  ...answers,
+                  Answer(answer: '', isCorrect: false, id: '', questionId: '', createdAt: DateTime.now()),
+                ];
+              });
+            },
+            child: IgnorePointer(
+              child: Opacity(
+                opacity: 0.4,
+                child: Row(
+                  children: [
+                    Radio(
+                      groupValue: true,
+                      value: false,
+                      onChanged: (_) {},
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: 'Answer...',
+                        style: theme.textTheme.bodySmall,
+                        decoration: const InputDecoration(
+                          hintText: 'Answer...',
+                          contentPadding: EdgeInsets.all(16),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.close),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
           const SizedBox(height: 8),
         ],

@@ -11,7 +11,7 @@ class AddQuestionDialogContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final types = ref.watch(getQuestionTypesServiceProvider);
+    final types = ref.read(getQuestionTypesServiceProvider);
     return Center(
       child: Card(
         child: Padding(

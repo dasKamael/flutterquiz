@@ -10,24 +10,18 @@ part 'edit_quiz.controller.g.dart';
 class EditQuizController extends _$EditQuizController {
   @override
   FutureOr<Quiz> build({String? quizId}) async {
-    // When id == null create quiz to get id for use
-    Quiz quiz;
     if (quizId == null) {
-      quiz = await ref.read(createEditQuizServiceProvider.notifier).createQuiz(
-            quiz: Quiz(
-              id: '',
-              title: '',
-              description: '',
-              createdBy: '',
-              createdAt: DateTime.now(),
-              isPrivate: true,
-            ),
-          );
-    } else {
-      quiz = await ref.read(getCompleteQuizProvider(quizId: quizId).future);
+      return Quiz(
+        id: '',
+        title: '',
+        description: '',
+        createdBy: '',
+        createdAt: DateTime.now(),
+        isPrivate: true,
+        questions: [],
+      );
     }
-
-    return quiz;
+    return await ref.read(getCompleteQuizProvider(quizId: quizId).future);
   }
 
   void addQuestion({required QuestionType questionType}) {
@@ -50,11 +44,21 @@ class EditQuizController extends _$EditQuizController {
     );
   }
 
-  void addAnswerToQuestion({required Question question}) {
-    // TODO Implement
+  void toggleIsPrivate(bool value) {
+    state = AsyncValue.data(
+      state.value!.copyWith(isPrivate: value),
+    );
   }
 
-  void ediitIsAnswerCorrect({required int questionIndex, required int answerIndex, required bool value}) {
+  void updateQuestion({required Question question}) {
+    List<Question> temp = state.value!.questions!.toList();
+    temp[temp.indexWhere((element) => element.id == question.id)] = question;
+    state = AsyncValue.data(
+      state.value!.copyWith(questions: temp),
+    );
+  }
+
+  void editIsAnswerCorrect({required int questionIndex, required int answerIndex, required bool value}) {
     Question question = state.value!.questions![questionIndex];
     Answer answer = question.answers![answerIndex];
     answer = answer.copyWith(isCorrect: value);
@@ -68,5 +72,14 @@ class EditQuizController extends _$EditQuizController {
     state = AsyncValue.data(
       state.value!.copyWith(questions: temp),
     );
+  }
+
+  Future<(bool, String?)> saveQuiz() async {
+    try {
+      await ref.read(createEditQuizServiceProvider.notifier).createQuiz(quiz: state.value!);
+      return (true, null);
+    } catch (e) {
+      return (false, e.toString());
+    }
   }
 }

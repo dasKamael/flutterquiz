@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.view.dart';
-import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/edit_quiz_side_nav.dart';
 
 class EditQuizScreen extends ConsumerWidget {
   const EditQuizScreen({super.key, this.quizId});
@@ -32,7 +31,28 @@ class EditQuizScreen extends ConsumerWidget {
                 ),
               ),
               const Spacer(),
-              const EditQuizSideNav(),
+              SizedBox(
+                width: 200,
+                height: 32,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: theme.elevatedButtonTheme.style?.copyWith(
+                    backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+                  ),
+                  child: Text('Verwerfen', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
+                ),
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: theme.elevatedButtonTheme.style?.copyWith(
+                    backgroundColor: MaterialStateProperty.all(kSecondaryColor),
+                  ),
+                  child: Text('Speichern', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
+                ),
+              ),
             ],
           ),
         ),

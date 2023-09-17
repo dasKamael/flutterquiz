@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
+import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
 
 class EditQuizTitleCard extends ConsumerWidget {
   const EditQuizTitleCard({super.key, required this.title, required this.description, required this.isPrivate});
@@ -12,6 +13,7 @@ class EditQuizTitleCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final state = ref.watch(editQuizControllerProvider());
     return Card(
       margin: EdgeInsets.zero,
       child: Column(
@@ -50,9 +52,11 @@ class EditQuizTitleCard extends ConsumerWidget {
             ),
           ),
           SwitchListTile(
-            value: isPrivate,
-            onChanged: (value) {},
-            title: Text('Is Public', style: theme.textTheme.bodySmall),
+            value: ref.read(editQuizControllerProvider()).value!.isPrivate,
+            onChanged: (value) {
+              ref.read(editQuizControllerProvider().notifier).toggleIsPrivate(value);
+            },
+            title: Text('Is private', style: theme.textTheme.bodySmall),
           )
         ],
       ),

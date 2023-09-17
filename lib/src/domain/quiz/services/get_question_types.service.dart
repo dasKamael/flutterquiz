@@ -7,6 +7,9 @@ part 'get_question_types.service.g.dart';
 class GetQuestionTypesService extends _$GetQuestionTypesService {
   @override
   FutureOr<List<QuestionType>> build() {
-    return [QuestionType.single, QuestionType.multiple];
+    return [
+      QuestionType.single,
+      QuestionType.multiple,
+    ];
   }
 }
