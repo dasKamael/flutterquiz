@@ -36,6 +36,7 @@ class EditQuizTitleCard extends ConsumerWidget {
                 hintText: 'Quiz Title',
                 contentPadding: EdgeInsets.all(16),
               ),
+              onChanged: (value) => ref.read(editQuizControllerProvider(quiz: quiz).notifier).updateQuizTitle(value),
             ),
           ),
           const Divider(indent: 20, endIndent: 20),
@@ -48,6 +49,8 @@ class EditQuizTitleCard extends ConsumerWidget {
                 hintText: 'Quiz Description',
                 contentPadding: EdgeInsets.all(16),
               ),
+              onChanged: (value) =>
+                  ref.read(editQuizControllerProvider(quiz: quiz).notifier).updateQuizDescription(value),
             ),
           ),
           SwitchListTile(

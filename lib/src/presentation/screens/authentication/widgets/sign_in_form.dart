@@ -8,8 +8,8 @@ class SignInForm extends ConsumerWidget {
   SignInForm({super.key});
 
   final formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(text: 'richard.maasri@hotmail.de');
+  final passwordController = TextEditingController(text: '123456');
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,6 +35,7 @@ class SignInForm extends ConsumerWidget {
             const SizedBox(height: 8),
             TextFormField(
               controller: passwordController,
+              obscureText: true,
               decoration: const InputDecoration(
                 hintText: 'Passwort',
               ),

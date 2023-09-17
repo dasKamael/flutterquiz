@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
@@ -15,30 +17,39 @@ class EditQuizController extends _$EditQuizController {
     return quiz;
   }
 
-  void addQuestion({required QuestionType questionType}) {
-    try {
-      state = state.copyWith(
-        questions: [
-          ...state.questions ?? [],
-          Question(
-            id: '',
-            quizId: state.id ?? '',
-            question: '',
-            answers: [],
-            explanation: '',
-            explanationLink: '',
-            createdAt: DateTime.now(),
-            type: questionType.name,
-          ),
-        ],
-      );
-    } catch (e) {
-      _logger.info('AddQuestion error: $e');
-    }
+  // Quiz related ######################################################################################################
+
+  updateQuizTitle(String value) {
+    state = state.copyWith(title: value);
+  }
+
+  updateQuizDescription(String value) {
+    state = state.copyWith(description: value);
   }
 
   void toggleIsPrivate(bool value) {
     state = state.copyWith(isPrivate: value);
+  }
+
+  // Question related ##################################################################################################
+
+  void addQuestion({required QuestionType questionType}) {
+    state = state.copyWith(
+      questions: [
+        ...state.questions ?? [],
+        Question(
+          id: '',
+          quizId: state.id ?? '',
+          question: '',
+          answers: [],
+          explanation: '',
+          explanationLink: '',
+          createdAt: DateTime.now(),
+          type: questionType.name,
+        ),
+      ],
+    );
+    log(state.questions!.length.toString());
   }
 
   void updateQuestion({required Question question}) {
@@ -46,6 +57,14 @@ class EditQuizController extends _$EditQuizController {
     temp[temp.indexWhere((element) => element.id == question.id)] = question;
     state = state.copyWith(questions: temp);
   }
+
+  void removeQuestion({required int index}) {
+    List<Question> temp = state.questions!.toList();
+    temp.removeAt(index);
+    state = state.copyWith(questions: temp);
+  }
+
+  // Answer related ####################################################################################################
 
   void editIsAnswerCorrect({required int questionIndex, required int answerIndex, required bool value}) {
     Question question = state.questions![questionIndex];
@@ -55,22 +74,15 @@ class EditQuizController extends _$EditQuizController {
     state.questions![questionIndex] = question;
   }
 
-  void removeQuestion({required int index}) {
-    List<Question> temp = state.questions!.toList();
-    temp.removeAt(index);
-    state = state.copyWith(questions: temp);
-  }
-
   Future<(bool, String?)> saveQuiz() async {
     try {
-      if (state.title.isEmpty) {
+      if (state.id!.isEmpty) {
         Quiz newQuiz = await ref.read(createEditQuizServiceProvider.notifier).createQuiz(quiz: state);
         state = newQuiz.copyWith(questions: state.questions);
       }
       for (Question question in state.questions!) {
         await ref.read(createEditQuizServiceProvider.notifier).createUpdateQuestionWithAnswers(question: question);
       }
-
       return (true, null);
     } catch (e, s) {
       _logger.info('SaveQuiz error: $e, $s');
