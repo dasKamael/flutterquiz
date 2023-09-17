@@ -63,6 +63,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final state = ref.watch(editQuizControllerProvider(quiz: widget.quiz));
     return Card(
       margin: EdgeInsets.zero,
       child: Column(

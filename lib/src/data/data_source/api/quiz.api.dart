@@ -24,6 +24,16 @@ class QuizApi {
     }
   }
 
+  Future<List> getQuizzesByUserId({required String userId}) async {
+    try {
+      List list = await supabaseClient.from('quizzes').select().eq('created_by', userId);
+      return list;
+    } catch (e) {
+      _logger.info('GetQuizzes error: $e');
+      return [];
+    }
+  }
+
   Future<Map<String, dynamic>> getQuizById({required String quizId}) async {
     try {
       return await supabaseClient.from('quizzes').select().eq('id', quizId).single();

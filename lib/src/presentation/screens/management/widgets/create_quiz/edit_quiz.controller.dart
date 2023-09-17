@@ -16,21 +16,25 @@ class EditQuizController extends _$EditQuizController {
   }
 
   void addQuestion({required QuestionType questionType}) {
-    state = state.copyWith(
-      questions: [
-        ...state.questions!,
-        Question(
-          id: '',
-          quizId: state.id ?? '',
-          question: '',
-          answers: [],
-          explanation: '',
-          explanationLink: '',
-          createdAt: DateTime.now(),
-          type: questionType.name,
-        ),
-      ],
-    );
+    try {
+      state = state.copyWith(
+        questions: [
+          ...state.questions ?? [],
+          Question(
+            id: '',
+            quizId: state.id ?? '',
+            question: '',
+            answers: [],
+            explanation: '',
+            explanationLink: '',
+            createdAt: DateTime.now(),
+            type: questionType.name,
+          ),
+        ],
+      );
+    } catch (e) {
+      _logger.info('AddQuestion error: $e');
+    }
   }
 
   void toggleIsPrivate(bool value) {
@@ -59,7 +63,7 @@ class EditQuizController extends _$EditQuizController {
 
   Future<(bool, String?)> saveQuiz() async {
     try {
-      if (state.id!.isEmpty) {
+      if (state.title.isEmpty) {
         Quiz newQuiz = await ref.read(createEditQuizServiceProvider.notifier).createQuiz(quiz: state);
         state = newQuiz.copyWith(questions: state.questions);
       }

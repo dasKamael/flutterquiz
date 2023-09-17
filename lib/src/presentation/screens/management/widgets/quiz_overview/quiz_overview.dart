@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
-import 'package:flutterquiz/src/domain/quiz/services/get_quizzes.service.dart';
+import 'package:flutterquiz/src/domain/quiz/services/get_quizzes_by_user_id.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
@@ -13,9 +14,10 @@ class QuizOverview extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final userId = ref.watch(authServiceProvider)!.id;
     return ManagementPageCard(
       title: '',
-      child: ref.watch(getQuizzesServiceProvider).when(
+      child: ref.watch(getQuizzesByUserIdProvider(userId: userId)).when(
             data: (quizzes) {
               return Padding(
                 padding: const EdgeInsets.all(16.0),

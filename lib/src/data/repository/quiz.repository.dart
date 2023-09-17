@@ -22,6 +22,15 @@ class QuizRepository {
     return quizzes;
   }
 
+  Future<List<Quiz>> getQuizzesByUserId({required String userId}) async {
+    List quizzesMap = await quizApi.getQuizzesByUserId(userId: userId);
+    List<Quiz> quizzes = [];
+    for (Map quiz in quizzesMap) {
+      quizzes.add(QuizMapper().toModel(quiz));
+    }
+    return quizzes;
+  }
+
   Future<Quiz> getQuizById({required String quizId}) async {
     Map<String, dynamic> quiz = await quizApi.getQuizById(quizId: quizId);
     return QuizMapper().toModel(quiz);
