@@ -12,7 +12,7 @@ class GetCompleteQuiz extends _$GetCompleteQuiz {
   }
 
   Future<Quiz> getCompleteQuizById({required String? quizId}) async {
-    if (quizId == null) {
+    if (quizId == null || quizId == '') {
       return Quiz(
         id: '',
         title: '',

@@ -6,8 +6,10 @@ import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
 
 class EditQuizSingleAnswerCard extends ConsumerStatefulWidget {
-  const EditQuizSingleAnswerCard({super.key, required this.question, required this.onRemoveQuestion});
+  const EditQuizSingleAnswerCard(
+      {super.key, required this.quiz, required this.question, required this.onRemoveQuestion});
 
+  final Quiz quiz;
   final Question question;
   final VoidCallback onRemoveQuestion;
 
@@ -50,7 +52,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
 
   void updateQuestion() {
     question = question.copyWith(answers: answers);
-    ref.read(editQuizControllerProvider(quizId: question.quizId).notifier).updateQuestion(question: question);
+    ref.read(editQuizControllerProvider(quiz: widget.quiz).notifier).updateQuestion(question: question);
   }
 
   Future<void> saveQuestion() async {

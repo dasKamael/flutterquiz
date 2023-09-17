@@ -34,9 +34,23 @@ class QuizApi {
   }
 
   Future<Map<String, dynamic>> createQuiz({required Quiz quiz}) async {
-    final userId = supabaseClient.auth.currentUser?.id;
-    // TODO createQuiz
-    return await supabaseClient.from('quizzes').insert(quiz).select().single();
+    try {
+      final userId = supabaseClient.auth.currentUser?.id;
+      // TODO createQuiz
+      return await supabaseClient
+          .from('quizzes')
+          .insert({
+            'title': quiz.title,
+            'description': quiz.description,
+            'created_by': userId,
+            'is_private': quiz.isPrivate,
+          })
+          .select()
+          .single();
+    } catch (e) {
+      _logger.info('CreateQuiz error: $e');
+      return {};
+    }
   }
 
   // Questions ###############################################################
@@ -60,14 +74,24 @@ class QuizApi {
   }
 
   Future<Map<String, dynamic>> createUpdateQuestionWithAnswers({required Question question}) async {
-    final userId = supabaseClient.auth.currentUser?.id;
-    supabaseClient.rpc('create_update_question_with_answers', params: {
-      'question_id': question.id,
-      'question_title': question.question,
-      'quiz_id': question.quizId,
-      'answers': question.answers,
-      'user_id': userId,
-    });
+    try {
+      final userId = supabaseClient.auth.currentUser?.id;
+      supabaseClient.rpc('create_update_question_with_answers', params: {
+        'quiz_id': question.quizId,
+        'user_id': userId,
+        'question_id': question.id,
+        'question_title': question.question,
+        'answers': question.answers!
+            .map((e) => {
+                  'id': e.id,
+                  'answer': e.answer,
+                  'is_correct': e.isCorrect,
+                })
+            .toList()
+      });
+    } catch (e) {
+      _logger.info('CreateUpdateQuestionWithAnswers error: $e');
+    }
     return {};
   }
 

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
 
 class EditQuizTitleCard extends ConsumerWidget {
-  const EditQuizTitleCard({super.key, required this.title, required this.description, required this.isPrivate});
+  const EditQuizTitleCard({super.key, required this.quiz});
 
-  final String title;
-  final String description;
-  final bool isPrivate;
+  final Quiz quiz;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final state = ref.watch(editQuizControllerProvider());
+    final state = ref.watch(editQuizControllerProvider(quiz: quiz));
     return Card(
       margin: EdgeInsets.zero,
       child: Column(
@@ -32,7 +31,7 @@ class EditQuizTitleCard extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              initialValue: title,
+              initialValue: quiz.title,
               decoration: const InputDecoration(
                 hintText: 'Quiz Title',
                 contentPadding: EdgeInsets.all(16),
@@ -43,7 +42,7 @@ class EditQuizTitleCard extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              initialValue: description,
+              initialValue: quiz.description,
               style: theme.textTheme.bodySmall,
               decoration: const InputDecoration(
                 hintText: 'Quiz Description',
@@ -52,9 +51,9 @@ class EditQuizTitleCard extends ConsumerWidget {
             ),
           ),
           SwitchListTile(
-            value: ref.read(editQuizControllerProvider()).value!.isPrivate,
+            value: state.isPrivate,
             onChanged: (value) {
-              ref.read(editQuizControllerProvider().notifier).toggleIsPrivate(value);
+              ref.read(editQuizControllerProvider(quiz: quiz).notifier).toggleIsPrivate(value);
             },
             title: Text('Is private', style: theme.textTheme.bodySmall),
           )
