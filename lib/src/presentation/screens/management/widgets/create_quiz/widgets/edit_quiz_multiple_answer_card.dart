@@ -39,23 +39,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
       }).toList();
       answers[index] = answers[index].copyWith(isCorrect: true);
     });
-    updateQuestion();
-  }
-
-  void onAnswerChange(String value, int index) {
-    List<Answer> temp = answers;
-    temp[index] = temp[index].copyWith(answer: value);
-    setState(() {
-      answers = temp;
-    });
-    updateQuestion();
-  }
-
-  void onQuestionTitleChange(String value) {
-    setState(() {
-      question = question.copyWith(question: value);
-    });
-    updateQuestion();
   }
 
   void removeAnswerFromList(int index) {
@@ -64,7 +47,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
       temp.removeAt(index);
       answers = temp;
     });
-    updateQuestion();
   }
 
   void updateQuestion() {
@@ -103,7 +85,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                       hintText: 'Question Title...',
                       contentPadding: EdgeInsets.all(16),
                     ),
-                    onChanged: (value) => onQuestionTitleChange(value),
                   ),
                 ),
                 IconButton(
@@ -139,9 +120,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                         hintText: 'Answer...',
                         contentPadding: EdgeInsets.all(16),
                       ),
-                      onChanged: (value) {
-                        onAnswerChange(value, index);
-                      },
                     ),
                   ),
                   const SizedBox(width: 8),

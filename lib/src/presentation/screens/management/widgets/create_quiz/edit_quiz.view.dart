@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
+import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/add_question_dialog.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/edit_quiz_single_answer_card.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/widgets/edit_quiz_title_card.dart';
 
@@ -13,7 +13,6 @@ class EditQuizView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final state = ref.watch(editQuizControllerProvider(quiz: quiz));
     return SingleChildScrollView(
       child: Column(
@@ -39,11 +38,10 @@ class EditQuizView extends ConsumerWidget {
           FloatingActionButton(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
             onPressed: () {
-              ref.read(editQuizControllerProvider(quiz: quiz).notifier).addQuestion(questionType: QuestionType.single);
-              // showDialog(
-              //   context: context,
-              //   builder: (context) => const AddQuestionDialogContent(),
-              // );
+              showDialog(
+                context: context,
+                builder: (context) => AddQuestionDialogContent(quiz: quiz),
+              );
             },
             child: const Icon(Icons.add),
           ),
