@@ -69,6 +69,7 @@ class EditQuizScreen extends ConsumerWidget {
                 const SizedBox(width: 8),
                 Container(
                   constraints: const BoxConstraints(maxWidth: 1000),
+                  width: MediaQuery.of(context).size.width / 2,
                   height: MediaQuery.of(context).size.height,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(kCardBorderRadius),

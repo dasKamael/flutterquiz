@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
@@ -69,11 +70,15 @@ class QuizOverviewListTile extends ConsumerWidget {
             color: index % 2 == 0 ? kPrimaryColor : kSecondaryColor,
             child: Padding(
               padding: const EdgeInsets.all(18.0),
-              child: Text(quiz.title, style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
+              child: AutoSizeText(
+                quiz.title,
+                style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight),
+                maxLines: 1,
+              ),
             ),
           ),
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: 2),
         SizedBox(
           height: 64,
           width: 40,
@@ -87,7 +92,6 @@ class QuizOverviewListTile extends ConsumerWidget {
             ),
           ),
         ),
-        const SizedBox(width: 8),
         const SizedBox(
           height: 64,
           width: 40,
