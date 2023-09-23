@@ -20,27 +20,28 @@ class ManagementPageCard extends ConsumerWidget {
             child: Align(
               alignment: Alignment.topCenter,
               child: Container(
-                  height: 32,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    color: kSecondaryColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                    ),
+                height: 32,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: kSecondaryColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
                   ),
-                  child: Center(
-                    child: Text(
-                      title,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  )),
+                ),
+                child: Center(
+                  child: Text(
+                    title,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 36, left: 4, right: 4, bottom: 4),
             child: child,
-          )
+          ),
         ],
       ),
     );

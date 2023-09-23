@@ -13,26 +13,24 @@ part 'leaderboard.controller.g.dart';
 
 @riverpod
 class LeaderboardController extends _$LeaderboardController {
-  LeaderboardState leaderboardState = const LeaderboardState(
-    quizId: '',
-    quizTitle: '',
-    score: 0,
-    entries: [],
-  );
-
   @override
   FutureOr<LeaderboardState> build({required String quizId}) async {
-    // final List<LeaderboardEntry> entries = await getLeaderboardEntriesByQuizId(quizId: quizId);
+    LeaderboardState preLoadleaderboardState = const LeaderboardState(
+      quizId: '',
+      quizTitle: '',
+      score: 0,
+      entries: [],
+    );
 
     final Quiz quiz = ref.watch(getCompleteQuizProvider(quizId: quizId)).value!;
-    leaderboardState = leaderboardState.copyWith(
+    preLoadleaderboardState = preLoadleaderboardState.copyWith(
       score: ref.read(quizScoreControllerProvider),
       quizId: quizId,
       quizTitle: quiz.title,
       entries: [],
     );
     listenToLeaderboardEntryChanges();
-    return leaderboardState;
+    return preLoadleaderboardState;
   }
 
   void listenToLeaderboardEntryChanges() {
@@ -48,15 +46,15 @@ class LeaderboardController extends _$LeaderboardController {
 
   Future<void> createLeaderboardEntry({required String username}) async {
     state = AsyncValue.data(state.value!.copyWith(isSubmitting: true));
-    final quizId = leaderboardState.quizId;
-    final score = leaderboardState.score;
+    final quizId = state.value?.quizId;
+    final score = state.value?.score;
     // TODO Check if user is logged in and get userid
     final userId = ref.read(authServiceProvider)?.id;
-    await ref.read(leaderBoardServiceProvider(quizId: quizId).notifier).createLeaderboardEntry(
+    await ref.read(leaderBoardServiceProvider(quizId: quizId!).notifier).createLeaderboardEntry(
           quizId: quizId,
           userId: userId ?? '',
           username: username,
-          score: score,
+          score: score!,
         );
     state = AsyncValue.data(state.value!.copyWith(isSubmitting: false));
   }

@@ -5,8 +5,12 @@ import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
 
 class EditQuizSingleAnswerCard extends ConsumerStatefulWidget {
-  const EditQuizSingleAnswerCard(
-      {super.key, required this.quiz, required this.question, required this.onRemoveQuestion});
+  const EditQuizSingleAnswerCard({
+    super.key,
+    required this.quiz,
+    required this.question,
+    required this.onRemoveQuestion,
+  });
 
   final Quiz quiz;
   final Question question;
@@ -57,7 +61,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final state = ref.watch(editQuizControllerProvider(quiz: widget.quiz));
+    ref.watch(editQuizControllerProvider(quiz: widget.quiz));
     return Card(
       margin: EdgeInsets.zero,
       child: Column(

@@ -70,7 +70,7 @@ class QuestionResultDialog extends ConsumerWidget {
                     onPressed: () => UrlLauncherUtil.openUrl(question.explanationLink, context),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

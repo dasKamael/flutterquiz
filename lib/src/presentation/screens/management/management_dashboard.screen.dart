@@ -14,23 +14,15 @@ class ManagementDashboardScreen extends ConsumerStatefulWidget {
 class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardScreen> {
   late final PageController _pageController;
 
-  int _currentPage = 0;
-
   @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: 0);
-    _currentPage = 0;
-    _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!.toInt();
-      });
-    });
+    _pageController.addListener(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -72,8 +64,6 @@ class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardS
                 ),
               ),
               const Spacer(),
-              // if (_currentPage == 1) const CreateQuizSideNav(),
-              // if (_currentPage == 1) const QuizOverviewSideNav(),
             ],
           ),
         ),
@@ -105,7 +95,7 @@ class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardS
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

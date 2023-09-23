@@ -15,68 +15,71 @@ class EditQuizScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return ref.watch(getCompleteQuizProvider(quizId: quizId)).when(
-        data: (quiz) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 200,
-                height: 600,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: 200,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: theme.elevatedButtonTheme.style?.copyWith(
-                          backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+          data: (quiz) {
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 200,
+                  height: 600,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: theme.elevatedButtonTheme.style?.copyWith(
+                            backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+                          ),
+                          child:
+                              Text('Create Quiz', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
                         ),
-                        child:
-                            Text('Create Quiz', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
                       ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: 200,
-                      height: 32,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: theme.elevatedButtonTheme.style?.copyWith(
-                          backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+                      const Spacer(),
+                      SizedBox(
+                        width: 200,
+                        height: 32,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: theme.elevatedButtonTheme.style?.copyWith(
+                            backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+                          ),
+                          child:
+                              Text('Verwerfen', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
                         ),
-                        child: Text('Verwerfen', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      width: 200,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          ref.read(editQuizControllerProvider(quiz: quiz).notifier).saveQuiz();
-                        },
-                        style: theme.elevatedButtonTheme.style?.copyWith(
-                          backgroundColor: MaterialStateProperty.all(kSecondaryColor),
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        width: 200,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            ref.read(editQuizControllerProvider(quiz: quiz).notifier).saveQuiz();
+                          },
+                          style: theme.elevatedButtonTheme.style?.copyWith(
+                            backgroundColor: MaterialStateProperty.all(kSecondaryColor),
+                          ),
+                          child:
+                              Text('Speichern', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
                         ),
-                        child: Text('Speichern', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              Container(
-                constraints: const BoxConstraints(maxWidth: 1000),
-                height: MediaQuery.of(context).size.height,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(kCardBorderRadius),
-                  child: EditQuizView(quiz: quiz),
+                const SizedBox(width: 8),
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 1000),
+                  height: MediaQuery.of(context).size.height,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(kCardBorderRadius),
+                    child: EditQuizView(quiz: quiz),
+                  ),
                 ),
-              ),
-            ],
-          );
-        },
-        error: (error, stackTrace) => ErrorWidget(error),
-        loading: () => const UiLoading());
+              ],
+            );
+          },
+          error: (error, stackTrace) => ErrorWidget(error),
+          loading: () => const UiLoading(),
+        );
   }
 }

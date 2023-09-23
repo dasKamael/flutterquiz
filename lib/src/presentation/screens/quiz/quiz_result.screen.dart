@@ -34,7 +34,7 @@ class QuizResultScreen extends ConsumerWidget {
               onPressed: () => context.go('/'),
             ),
           ],
-        )
+        ),
       ],
     );
   }

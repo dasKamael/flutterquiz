@@ -1,4 +1,4 @@
-import 'package:flutterquiz/src/data/data_source/api/quiz.api.dart';
+import 'package:flutterquiz/src/data/api/quiz.api.dart';
 import 'package:flutterquiz/src/data/mapper/quiz.mapper.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

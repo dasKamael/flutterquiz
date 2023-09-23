@@ -85,21 +85,26 @@ class QuizApi {
 
   Future<Map<String, dynamic>> createUpdateQuestionWithAnswers({required Question question}) async {
     final List<Map<String, dynamic>> answers = question.answers!
-        .map((e) => {
-              'id': e.id,
-              'answer': e.answer,
-              'is_correct': e.isCorrect,
-            })
+        .map(
+          (e) => {
+            'id': e.id,
+            'answer': e.answer,
+            'is_correct': e.isCorrect,
+          },
+        )
         .toList();
 
     try {
-      await supabaseClient.rpc('create_update_question_with_answers', params: {
-        'quiz_id': question.quizId,
-        'question_id': question.id,
-        'question_type': question.type,
-        'question_title': question.question,
-        'answers': answers,
-      });
+      await supabaseClient.rpc(
+        'create_update_question_with_answers',
+        params: {
+          'quiz_id': question.quizId,
+          'question_id': question.id,
+          'question_type': question.type,
+          'question_title': question.question,
+          'answers': answers,
+        },
+      );
     } catch (e) {
       _logger.info('CreateUpdateQuestionWithAnswers error: $e');
     }

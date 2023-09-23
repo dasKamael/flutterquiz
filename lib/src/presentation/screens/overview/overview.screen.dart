@@ -39,15 +39,18 @@ class OverviewScreen extends ConsumerWidget {
                       SizedBox(
                         width: isDesktop ? 1000 : double.infinity,
                         child: GridView.builder(
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: quizzes.length >= 8 ? 4 : 2, childAspectRatio: 16 / 9),
-                            itemCount: quizzes.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              final quiz = quizzes[index];
-                              return OverviewQuizCard(quiz: quiz);
-                            }),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: quizzes.length >= 8 ? 4 : 2,
+                            childAspectRatio: 16 / 9,
+                          ),
+                          itemCount: quizzes.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            final quiz = quizzes[index];
+                            return OverviewQuizCard(quiz: quiz);
+                          },
+                        ),
                       ),
                     ],
                   ),

@@ -12,7 +12,7 @@ class AuthService extends _$AuthService {
   static final log = Logger('AuthUseCase');
   @override
   AuthProfile? build() {
-    final supabaseClient = ref.watch(supabaseClientProvider);
+    ref.watch(supabaseClientProvider);
     listenToAuthChanges();
 
     return null;

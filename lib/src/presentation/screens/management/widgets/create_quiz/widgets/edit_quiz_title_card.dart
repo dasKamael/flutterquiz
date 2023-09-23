@@ -59,7 +59,7 @@ class EditQuizTitleCard extends ConsumerWidget {
               ref.read(editQuizControllerProvider(quiz: quiz).notifier).toggleIsPrivate(value);
             },
             title: Text('Is private', style: theme.textTheme.bodySmall),
-          )
+          ),
         ],
       ),
     );
