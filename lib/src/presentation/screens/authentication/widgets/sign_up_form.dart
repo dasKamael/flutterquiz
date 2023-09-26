@@ -19,7 +19,8 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
   final passwordController = TextEditingController();
   final passwordrepeatController = TextEditingController();
 
-  bool hidePassword = true;
+  final bool _hidePassword = true;
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
               decoration: const InputDecoration(
                 hintText: 'Passwort',
               ),
-              obscureText: hidePassword,
+              obscureText: _hidePassword,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Bitte gib ein Passwort ein';
@@ -75,7 +76,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
               decoration: const InputDecoration(
                 hintText: 'Passwort wiederholen',
               ),
-              obscureText: hidePassword,
+              obscureText: _hidePassword,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Bitte gib ein Passwort ein';
@@ -87,6 +88,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
             UiElevatedButton(
               isPrimary: true,
               fullWidth: true,
+              loading: _isLoading,
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
                   if (passwordController.text != passwordrepeatController.text) {
@@ -98,6 +100,9 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                     );
                     return;
                   }
+                  setState(() {
+                    _isLoading = true;
+                  });
                   (bool, String?) result = await ref.read(authServiceProvider.notifier).signUp(
                         email: emailController.text,
                         password: passwordController.text,
@@ -121,6 +126,9 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                         ),
                       );
                     }
+                    setState(() {
+                      _isLoading = false;
+                    });
                     return;
                   }
                   if (result.$1 == true && mounted) {
