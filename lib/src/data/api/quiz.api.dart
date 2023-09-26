@@ -63,6 +63,14 @@ class QuizApi {
     }
   }
 
+  Future<void> increamentQuizPassedCount({required String quizId}) async {
+    try {
+      await supabaseClient.rpc('increase_completed_count', params: {'quiz_id': quizId});
+    } catch (e) {
+      _logger.info('IncreamentQuizPassedCount error: $e');
+    }
+  }
+
   // Questions ###############################################################
   Future<List> getQuestionsByQuizId({required String quizId}) async {
     try {

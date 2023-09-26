@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/common/utils/url_launcher.util.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +20,7 @@ class QuestionResultDialog extends ConsumerWidget {
       context.go('/quiz/${question.quizId}/${questions[questionIndex + 1].id}');
       context.pop();
     } else {
+      ref.read(createEditQuizServiceProvider).increamentQuizPassedCount(quizId: question.quizId);
       context.go('/quiz/${question.quizId}/result');
       context.pop();
     }

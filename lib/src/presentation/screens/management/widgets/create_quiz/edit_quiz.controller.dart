@@ -77,11 +77,11 @@ class EditQuizController extends _$EditQuizController {
   Future<(bool, String?)> saveQuiz() async {
     try {
       if (state.id!.isEmpty) {
-        Quiz newQuiz = await ref.read(createEditQuizServiceProvider.notifier).createQuiz(quiz: state);
+        Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createQuiz(quiz: state);
         state = newQuiz.copyWith(questions: state.questions);
       }
       for (Question question in state.questions!) {
-        await ref.read(createEditQuizServiceProvider.notifier).createUpdateQuestionWithAnswers(question: question);
+        await ref.read(createEditQuizServiceProvider).createUpdateQuestionWithAnswers(question: question);
       }
       return (true, null);
     } catch (e, s) {

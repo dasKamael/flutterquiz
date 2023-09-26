@@ -7,13 +7,15 @@ part of 'create_edit_quiz.service.dart';
 // **************************************************************************
 
 String _$createEditQuizServiceHash() =>
-    r'97e1915a988c78c373027bad8b19ba78619349e1';
+    r'3371427b8aad466c18749cdf525c7f7ee0cbeeee';
 
-/// See also [CreateEditQuizService].
-@ProviderFor(CreateEditQuizService)
+/// Providers
+///
+/// Copied from [createEditQuizService].
+@ProviderFor(createEditQuizService)
 final createEditQuizServiceProvider =
-    AutoDisposeNotifierProvider<CreateEditQuizService, dynamic>.internal(
-  CreateEditQuizService.new,
+    AutoDisposeProvider<CreateEditQuizService>.internal(
+  createEditQuizService,
   name: r'createEditQuizServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
@@ -22,6 +24,7 @@ final createEditQuizServiceProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$CreateEditQuizService = AutoDisposeNotifier<dynamic>;
+typedef CreateEditQuizServiceRef
+    = AutoDisposeProviderRef<CreateEditQuizService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

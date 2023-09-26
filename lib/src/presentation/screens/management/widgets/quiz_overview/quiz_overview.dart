@@ -87,6 +87,19 @@ class QuizOverviewListTile extends ConsumerWidget {
             child: const Expanded(
               child: Card(
                 color: kPrimaryColor,
+                child: Icon(Icons.leaderboard),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 64,
+          width: 40,
+          child: InkWell(
+            onTap: () => context.go('/management/edit-quiz/${quiz.id}'),
+            child: const Expanded(
+              child: Card(
+                color: kPrimaryColor,
                 child: Icon(Icons.edit),
               ),
             ),

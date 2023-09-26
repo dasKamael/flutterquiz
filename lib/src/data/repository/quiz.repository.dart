@@ -41,6 +41,10 @@ class QuizRepository {
     return QuizMapper().toModel(data);
   }
 
+  Future<void> increamentQuizPassedCount({required String quizId}) async {
+    await quizApi.increamentQuizPassedCount(quizId: quizId);
+  }
+
   // Questions ###############################################################
   Future<Question> getQuestionById(String questionId) async {
     Map<String, dynamic> question = await quizApi.getQuestionById(questionId: questionId);
