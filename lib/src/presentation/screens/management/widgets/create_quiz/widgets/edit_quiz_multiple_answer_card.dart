@@ -26,7 +26,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     question = widget.question;
     if (question.answers == null) answers = [];

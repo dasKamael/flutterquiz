@@ -10,13 +10,10 @@ String _$getQuizzesServiceHash() => r'133f1bf5b72cd94b389c7b9bc3b063cbaed79630';
 
 /// See also [GetQuizzesService].
 @ProviderFor(GetQuizzesService)
-final getQuizzesServiceProvider =
-    AutoDisposeAsyncNotifierProvider<GetQuizzesService, List<Quiz>>.internal(
+final getQuizzesServiceProvider = AutoDisposeAsyncNotifierProvider<GetQuizzesService, List<Quiz>>.internal(
   GetQuizzesService.new,
   name: r'getQuizzesServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getQuizzesServiceHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$getQuizzesServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

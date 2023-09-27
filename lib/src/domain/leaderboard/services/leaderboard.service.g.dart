@@ -6,8 +6,7 @@ part of 'leaderboard.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$leaderBoardServiceHash() =>
-    r'db62bd066cbb504634b55c16dbeb95cd955a9de1';
+String _$leaderBoardServiceHash() => r'db62bd066cbb504634b55c16dbeb95cd955a9de1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,8 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$LeaderBoardService
-    extends BuildlessAutoDisposeAsyncNotifier<List<LeaderboardEntry>> {
+abstract class _$LeaderBoardService extends BuildlessAutoDisposeAsyncNotifier<List<LeaderboardEntry>> {
   late final String quizId;
 
   FutureOr<List<LeaderboardEntry>> build({
@@ -44,8 +42,7 @@ abstract class _$LeaderBoardService
 const leaderBoardServiceProvider = LeaderBoardServiceFamily();
 
 /// See also [LeaderBoardService].
-class LeaderBoardServiceFamily
-    extends Family<AsyncValue<List<LeaderboardEntry>>> {
+class LeaderBoardServiceFamily extends Family<AsyncValue<List<LeaderboardEntry>>> {
   /// See also [LeaderBoardService].
   const LeaderBoardServiceFamily();
 
@@ -75,16 +72,15 @@ class LeaderBoardServiceFamily
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'leaderBoardServiceProvider';
 }
 
 /// See also [LeaderBoardService].
-class LeaderBoardServiceProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    LeaderBoardService, List<LeaderboardEntry>> {
+class LeaderBoardServiceProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<LeaderBoardService, List<LeaderboardEntry>> {
   /// See also [LeaderBoardService].
   LeaderBoardServiceProvider({
     required this.quizId,
@@ -92,13 +88,9 @@ class LeaderBoardServiceProvider extends AutoDisposeAsyncNotifierProviderImpl<
           () => LeaderBoardService()..quizId = quizId,
           from: leaderBoardServiceProvider,
           name: r'leaderBoardServiceProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$leaderBoardServiceHash,
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$leaderBoardServiceHash,
           dependencies: LeaderBoardServiceFamily._dependencies,
-          allTransitiveDependencies:
-              LeaderBoardServiceFamily._allTransitiveDependencies,
+          allTransitiveDependencies: LeaderBoardServiceFamily._allTransitiveDependencies,
         );
 
   final String quizId;

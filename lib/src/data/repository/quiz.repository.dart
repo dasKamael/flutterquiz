@@ -36,8 +36,8 @@ class QuizRepository {
     return QuizMapper().toModel(quiz);
   }
 
-  Future<Quiz> createQuiz({required Quiz quiz}) async {
-    Map<String, dynamic> data = await quizApi.createQuiz(quiz: quiz);
+  Future<Quiz> createOrUpdateQuiz({required Quiz quiz}) async {
+    Map<String, dynamic> data = await quizApi.createOrUpdateQuiz(quiz: quiz);
     return QuizMapper().toModel(data);
   }
 
@@ -60,6 +60,11 @@ class QuizRepository {
     return questions;
   }
 
+  Future<Question> createOrUpdateQuestion({required Question question}) async {
+    Map<String, dynamic> data = await quizApi.createOrUpdateQuestion(question: question);
+    return QuestionMapper().toModel(data);
+  }
+
   // Answers #################################################################
   Future<List<Answer>> getAnswersByQuestionId(String questionId) async {
     List answersMap = await quizApi.getAnswersByQuestionId(questionId: questionId);
@@ -70,8 +75,12 @@ class QuizRepository {
     return answers;
   }
 
-  Future<void> createUpdateQuestionWithAnswers({required Question question}) async {
-    await quizApi.createUpdateQuestionWithAnswers(question: question);
+  // Future<void> createUpdateQuestionWithAnswers({required Question question}) async {
+  //   await quizApi.createUpdateQuestionWithAnswers(question: question);
+  // }
+
+  Future<void> createOrUpdateAnswer({required Answer answer}) async {
+    await quizApi.createOrUpdateAnswer(answer: answer);
   }
 }
 

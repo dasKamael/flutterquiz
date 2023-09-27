@@ -9,16 +9,35 @@ class CreateEditQuizService {
 
   final QuizRepository quizRepositoryProvider;
 
-  Future<Quiz> createQuiz({required Quiz quiz}) async {
-    return await quizRepositoryProvider.createQuiz(quiz: quiz);
-  }
+  // Quizzes #################################################################
 
-  Future<void> createUpdateQuestionWithAnswers({required Question question}) async {
-    await quizRepositoryProvider.createUpdateQuestionWithAnswers(question: question);
+  Future<Quiz> createOrUpdateQuiz({required Quiz quiz}) async {
+    return await quizRepositoryProvider.createOrUpdateQuiz(quiz: quiz);
   }
 
   Future<void> increamentQuizPassedCount({required String quizId}) async {
     await quizRepositoryProvider.increamentQuizPassedCount(quizId: quizId);
+  }
+
+  // Questions ###############################################################
+
+  // Future<void> createUpdateQuestionWithAnswers({required Question question}) async {
+  //   await quizRepositoryProvider.createUpdateQuestionWithAnswers(question: question);
+  // }
+
+  Future<void> createOrUpdateQuestionWithAnswers({required Question question}) async {
+    Question upsertedQuestion = await quizRepositoryProvider.createOrUpdateQuestion(question: question);
+
+    for (Answer answer in question.answers!) {
+      answer = answer.copyWith(questionId: upsertedQuestion.id);
+      await createOrUpdateAnswer(answer: answer);
+    }
+  }
+
+  // Answers #################################################################
+
+  Future<void> createOrUpdateAnswer({required Answer answer}) async {
+    await quizRepositoryProvider.createOrUpdateAnswer(answer: answer);
   }
 }
 

@@ -6,8 +6,7 @@ part of 'question.controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$questionControllerHash() =>
-    r'b9a66d712c4fc806795811e876eecc76bc9c8f9f';
+String _$questionControllerHash() => r'b9a66d712c4fc806795811e876eecc76bc9c8f9f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,8 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$QuestionController
-    extends BuildlessAutoDisposeAsyncNotifier<Question> {
+abstract class _$QuestionController extends BuildlessAutoDisposeAsyncNotifier<Question> {
   late final dynamic quizId;
   late final dynamic questionId;
 
@@ -79,16 +77,14 @@ class QuestionControllerFamily extends Family<AsyncValue<Question>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'questionControllerProvider';
 }
 
 /// See also [QuestionController].
-class QuestionControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<QuestionController, Question> {
+class QuestionControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<QuestionController, Question> {
   /// See also [QuestionController].
   QuestionControllerProvider({
     required this.quizId,
@@ -99,13 +95,9 @@ class QuestionControllerProvider
             ..questionId = questionId,
           from: questionControllerProvider,
           name: r'questionControllerProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$questionControllerHash,
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$questionControllerHash,
           dependencies: QuestionControllerFamily._dependencies,
-          allTransitiveDependencies:
-              QuestionControllerFamily._allTransitiveDependencies,
+          allTransitiveDependencies: QuestionControllerFamily._allTransitiveDependencies,
         );
 
   final dynamic quizId;
@@ -113,9 +105,7 @@ class QuestionControllerProvider
 
   @override
   bool operator ==(Object other) {
-    return other is QuestionControllerProvider &&
-        other.quizId == quizId &&
-        other.questionId == questionId;
+    return other is QuestionControllerProvider && other.quizId == quizId && other.questionId == questionId;
   }
 
   @override

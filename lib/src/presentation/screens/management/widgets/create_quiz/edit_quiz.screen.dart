@@ -5,6 +5,7 @@ import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.controller.dart';
 import 'package:flutterquiz/src/presentation/screens/management/widgets/create_quiz/edit_quiz.view.dart';
+import 'package:go_router/go_router.dart';
 
 class EditQuizScreen extends ConsumerWidget {
   const EditQuizScreen({super.key, this.quizId});
@@ -55,6 +56,7 @@ class EditQuizScreen extends ConsumerWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             ref.read(editQuizControllerProvider(quiz: quiz).notifier).saveQuiz();
+                            context.pop();
                           },
                           style: theme.elevatedButtonTheme.style?.copyWith(
                             backgroundColor: MaterialStateProperty.all(kSecondaryColor),

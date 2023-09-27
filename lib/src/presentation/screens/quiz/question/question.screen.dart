@@ -80,7 +80,6 @@ class QuestionScreen extends ConsumerWidget {
           },
           loading: () => const UiLoading(),
           error: (error, stackTrace) {
-            log(error.toString());
             return UiAppError(error: stackTrace);
           },
         );

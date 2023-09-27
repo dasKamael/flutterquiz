@@ -8,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'edit_quiz.controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class EditQuizController extends _$EditQuizController {
   Logger get _logger => Logger('EditQuizController');
 
@@ -38,7 +38,7 @@ class EditQuizController extends _$EditQuizController {
       questions: [
         ...state.questions ?? [],
         Question(
-          id: '',
+          id: state.questions!.length.toString(),
           quizId: state.id ?? '',
           question: '',
           answers: [],
@@ -49,7 +49,6 @@ class EditQuizController extends _$EditQuizController {
         ),
       ],
     );
-    log(state.questions!.length.toString());
   }
 
   void updateQuestion({required Question question}) {
@@ -60,7 +59,11 @@ class EditQuizController extends _$EditQuizController {
 
   void removeQuestion({required int index}) {
     List<Question> temp = state.questions!.toList();
-    temp.removeAt(index);
+    Question removedQuestion = temp.removeAt(index);
+    // TODO - Delete Question with Answers from DB
+    // if (removedQuestion.id != '') {
+    //   ref.read(createEditQuizServiceProvider).deleteQuestionWithAnswers(questionId: removedQuestion.id);
+    // }
     state = state.copyWith(questions: temp);
   }
 
@@ -76,12 +79,11 @@ class EditQuizController extends _$EditQuizController {
 
   Future<(bool, String?)> saveQuiz() async {
     try {
-      if (state.id!.isEmpty) {
-        Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createQuiz(quiz: state);
-        state = newQuiz.copyWith(questions: state.questions);
-      }
+      Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state);
+      List<Question> tempQuestions = state.questions!;
+      state = newQuiz.copyWith(questions: tempQuestions);
       for (Question question in state.questions!) {
-        await ref.read(createEditQuizServiceProvider).createUpdateQuestionWithAnswers(question: question);
+        await ref.read(createEditQuizServiceProvider).createOrUpdateQuestionWithAnswers(question: question);
       }
       return (true, null);
     } catch (e, s) {
