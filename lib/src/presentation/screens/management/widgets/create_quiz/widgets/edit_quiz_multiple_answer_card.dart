@@ -108,8 +108,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
             itemBuilder: (context, index) {
               return Row(
                 children: [
-                  Radio(
-                    groupValue: true,
+                  Checkbox(
                     value: answers[index].isCorrect,
                     onChanged: (_) {
                       setIsCorrectAndRemoveFromOldOne(index);
