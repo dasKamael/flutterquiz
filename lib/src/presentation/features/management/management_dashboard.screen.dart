@@ -13,7 +13,7 @@ class ManagementDashboardScreen extends ConsumerStatefulWidget {
 class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardScreen> {
   @override
   Widget build(BuildContext context) {
-    final isDesktop = MediaQuery.of(context).size.width > 600;
+    final isDesktop = MediaQuery.of(context).size.width > 1000;
 
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
