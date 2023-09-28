@@ -24,6 +24,7 @@ dependencies:
   auto_size_text: ^3.0.0
   supabase_flutter: ^1.10.14
   url_launcher: ^6.1.12
+  flutter_rating_bar: ^4.0.1
 
   # Logging
   logging: ^1.2.0

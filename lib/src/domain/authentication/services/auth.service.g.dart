@@ -10,10 +10,12 @@ String _$authServiceHash() => r'bd1a57660e47c7a498a1e2035275e2546b8bf05b';
 
 /// See also [AuthService].
 @ProviderFor(AuthService)
-final authServiceProvider = NotifierProvider<AuthService, AuthProfile?>.internal(
+final authServiceProvider =
+    NotifierProvider<AuthService, AuthProfile?>.internal(
   AuthService.new,
   name: r'authServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$authServiceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$authServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

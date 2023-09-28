@@ -6,7 +6,8 @@ part of 'get_quizzes_by_user_id.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getQuizzesByUserIdHash() => r'4dea3eae5bc59de58fa96caed30f774d87726260';
+String _$getQuizzesByUserIdHash() =>
+    r'4dea3eae5bc59de58fa96caed30f774d87726260';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +30,8 @@ class _SystemHash {
   }
 }
 
-abstract class _$GetQuizzesByUserId extends BuildlessAutoDisposeAsyncNotifier<List<Quiz>> {
+abstract class _$GetQuizzesByUserId
+    extends BuildlessAutoDisposeAsyncNotifier<List<Quiz>> {
   late final String userId;
 
   Future<List<Quiz>> build({
@@ -72,14 +74,16 @@ class GetQuizzesByUserIdFamily extends Family<AsyncValue<List<Quiz>>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'getQuizzesByUserIdProvider';
 }
 
 /// See also [GetQuizzesByUserId].
-class GetQuizzesByUserIdProvider extends AutoDisposeAsyncNotifierProviderImpl<GetQuizzesByUserId, List<Quiz>> {
+class GetQuizzesByUserIdProvider extends AutoDisposeAsyncNotifierProviderImpl<
+    GetQuizzesByUserId, List<Quiz>> {
   /// See also [GetQuizzesByUserId].
   GetQuizzesByUserIdProvider({
     required this.userId,
@@ -87,9 +91,13 @@ class GetQuizzesByUserIdProvider extends AutoDisposeAsyncNotifierProviderImpl<Ge
           () => GetQuizzesByUserId()..userId = userId,
           from: getQuizzesByUserIdProvider,
           name: r'getQuizzesByUserIdProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$getQuizzesByUserIdHash,
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getQuizzesByUserIdHash,
           dependencies: GetQuizzesByUserIdFamily._dependencies,
-          allTransitiveDependencies: GetQuizzesByUserIdFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              GetQuizzesByUserIdFamily._allTransitiveDependencies,
         );
 
   final String userId;

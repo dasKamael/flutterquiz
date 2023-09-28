@@ -18,6 +18,8 @@ class GetCompleteQuiz extends _$GetCompleteQuiz {
         title: '',
         description: '',
         createdBy: '',
+        rating: 0,
+        userRatedCount: 0,
         createdAt: DateTime.now(),
         isPrivate: false,
         questions: [],

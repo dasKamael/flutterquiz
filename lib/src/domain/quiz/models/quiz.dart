@@ -11,6 +11,8 @@ class Quiz with _$Quiz {
     required String createdBy,
     required DateTime createdAt,
     required bool isPrivate,
+    required double rating,
+    required int userRatedCount,
     DateTime? updatedAt,
     List<Question>? questions,
   }) = _Quiz;

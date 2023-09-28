@@ -11,6 +11,8 @@ class QuizMapper extends Mapper<Quiz, Map> {
       createdAt: DateTime.parse(dto['created_at']),
       updatedAt: dto['updated_at'] != null ? DateTime.parse(dto['updated_at']) : null,
       isPrivate: dto['is_private'],
+      rating: dto['rating'] ?? 0,
+      userRatedCount: dto['user_rated_count'] ?? 0,
       description: dto['description'],
     );
   }

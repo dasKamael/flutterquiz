@@ -6,7 +6,7 @@ part of 'get_complete_quiz.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getCompleteQuizHash() => r'cf023e970e71f0f30031570b4bf024e602777cf8';
+String _$getCompleteQuizHash() => r'ec5501f10f938b1cd2bd856a91f98cec80c47643';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +29,8 @@ class _SystemHash {
   }
 }
 
-abstract class _$GetCompleteQuiz extends BuildlessAutoDisposeAsyncNotifier<Quiz> {
+abstract class _$GetCompleteQuiz
+    extends BuildlessAutoDisposeAsyncNotifier<Quiz> {
   late final String? quizId;
 
   FutureOr<Quiz> build({
@@ -72,14 +73,16 @@ class GetCompleteQuizFamily extends Family<AsyncValue<Quiz>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'getCompleteQuizProvider';
 }
 
 /// See also [GetCompleteQuiz].
-class GetCompleteQuizProvider extends AutoDisposeAsyncNotifierProviderImpl<GetCompleteQuiz, Quiz> {
+class GetCompleteQuizProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<GetCompleteQuiz, Quiz> {
   /// See also [GetCompleteQuiz].
   GetCompleteQuizProvider({
     required this.quizId,
@@ -87,9 +90,13 @@ class GetCompleteQuizProvider extends AutoDisposeAsyncNotifierProviderImpl<GetCo
           () => GetCompleteQuiz()..quizId = quizId,
           from: getCompleteQuizProvider,
           name: r'getCompleteQuizProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$getCompleteQuizHash,
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getCompleteQuizHash,
           dependencies: GetCompleteQuizFamily._dependencies,
-          allTransitiveDependencies: GetCompleteQuizFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              GetCompleteQuizFamily._allTransitiveDependencies,
         );
 
   final String? quizId;

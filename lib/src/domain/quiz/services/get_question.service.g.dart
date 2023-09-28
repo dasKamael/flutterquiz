@@ -6,7 +6,8 @@ part of 'get_question.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getQuestionServiceHash() => r'9423c9437fb0d529465537a1ce02603e5d91c714';
+String _$getQuestionServiceHash() =>
+    r'9423c9437fb0d529465537a1ce02603e5d91c714';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +30,8 @@ class _SystemHash {
   }
 }
 
-abstract class _$GetQuestionService extends BuildlessAutoDisposeAsyncNotifier<Question> {
+abstract class _$GetQuestionService
+    extends BuildlessAutoDisposeAsyncNotifier<Question> {
   late final dynamic questionId;
 
   FutureOr<Question> build({
@@ -72,14 +74,16 @@ class GetQuestionServiceFamily extends Family<AsyncValue<Question>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'getQuestionServiceProvider';
 }
 
 /// See also [GetQuestionService].
-class GetQuestionServiceProvider extends AutoDisposeAsyncNotifierProviderImpl<GetQuestionService, Question> {
+class GetQuestionServiceProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<GetQuestionService, Question> {
   /// See also [GetQuestionService].
   GetQuestionServiceProvider({
     required this.questionId,
@@ -87,16 +91,21 @@ class GetQuestionServiceProvider extends AutoDisposeAsyncNotifierProviderImpl<Ge
           () => GetQuestionService()..questionId = questionId,
           from: getQuestionServiceProvider,
           name: r'getQuestionServiceProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$getQuestionServiceHash,
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getQuestionServiceHash,
           dependencies: GetQuestionServiceFamily._dependencies,
-          allTransitiveDependencies: GetQuestionServiceFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              GetQuestionServiceFamily._allTransitiveDependencies,
         );
 
   final dynamic questionId;
 
   @override
   bool operator ==(Object other) {
-    return other is GetQuestionServiceProvider && other.questionId == questionId;
+    return other is GetQuestionServiceProvider &&
+        other.questionId == questionId;
   }
 
   @override

@@ -22,21 +22,29 @@ mixin _$CreateUpdateQuestionWithAnswersDto {
   List<Answer> get answers => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CreateUpdateQuestionWithAnswersDtoCopyWith<CreateUpdateQuestionWithAnswersDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CreateUpdateQuestionWithAnswersDtoCopyWith<
+          CreateUpdateQuestionWithAnswersDto>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CreateUpdateQuestionWithAnswersDtoCopyWith<$Res> {
   factory $CreateUpdateQuestionWithAnswersDtoCopyWith(
-          CreateUpdateQuestionWithAnswersDto value, $Res Function(CreateUpdateQuestionWithAnswersDto) then) =
-      _$CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res, CreateUpdateQuestionWithAnswersDto>;
+          CreateUpdateQuestionWithAnswersDto value,
+          $Res Function(CreateUpdateQuestionWithAnswersDto) then) =
+      _$CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res,
+          CreateUpdateQuestionWithAnswersDto>;
   @useResult
-  $Res call({String quizId, String questionId, String questionTitle, List<Answer> answers});
+  $Res call(
+      {String quizId,
+      String questionId,
+      String questionTitle,
+      List<Answer> answers});
 }
 
 /// @nodoc
-class _$CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res, $Val extends CreateUpdateQuestionWithAnswersDto>
+class _$CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res,
+        $Val extends CreateUpdateQuestionWithAnswersDto>
     implements $CreateUpdateQuestionWithAnswersDtoCopyWith<$Res> {
   _$CreateUpdateQuestionWithAnswersDtoCopyWithImpl(this._value, this._then);
 
@@ -78,19 +86,26 @@ class _$CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res, $Val extends Create
 abstract class _$$_CreateUpdateQuestionWithAnswersDtoCopyWith<$Res>
     implements $CreateUpdateQuestionWithAnswersDtoCopyWith<$Res> {
   factory _$$_CreateUpdateQuestionWithAnswersDtoCopyWith(
-          _$_CreateUpdateQuestionWithAnswersDto value, $Res Function(_$_CreateUpdateQuestionWithAnswersDto) then) =
+          _$_CreateUpdateQuestionWithAnswersDto value,
+          $Res Function(_$_CreateUpdateQuestionWithAnswersDto) then) =
       __$$_CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String quizId, String questionId, String questionTitle, List<Answer> answers});
+  $Res call(
+      {String quizId,
+      String questionId,
+      String questionTitle,
+      List<Answer> answers});
 }
 
 /// @nodoc
 class __$$_CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res>
-    extends _$CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res, _$_CreateUpdateQuestionWithAnswersDto>
+    extends _$CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res,
+        _$_CreateUpdateQuestionWithAnswersDto>
     implements _$$_CreateUpdateQuestionWithAnswersDtoCopyWith<$Res> {
   __$$_CreateUpdateQuestionWithAnswersDtoCopyWithImpl(
-      _$_CreateUpdateQuestionWithAnswersDto _value, $Res Function(_$_CreateUpdateQuestionWithAnswersDto) _then)
+      _$_CreateUpdateQuestionWithAnswersDto _value,
+      $Res Function(_$_CreateUpdateQuestionWithAnswersDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -124,7 +139,8 @@ class __$$_CreateUpdateQuestionWithAnswersDtoCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreateUpdateQuestionWithAnswersDto implements _CreateUpdateQuestionWithAnswersDto {
+class _$_CreateUpdateQuestionWithAnswersDto
+    implements _CreateUpdateQuestionWithAnswersDto {
   const _$_CreateUpdateQuestionWithAnswersDto(
       {required this.quizId,
       required this.questionId,
@@ -157,28 +173,34 @@ class _$_CreateUpdateQuestionWithAnswersDto implements _CreateUpdateQuestionWith
         (other.runtimeType == runtimeType &&
             other is _$_CreateUpdateQuestionWithAnswersDto &&
             (identical(other.quizId, quizId) || other.quizId == quizId) &&
-            (identical(other.questionId, questionId) || other.questionId == questionId) &&
-            (identical(other.questionTitle, questionTitle) || other.questionTitle == questionTitle) &&
+            (identical(other.questionId, questionId) ||
+                other.questionId == questionId) &&
+            (identical(other.questionTitle, questionTitle) ||
+                other.questionTitle == questionTitle) &&
             const DeepCollectionEquality().equals(other._answers, _answers));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, quizId, questionId, questionTitle, const DeepCollectionEquality().hash(_answers));
+  int get hashCode => Object.hash(runtimeType, quizId, questionId,
+      questionTitle, const DeepCollectionEquality().hash(_answers));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreateUpdateQuestionWithAnswersDtoCopyWith<_$_CreateUpdateQuestionWithAnswersDto> get copyWith =>
-      __$$_CreateUpdateQuestionWithAnswersDtoCopyWithImpl<_$_CreateUpdateQuestionWithAnswersDto>(this, _$identity);
+  _$$_CreateUpdateQuestionWithAnswersDtoCopyWith<
+          _$_CreateUpdateQuestionWithAnswersDto>
+      get copyWith => __$$_CreateUpdateQuestionWithAnswersDtoCopyWithImpl<
+          _$_CreateUpdateQuestionWithAnswersDto>(this, _$identity);
 }
 
-abstract class _CreateUpdateQuestionWithAnswersDto implements CreateUpdateQuestionWithAnswersDto {
+abstract class _CreateUpdateQuestionWithAnswersDto
+    implements CreateUpdateQuestionWithAnswersDto {
   const factory _CreateUpdateQuestionWithAnswersDto(
-      {required final String quizId,
-      required final String questionId,
-      required final String questionTitle,
-      required final List<Answer> answers}) = _$_CreateUpdateQuestionWithAnswersDto;
+          {required final String quizId,
+          required final String questionId,
+          required final String questionTitle,
+          required final List<Answer> answers}) =
+      _$_CreateUpdateQuestionWithAnswersDto;
 
   @override
   String get quizId;
@@ -190,6 +212,7 @@ abstract class _CreateUpdateQuestionWithAnswersDto implements CreateUpdateQuesti
   List<Answer> get answers;
   @override
   @JsonKey(ignore: true)
-  _$$_CreateUpdateQuestionWithAnswersDtoCopyWith<_$_CreateUpdateQuestionWithAnswersDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_CreateUpdateQuestionWithAnswersDtoCopyWith<
+          _$_CreateUpdateQuestionWithAnswersDto>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -25,20 +25,29 @@ mixin _$LeaderboardEntry {
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LeaderboardEntryCopyWith<LeaderboardEntry> get copyWith => throw _privateConstructorUsedError;
+  $LeaderboardEntryCopyWith<LeaderboardEntry> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LeaderboardEntryCopyWith<$Res> {
-  factory $LeaderboardEntryCopyWith(LeaderboardEntry value, $Res Function(LeaderboardEntry) then) =
+  factory $LeaderboardEntryCopyWith(
+          LeaderboardEntry value, $Res Function(LeaderboardEntry) then) =
       _$LeaderboardEntryCopyWithImpl<$Res, LeaderboardEntry>;
   @useResult
   $Res call(
-      {String id, String userId, String quizId, String username, int score, DateTime createdAt, DateTime? updatedAt});
+      {String id,
+      String userId,
+      String quizId,
+      String username,
+      int score,
+      DateTime createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
-class _$LeaderboardEntryCopyWithImpl<$Res, $Val extends LeaderboardEntry> implements $LeaderboardEntryCopyWith<$Res> {
+class _$LeaderboardEntryCopyWithImpl<$Res, $Val extends LeaderboardEntry>
+    implements $LeaderboardEntryCopyWith<$Res> {
   _$LeaderboardEntryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -91,19 +100,29 @@ class _$LeaderboardEntryCopyWithImpl<$Res, $Val extends LeaderboardEntry> implem
 }
 
 /// @nodoc
-abstract class _$$_LeaderboardEntryCopyWith<$Res> implements $LeaderboardEntryCopyWith<$Res> {
-  factory _$$_LeaderboardEntryCopyWith(_$_LeaderboardEntry value, $Res Function(_$_LeaderboardEntry) then) =
+abstract class _$$_LeaderboardEntryCopyWith<$Res>
+    implements $LeaderboardEntryCopyWith<$Res> {
+  factory _$$_LeaderboardEntryCopyWith(
+          _$_LeaderboardEntry value, $Res Function(_$_LeaderboardEntry) then) =
       __$$_LeaderboardEntryCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String id, String userId, String quizId, String username, int score, DateTime createdAt, DateTime? updatedAt});
+      {String id,
+      String userId,
+      String quizId,
+      String username,
+      int score,
+      DateTime createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
-class __$$_LeaderboardEntryCopyWithImpl<$Res> extends _$LeaderboardEntryCopyWithImpl<$Res, _$_LeaderboardEntry>
+class __$$_LeaderboardEntryCopyWithImpl<$Res>
+    extends _$LeaderboardEntryCopyWithImpl<$Res, _$_LeaderboardEntry>
     implements _$$_LeaderboardEntryCopyWith<$Res> {
-  __$$_LeaderboardEntryCopyWithImpl(_$_LeaderboardEntry _value, $Res Function(_$_LeaderboardEntry) _then)
+  __$$_LeaderboardEntryCopyWithImpl(
+      _$_LeaderboardEntry _value, $Res Function(_$_LeaderboardEntry) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -190,14 +209,18 @@ class _$_LeaderboardEntry implements _LeaderboardEntry {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.quizId, quizId) || other.quizId == quizId) &&
-            (identical(other.username, username) || other.username == username) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.score, score) || other.score == score) &&
-            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, quizId, username, score, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, userId, quizId, username, score, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -232,5 +255,6 @@ abstract class _LeaderboardEntry implements LeaderboardEntry {
   DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$_LeaderboardEntryCopyWith<_$_LeaderboardEntry> get copyWith => throw _privateConstructorUsedError;
+  _$$_LeaderboardEntryCopyWith<_$_LeaderboardEntry> get copyWith =>
+      throw _privateConstructorUsedError;
 }
