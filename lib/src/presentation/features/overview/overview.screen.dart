@@ -22,37 +22,43 @@ class OverviewScreen extends ConsumerWidget {
                 return const Text('No quizzes');
               }
               return SingleChildScrollView(
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 50),
-                      AutoSizeText(
-                        'Flutter Quiz',
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.displayLarge?.copyWith(color: kTextColorLight),
-                        maxLines: 1,
-                        softWrap: false,
-                        wrapWords: false,
-                      ),
-                      const SizedBox(height: 100),
-                      SizedBox(
-                        width: isDesktop ? 1000 : double.infinity,
-                        child: GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: quizzes.length >= 8 ? 4 : 2,
-                            childAspectRatio: 16 / 9,
-                          ),
-                          itemCount: quizzes.length,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            final quiz = quizzes[index];
-                            return OverviewQuizCard(quiz: quiz);
-                          },
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 50),
+                        AutoSizeText(
+                          'Flutter Quiz',
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.displayLarge?.copyWith(color: kTextColorLight),
+                          maxLines: 1,
+                          softWrap: false,
+                          wrapWords: false,
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 100),
+                        SizedBox(
+                          width: isDesktop ? 1000 : double.infinity,
+                          child: GridView.builder(
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: quizzes.length >= 8
+                                  ? 4
+                                  : quizzes.length == 1
+                                      ? 1
+                                      : 2,
+                            ),
+                            itemCount: quizzes.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              final quiz = quizzes[index];
+                              return OverviewQuizCard(quiz: quiz);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
