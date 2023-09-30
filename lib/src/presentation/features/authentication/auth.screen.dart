@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 import 'package:flutterquiz/src/presentation/features/authentication/widgets/sign_in_form.dart';
 import 'package:flutterquiz/src/presentation/features/authentication/widgets/sign_up_form.dart';
-import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -52,7 +52,7 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          if (showSignIn) SignInForm() else const SignUpForm(),
+          if (showSignIn) const SignInForm() else const SignUpForm(),
         ],
       ),
     );

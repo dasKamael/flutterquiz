@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutterquiz/src/common/supabase/supabase.provider.dart';
+import 'package:flutterquiz/src/data/quiz/data_source/api/dto/answer_response.dto.dart';
+import 'package:flutterquiz/src/data/quiz/data_source/api/dto/question_response.dto.dart';
+import 'package:flutterquiz/src/data/quiz/data_source/api/dto/quiz_response.dto.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,9 +19,17 @@ class QuizApi {
   final Logger _logger = Logger('QuizApi');
 
   // Quizzes #################################################################
-  Future<List> getQuizzes() async {
+  Future<List<QuizResponseDto>> getQuizzes() async {
     try {
-      List list = await supabaseClient.from('quizzes').select().eq('is_private', false);
+      final response = await supabaseClient.from('quizzes').select().eq('is_private', false);
+
+      List<QuizResponseDto> list = [];
+
+      for (var item in response) {
+        log(item.toString());
+        list.add(QuizResponseDto.fromJson(item));
+      }
+
       return list;
     } catch (e) {
       _logger.info('GetQuizzes error: $e');
@@ -24,9 +37,16 @@ class QuizApi {
     }
   }
 
-  Future<List> getQuizzesByUserId({required String userId}) async {
+  Future<List<QuizResponseDto>> getQuizzesByUserId({required String userId}) async {
     try {
-      List list = await supabaseClient.from('quizzes').select().eq('created_by', userId);
+      final response = await supabaseClient.from('quizzes').select().eq('created_by', userId);
+
+      List<QuizResponseDto> list = [];
+
+      for (var item in response) {
+        list.add(QuizResponseDto.fromJson(item));
+      }
+
       return list;
     } catch (e) {
       _logger.info('GetQuizzes error: $e');
@@ -34,24 +54,26 @@ class QuizApi {
     }
   }
 
-  Future<Map<String, dynamic>> getQuizById({required String quizId}) async {
+  Future<QuizResponseDto?> getQuizById({required String quizId}) async {
     try {
-      return await supabaseClient.from('quizzes').select().eq('id', quizId).single();
+      final response = await supabaseClient.from('quizzes').select().eq('id', quizId).single();
+      return QuizResponseDto.fromJson(response);
     } catch (e) {
       _logger.info('GetQuizById error: $e');
     }
-    return {};
+    return null;
   }
 
-  Future<Map<String, dynamic>> createOrUpdateQuiz({required Quiz quiz}) async {
+  Future<QuizResponseDto?> createOrUpdateQuiz({required Quiz quiz}) async {
     final userId = supabaseClient.auth.currentUser?.id;
     try {
       final bool quizExists = await supabaseClient.rpc(
         'check_quiz_exists',
         params: {'quiz_id': double.tryParse(quiz.id!) != null ? null : quiz.id},
       );
+      final dynamic response;
       if (quizExists) {
-        return await supabaseClient
+        response = await supabaseClient
             .from('quizzes')
             .update({
               'id': quiz.id!,
@@ -63,21 +85,22 @@ class QuizApi {
             .eq('id', quiz.id)
             .select()
             .single();
+      } else {
+        response = await supabaseClient
+            .from('quizzes')
+            .insert({
+              'title': quiz.title,
+              'description': quiz.description,
+              'created_by': userId,
+              'is_private': quiz.isPrivate,
+            })
+            .select()
+            .single();
       }
-
-      return await supabaseClient
-          .from('quizzes')
-          .insert({
-            'title': quiz.title,
-            'description': quiz.description,
-            'created_by': userId,
-            'is_private': quiz.isPrivate,
-          })
-          .select()
-          .single();
+      return QuizResponseDto.fromJson(response);
     } catch (e, s) {
       _logger.info('CreateOrUpdateQuiz error: $e $s');
-      return {};
+      return null;
     }
   }
 
@@ -90,9 +113,16 @@ class QuizApi {
   }
 
   // Questions ###############################################################
-  Future<List> getQuestionsByQuizId({required String quizId}) async {
+  Future<List<QuestionResponseDto>> getQuestionsByQuizId({required String quizId}) async {
     try {
-      List list = await supabaseClient.from('questions').select().eq('quiz_id', quizId);
+      final response = await supabaseClient.from('questions').select().eq('quiz_id', quizId);
+
+      List<QuestionResponseDto> list = [];
+
+      for (var item in response) {
+        list.add(QuestionResponseDto.fromJson(item));
+      }
+
       return list;
     } catch (e) {
       _logger.info('GetQuestionsByQuizId error: $e');
@@ -100,52 +130,27 @@ class QuizApi {
     }
   }
 
-  Future<Map<String, dynamic>> getQuestionById({required String questionId}) async {
+  Future<QuestionResponseDto?> getQuestionById({required String questionId}) async {
     try {
-      return await supabaseClient.from('questions').select().eq('id', questionId).single();
+      final response = await supabaseClient.from('questions').select().eq('id', questionId).single();
+      return QuestionResponseDto.fromJson(response);
     } catch (e) {
       _logger.info('GetQuestionById error: $e');
-      return {};
+      return null;
     }
   }
 
-  // Future<Map<String, dynamic>> createUpdateQuestionWithAnswers({required Question question}) async {
-  //   final List<Map<String, dynamic>> answers = question.answers!
-  //       .map(
-  //         (e) => {
-  //           'id': e.id,
-  //           'answer': e.answer,
-  //           'is_correct': e.isCorrect,
-  //         },
-  //       )
-  //       .toList();
-
-  //   try {
-  //     await supabaseClient.rpc(
-  //       'create_update_question_with_answers',
-  //       params: {
-  //         'quiz_id': question.quizId,
-  //         'question_id': question.id,
-  //         'question_type': question.type,
-  //         'question_title': question.question,
-  //         'answers': answers,
-  //       },
-  //     );
-  //   } catch (e) {
-  //     _logger.info('CreateUpdateQuestionWithAnswers error: $e');
-  //   }
-  //   return {};
-  // }
-
-  Future<Map<String, dynamic>> createOrUpdateQuestion({required Question question}) async {
+  Future<QuestionResponseDto?> createOrUpdateQuestion({required Question question}) async {
     try {
       final bool questionExists = await supabaseClient.rpc(
         'check_question_exists',
         params: {'question_id': double.tryParse(question.id) != null ? null : question.id},
       );
 
+      final dynamic response;
+
       if (questionExists) {
-        return await supabaseClient
+        response = await supabaseClient
             .from('questions')
             .update({
               'quiz_id': question.quizId,
@@ -157,29 +162,37 @@ class QuizApi {
             .eq('id', question.id)
             .select()
             .single();
+      } else {
+        response = await supabaseClient
+            .from('questions')
+            .insert({
+              'quiz_id': question.quizId,
+              'question': question.question,
+              'type': question.type,
+              'explanation': question.explanation,
+              'explanation_link': question.explanationLink,
+            })
+            .select()
+            .single();
       }
 
-      return await supabaseClient
-          .from('questions')
-          .insert({
-            'quiz_id': question.quizId,
-            'question': question.question,
-            'type': question.type,
-            'explanation': question.explanation,
-            'explanation_link': question.explanationLink,
-          })
-          .select()
-          .single();
+      return QuestionResponseDto.fromJson(response);
     } catch (e, s) {
       _logger.info('CreateOrUpdateQuestion error: $e $s');
-      return {};
+      return null;
     }
   }
 
   // Answers #################################################################
-  Future<List> getAnswersByQuestionId({required String questionId}) async {
+  Future<List<AnswerResponseDto>> getAnswersByQuestionId({required String questionId}) async {
     try {
-      List list = await supabaseClient.from('answers').select().eq('question_id', questionId);
+      final response = await supabaseClient.from('answers').select().eq('question_id', questionId);
+
+      List<AnswerResponseDto> list = [];
+
+      for (var item in response) {
+        list.add(AnswerResponseDto.fromJson(item));
+      }
       return list;
     } catch (e) {
       _logger.info('GetAnswersByQuestionId error: $e');
@@ -187,15 +200,17 @@ class QuizApi {
     }
   }
 
-  Future<void> createOrUpdateAnswer({required Answer answer}) async {
+  Future<AnswerResponseDto?> createOrUpdateAnswer({required Answer answer}) async {
     try {
       final bool answerExists = await supabaseClient.rpc(
         'check_answer_exists',
         params: {'answer_id': double.tryParse(answer.id) != null ? null : answer.id},
       );
 
+      final dynamic response;
+
       if (answerExists) {
-        await supabaseClient
+        response = await supabaseClient
             .from('answers')
             .update({
               'question_id': answer.questionId,
@@ -205,19 +220,21 @@ class QuizApi {
             .eq('id', answer.id)
             .select()
             .single();
+      } else {
+        response = await supabaseClient
+            .from('answers')
+            .insert({
+              'question_id': answer.questionId,
+              'answer': answer.answer,
+              'is_correct': answer.isCorrect,
+            })
+            .select()
+            .single();
       }
-
-      await supabaseClient
-          .from('answers')
-          .insert({
-            'question_id': answer.questionId,
-            'answer': answer.answer,
-            'is_correct': answer.isCorrect,
-          })
-          .select()
-          .single();
+      return response;
     } catch (e) {
       _logger.info('CreateOrUpdateAnswer error: $e');
+      return null;
     }
   }
 }

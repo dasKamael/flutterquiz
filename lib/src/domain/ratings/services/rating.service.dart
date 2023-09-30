@@ -1,4 +1,4 @@
-import 'package:flutterquiz/src/data/repository/rating.repository.dart';
+import 'package:flutterquiz/src/data/rating/rating.repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'rating.service.g.dart';

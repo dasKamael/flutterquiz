@@ -1,50 +1,52 @@
 import 'package:flutterquiz/src/common/mapper/dto_mapper.dart';
+import 'package:flutterquiz/src/data/quiz/data_source/api/dto/answer_response.dto.dart';
+import 'package:flutterquiz/src/data/quiz/data_source/api/dto/question_response.dto.dart';
+import 'package:flutterquiz/src/data/quiz/data_source/api/dto/quiz_response.dto.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 
-class QuizMapper extends Mapper<Quiz, Map> {
+class QuizMapper extends Mapper<Quiz, QuizResponseDto> {
   @override
-  Quiz toModel(Map dto) {
+  Quiz toModel(QuizResponseDto dto) {
     return Quiz(
-      id: dto['id'],
-      title: dto['title'],
-      createdBy: dto['created_by'] ?? '',
-      createdAt: DateTime.parse(dto['created_at']),
-      updatedAt: dto['updated_at'] != null ? DateTime.parse(dto['updated_at']) : null,
-      isPrivate: dto['is_private'],
-      rating: dto['rating'] ?? 0,
-      userRatedCount: dto['user_rated_count'] ?? 0,
-      description: dto['description'],
+      id: dto.id,
+      title: dto.title,
+      description: dto.description,
+      createdBy: dto.createdBy,
+      rating: dto.rating,
+      userRatedCount: dto.userRatedCount,
+      isPrivate: dto.isPrivate,
+      createdAt: DateTime.parse(dto.createdAt),
+      updatedAt: dto.updatedAt != null ? DateTime.parse(dto.updatedAt!) : null,
     );
   }
 }
 
-class QuestionMapper extends Mapper<Question, Map> {
+class QuestionMapper extends Mapper<Question, QuestionResponseDto> {
   @override
-  Question toModel(Map dto) {
+  Question toModel(QuestionResponseDto dto) {
     return Question(
-      id: dto['id'],
-      quizId: dto['quiz_id'],
-      question: dto['question'],
-      type: dto['type'] ?? '',
-      explanation: dto['explanation'],
-      explanationLink: dto['explanation_link'],
-      createdAt: DateTime.parse(dto['created_at']),
-      updatedAt: dto['updated_at'] != null ? DateTime.parse(dto['updated_at']) : null,
-      answers: dto['answers'],
+      id: dto.id,
+      question: dto.question,
+      explanation: dto.explanation,
+      explanationLink: dto.explanationLink,
+      quizId: dto.quizId,
+      createdAt: DateTime.parse(dto.createdAt),
+      updatedAt: dto.updatedAt != null ? DateTime.parse(dto.updatedAt!) : null,
+      type: dto.type,
     );
   }
 }
 
-class AnswerMapper extends Mapper<Answer, Map> {
+class AnswerMapper extends Mapper<Answer, AnswerResponseDto> {
   @override
-  Answer toModel(Map dto) {
+  Answer toModel(AnswerResponseDto dto) {
     return Answer(
-      id: dto['id'],
-      answer: dto['answer'],
-      isCorrect: dto['is_correct'],
-      questionId: dto['question_id'],
-      createdAt: DateTime.parse(dto['created_at']),
-      updatedAt: dto['updated_at'] != null ? DateTime.parse(dto['updated_at']) : null,
+      id: dto.id,
+      answer: dto.answer,
+      isCorrect: dto.isCorrect,
+      questionId: dto.questionId,
+      createdAt: DateTime.parse(dto.createdAt),
+      updatedAt: dto.updatedAt != null ? DateTime.parse(dto.updatedAt!) : null,
     );
   }
 }

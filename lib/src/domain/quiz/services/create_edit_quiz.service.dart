@@ -1,4 +1,4 @@
-import 'package:flutterquiz/src/data/repository/quiz.repository.dart';
+import 'package:flutterquiz/src/data/quiz/quiz.repository.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,10 +20,6 @@ class CreateEditQuizService {
   }
 
   // Questions ###############################################################
-
-  // Future<void> createUpdateQuestionWithAnswers({required Question question}) async {
-  //   await quizRepositoryProvider.createUpdateQuestionWithAnswers(question: question);
-  // }
 
   Future<void> createOrUpdateQuestionWithAnswers({required Question question}) async {
     Question upsertedQuestion = await quizRepositoryProvider.createOrUpdateQuestion(question: question);

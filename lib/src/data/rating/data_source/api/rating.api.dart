@@ -15,7 +15,7 @@ class RatingApi {
     final userId = supabaseClient.auth.currentUser?.id;
 
     try {
-      final response = await supabaseClient.rpc(
+      await supabaseClient.rpc(
         'rate_quiz',
         params: {
           'value': rating,

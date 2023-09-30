@@ -32,7 +32,7 @@ class LeaderBoardApi {
       await supabaseClient.from('leaderboard').insert([
         {
           'quiz_id': quizId,
-          'user_id': userId,
+          'user_id': userId == '' ? null : userId,
           'username': username,
           'score': score,
         }

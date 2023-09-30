@@ -1,4 +1,4 @@
-import 'package:flutterquiz/src/data/repository/leaderboard.repository.dart';
+import 'package:flutterquiz/src/data/leaderboard/leaderboard.repository.dart';
 import 'package:flutterquiz/src/domain/leaderboard/models/leaderboard_entry.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
@@ -56,7 +58,8 @@ class QuizScreen extends ConsumerWidget {
           },
           loading: () => const UiLoading(),
           error: (error, stackTrace) {
-            return UiAppError(error: stackTrace);
+            log('Error: $error', stackTrace: stackTrace);
+            return UiAppError(error: error);
           },
         );
   }

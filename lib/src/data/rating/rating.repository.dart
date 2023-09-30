@@ -1,4 +1,4 @@
-import 'package:flutterquiz/src/data/api/rating.api.dart';
+import 'package:flutterquiz/src/data/rating/data_source/api/rating.api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'rating.repository.g.dart';

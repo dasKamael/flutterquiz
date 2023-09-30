@@ -63,9 +63,9 @@ class EditQuizController extends _$EditQuizController {
     List<Question> temp = state.questions!.toList();
     Question removedQuestion = temp.removeAt(index);
     // TODO - Delete Question with Answers from DB
-    // if (removedQuestion.id != '') {
-    //   ref.read(createEditQuizServiceProvider).deleteQuestionWithAnswers(questionId: removedQuestion.id);
-    // }
+    if (removedQuestion.id != '') {
+      // ref.read(createEditQuizServiceProvider).deleteQuestionWithAnswers(questionId: removedQuestion.id);
+    }
     state = state.copyWith(questions: temp);
   }
 
