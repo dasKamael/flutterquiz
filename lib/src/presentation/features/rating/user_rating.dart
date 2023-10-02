@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/domain/ratings/services/rating.service.dart';
+import 'package:flutterquiz/src/domain/rating/services/rating.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 
 class UserRating extends ConsumerStatefulWidget {

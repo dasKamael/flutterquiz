@@ -12,7 +12,7 @@ class LeaderBoardService extends _$LeaderBoardService {
     return entries;
   }
 
-  Future createLeaderboardEntry({
+  Future<void> createLeaderboardEntry({
     required String quizId,
     String? userId,
     required String username,

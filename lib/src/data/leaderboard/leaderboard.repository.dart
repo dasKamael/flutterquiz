@@ -1,17 +1,19 @@
 import 'package:flutterquiz/src/data/leaderboard/leaderboard.api.dart';
 import 'package:flutterquiz/src/data/mapper/leaderboard.mapper.dart';
 import 'package:flutterquiz/src/domain/leaderboard/models/leaderboard_entry.dart';
+import 'package:flutterquiz/src/domain/leaderboard/repository/leaderboard.repository_interface.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'leaderboard.repository.g.dart';
 
-class LeaderBoardRepository {
+class LeaderBoardRepository implements LeaderboardRepositoryInterface {
   final LeaderBoardApi leaderboardApi;
 
   LeaderBoardRepository({
     required this.leaderboardApi,
   });
 
+  @override
   Future createLeaderboardEntry({
     required String quizId,
     String? userId,
@@ -26,6 +28,7 @@ class LeaderBoardRepository {
     );
   }
 
+  @override
   Future<List<LeaderboardEntry>> getLeaderboardByQuizId(String quizId) async {
     List entries = await leaderboardApi.getLeaderboardByQuizId(quizId);
     List<LeaderboardEntry> leaderboardEntries = [];
