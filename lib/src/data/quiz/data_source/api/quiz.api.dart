@@ -231,7 +231,7 @@ class QuizApi {
             .select()
             .single();
       }
-      return response;
+      return AnswerResponseDto.fromJson(response);
     } catch (e) {
       _logger.info('CreateOrUpdateAnswer error: $e');
       return null;

@@ -70,6 +70,20 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     updateQuestion();
   }
 
+  void onExplanationChange(String value) {
+    setState(() {
+      question = question.copyWith(explanation: value);
+    });
+    updateQuestion();
+  }
+
+  void onExplanationLinkChange(String value) {
+    setState(() {
+      question = question.copyWith(explanationLink: value);
+    });
+    updateQuestion();
+  }
+
   void updateQuestion() {
     question = question.copyWith(answers: answers);
     ref.read(editQuizControllerProvider(quiz: widget.quiz).notifier).updateQuestion(question: question);
@@ -125,6 +139,37 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                   icon: const Icon(Icons.close),
                 ),
               ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: SizedBox(
+              height: 40,
+              child: TextFormField(
+                initialValue: question.explanation,
+                style: theme.textTheme.bodySmall,
+                decoration: InputDecoration(
+                  hintText: 'Erklärung...',
+                  hintStyle: theme.textTheme.bodySmall,
+                ),
+                onChanged: (value) => onExplanationChange(value),
+              ),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: SizedBox(
+              height: 40,
+              child: TextFormField(
+                initialValue: question.explanationLink,
+                style: theme.textTheme.bodySmall,
+                decoration: InputDecoration(
+                  hintText: 'Erklärungslink...',
+                  hintStyle: theme.textTheme.bodySmall,
+                ),
+                onChanged: (value) => onExplanationLinkChange(value),
+              ),
             ),
           ),
           const Divider(indent: 20, endIndent: 20),

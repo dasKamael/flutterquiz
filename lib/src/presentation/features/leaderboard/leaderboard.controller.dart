@@ -48,7 +48,6 @@ class LeaderboardController extends _$LeaderboardController {
     state = AsyncValue.data(state.value!.copyWith(isSubmitting: true));
     final quizId = state.value?.quizId;
     final score = state.value?.score;
-    // TODO Check if user is logged in and get userid
     final userId = ref.read(authServiceProvider)?.id;
     await ref.read(leaderBoardServiceProvider(quizId: quizId!).notifier).createLeaderboardEntry(
           quizId: quizId,

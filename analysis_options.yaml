@@ -6,7 +6,6 @@ linter:
     require_trailing_commas: true
     always_use_package_imports: true
     prefer_const_constructors: true
-    prefer_const_constructors_in_immutables: true
     package_names: true
     camel_case_extensions: true
 
@@ -17,7 +16,6 @@ analyzer:
     - "**/*.drift.dart"
   errors:
     invalid_annotation_target: ignore
-    todo: ignore
     missing_return: error
   plugins:
     - custom_lint
