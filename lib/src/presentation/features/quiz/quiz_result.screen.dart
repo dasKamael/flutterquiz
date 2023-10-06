@@ -17,9 +17,9 @@ class QuizResultScreen extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('You finished the quiz!', style: theme.textTheme.headlineLarge),
+        Text('Du hast das Quiz erfolgreich beendet!', style: theme.textTheme.headlineLarge),
         const SizedBox(height: 16),
-        Text('Your score is: $quizscore', style: theme.textTheme.headlineMedium),
+        Text('Dein Score ist: $quizscore', style: theme.textTheme.headlineMedium),
         const SizedBox(height: 80),
         UserRating(quizId: quizId),
         const SizedBox(height: 80),
@@ -28,12 +28,12 @@ class QuizResultScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              child: const Text('Leaderboard'),
+              child: const Text('Zum Leaderboard'),
               onPressed: () => context.go('/quiz/$quizId/leaderboard'),
             ),
             const SizedBox(width: 20),
             ElevatedButton(
-              child: const Text('Back to home'),
+              child: const Text('Zurück zur Startseite'),
               onPressed: () => context.go('/'),
             ),
           ],

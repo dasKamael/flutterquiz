@@ -79,7 +79,7 @@ class _OverviewQuizCardState extends State<OverviewQuizCard> {
                     fullWidth: true,
                     isPrimary: true,
                     onPressed: () => context.go('/quiz/${quiz.id}'),
-                    child: const Text('Open Quiz'),
+                    child: const Text('Quiz öffnen'),
                   ),
               ],
             ),

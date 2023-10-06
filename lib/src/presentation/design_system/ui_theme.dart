@@ -16,12 +16,12 @@ UiTheme uiTheme(UiThemeRef ref) {
 
 /// UI Constants
 const kFontFamily = 'Roboto';
-const kPrimaryColor = Color(0xff042B59);
+const kPrimaryColor = Color(0xfffafafe);
 const kSecondaryColor = Color(0xff3497FD);
 const kBackgroundColor = Color(0xffFAFAFE);
-const kCardColor = Color(0xffFAFAFE);
-const kTextColor = Color(0xff042B59);
-const kTextColorLight = Color(0xffFAFAFE);
+const kCardColor = Color(0xff252526);
+const kTextColor = Color(0xfffafafe);
+const kTextColorLight = Color(0xff042B59);
 const kCardBorderRadius = 10.0;
 const kButtonBorderRadius = 10.0;
 
@@ -200,15 +200,15 @@ class UiTheme {
         hintStyle: baseDarkTheme.textTheme.bodySmall?.copyWith(color: kPrimaryColor.withOpacity(0.5)),
         labelStyle: baseDarkTheme.textTheme.bodySmall?.copyWith(color: kTextColor),
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey, width: kInputBorderSize),
+          borderSide: BorderSide(color: Color(0xFF1E1E1F), width: kInputBorderSize),
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         border: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey, width: kInputBorderSize),
+          borderSide: BorderSide(color: Color(0xFF1E1E1F), width: kInputBorderSize),
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey, width: kInputBorderSize),
+          borderSide: BorderSide(color: Color(0xFF1E1E1F), width: kInputBorderSize),
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         focusColor: kPrimaryColor,

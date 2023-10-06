@@ -57,7 +57,7 @@ class QuestionScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'Question $questionPosition of $questionCount',
+                        'Frage $questionPosition von $questionCount',
                         style: theme.textTheme.bodySmall,
                       ),
                       const SizedBox(height: 20),
@@ -65,7 +65,8 @@ class QuestionScreen extends ConsumerWidget {
                         question.question,
                         style: theme.textTheme.headlineLarge,
                       ),
-                      if (question.answers!.isEmpty) const Text('No answers found'),
+                      if (question.answers!.isEmpty)
+                        const Text('Keine Antwort gefunden. Bitte versuche es später erneut.'),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                         child: QuestionUtil.getQuestionType(question.type, question),

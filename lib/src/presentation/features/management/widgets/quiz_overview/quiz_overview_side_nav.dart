@@ -15,7 +15,7 @@ class QuizOverviewSideNav extends ConsumerWidget {
         style: theme.elevatedButtonTheme.style?.copyWith(
           backgroundColor: MaterialStateProperty.all(kSecondaryColor),
         ),
-        child: Text('Create Quiz', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
+        child: Text('Quiz erstellen', style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight)),
       ),
     );
   }

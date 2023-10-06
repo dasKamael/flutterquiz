@@ -42,11 +42,9 @@ class _ManagementDashboardScreenState extends ConsumerState<ManagementDashboardS
           constraints: const BoxConstraints(maxWidth: 1000),
           width: isDesktop ? MediaQuery.of(context).size.width / 2 : MediaQuery.of(context).size.width - 20,
           height: 600,
-          child: Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(kCardBorderRadius),
-              child: const QuizOverview(),
-            ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(kCardBorderRadius),
+            child: const QuizOverview(),
           ),
         ),
       ],

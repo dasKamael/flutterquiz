@@ -38,7 +38,7 @@ class QuizOverview extends ConsumerWidget {
                       onPressed: () {
                         context.go('/management/edit-quiz');
                       },
-                      child: const Text('Create Quiz'),
+                      child: const Text('Quiz erstellen'),
                     ),
                   ],
                 ),

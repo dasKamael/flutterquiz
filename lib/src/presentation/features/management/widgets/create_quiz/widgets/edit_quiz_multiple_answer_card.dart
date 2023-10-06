@@ -93,7 +93,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                     initialValue: question.question,
                     style: theme.textTheme.bodyMedium,
                     decoration: const InputDecoration(
-                      hintText: 'Question Title...',
+                      hintText: 'Fragestellung...',
                       contentPadding: EdgeInsets.all(16),
                     ),
                   ),
@@ -158,7 +158,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                       initialValue: answers[index].answer,
                       style: theme.textTheme.bodySmall,
                       decoration: const InputDecoration(
-                        hintText: 'Answer...',
+                        hintText: 'Antwortmöglichkeit...',
                         contentPadding: EdgeInsets.all(16),
                       ),
                     ),
@@ -195,10 +195,10 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                     ),
                     Expanded(
                       child: TextFormField(
-                        initialValue: 'Answer...',
+                        initialValue: 'Antwortmöglichkeit...',
                         style: theme.textTheme.bodySmall,
                         decoration: const InputDecoration(
-                          hintText: 'Answer...',
+                          hintText: 'Antwortmöglichkeit...',
                           contentPadding: EdgeInsets.all(16),
                         ),
                       ),

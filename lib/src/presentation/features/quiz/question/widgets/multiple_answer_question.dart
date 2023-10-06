@@ -90,7 +90,7 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
                   );
                 }
               : null,
-          child: const Text('Submit'),
+          child: const Text('Bestätigen'),
         ),
       ],
     );

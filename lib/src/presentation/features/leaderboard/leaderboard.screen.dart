@@ -42,7 +42,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
                   children: [
                     Text('${state.quizTitle} Leaderboard', style: theme.textTheme.headlineLarge),
                     const SizedBox(height: 16),
-                    Text('Your score is: ${state.score}', style: theme.textTheme.headlineMedium),
+                    Text('Dein Score ist: ${state.score}', style: theme.textTheme.headlineMedium),
                     const SizedBox(height: 16),
                     SizedBox(
                       width: fixWidth,
@@ -52,7 +52,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
                           Expanded(
                             child: TextFormField(
                               controller: _usernameController,
-                              decoration: const InputDecoration(hintText: 'Enter username'),
+                              decoration: const InputDecoration(hintText: 'Nutzernamen eingeben'),
                             ),
                           ),
                           const SizedBox(width: 8),
@@ -65,7 +65,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
                                     username: _usernameController.text,
                                   );
                             },
-                            child: const Text('Add'),
+                            child: const Text('Hinzufügen'),
                           ),
                         ],
                       ),
@@ -76,7 +76,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
                     SizedBox(
                       width: fixWidth,
                       child: ElevatedButton(
-                        child: const Text('Back to Home'),
+                        child: const Text('Zurück zur Startseite'),
                         onPressed: () => context.go('/'),
                       ),
                     ),

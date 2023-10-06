@@ -42,9 +42,9 @@ class QuestionResultDialog extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (answers.every((answer) => answer.isCorrect))
-                Text('Correct!', style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.green)),
+                Text('Richtig!', style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.green)),
               if (answers.any((answer) => !answer.isCorrect))
-                Text('Incorrect!', style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.red)),
+                Text('Falsch!', style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.red)),
               const SizedBox(height: 16),
               Text(question.question, style: Theme.of(context).textTheme.headlineMedium),
               const SizedBox(height: 16),
@@ -61,14 +61,14 @@ class QuestionResultDialog extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    child: const Text('Next Question'),
+                    child: const Text('Nächste Frage'),
                     onPressed: () {
                       navigateToNextQuestion(context, ref);
                     },
                   ),
                   const SizedBox(width: 20),
                   ElevatedButton(
-                    child: const Text('Explanation'),
+                    child: const Text('Erklärung'),
                     onPressed: () => UrlLauncherUtil.openUrl(question.explanationLink, context),
                   ),
                 ],

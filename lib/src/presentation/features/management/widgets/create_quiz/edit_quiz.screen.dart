@@ -42,7 +42,7 @@ class EditQuizScreen extends ConsumerWidget {
                               backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                             ),
                             child: Text(
-                              'Create Quiz',
+                              'Quiz erstellen',
                               style: theme.textTheme.labelMedium?.copyWith(color: kTextColorLight),
                             ),
                           ),

@@ -23,7 +23,7 @@ class QuizScreen extends ConsumerWidget {
           data: (quiz) {
             final question = quiz.questions;
             if (question!.isEmpty) {
-              return const Text('Question not found');
+              return const Center(child: Text('Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.'));
             }
             return Center(
               child: Padding(
@@ -43,7 +43,7 @@ class QuizScreen extends ConsumerWidget {
                       ),
                       const Spacer(),
                       UiElevatedButton(
-                        child: Text('Start Quiz', style: theme.textTheme.labelMedium),
+                        child: Text('Quiz starten', style: theme.textTheme.labelMedium),
                         onPressed: () {
                           ref.read(quizScoreControllerProvider.notifier).reset();
                           context.go('/quiz/$quizId/${question[0].id}');

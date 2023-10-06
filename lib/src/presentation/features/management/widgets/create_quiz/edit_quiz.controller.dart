@@ -8,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'edit_quiz.controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class EditQuizController extends _$EditQuizController {
   Logger get _logger => Logger('EditQuizController');
 
@@ -19,11 +19,11 @@ class EditQuizController extends _$EditQuizController {
 
   // Quiz related ######################################################################################################
 
-  updateQuizTitle(String value) {
+  void updateQuizTitle(String value) {
     state = state.copyWith(title: value);
   }
 
-  updateQuizDescription(String value) {
+  void updateQuizDescription(String value) {
     state = state.copyWith(description: value);
   }
 
@@ -54,9 +54,8 @@ class EditQuizController extends _$EditQuizController {
   void updateQuestion({required Question question}) {
     List<Question> temp = state.questions!.toList();
     temp[temp.indexWhere((element) => element.id == question.id)] = question;
+
     state = state.copyWith(questions: temp);
-    log(temp.toString());
-    log(state.questions.toString());
   }
 
   void removeQuestion({required int index}) {
@@ -72,7 +71,7 @@ class EditQuizController extends _$EditQuizController {
   // Common ############################################################################################################
 
   Future<(bool, String?)> saveQuiz() async {
-    log(state.questions.toString());
+    log(state.questions!.first.question.toString());
     try {
       Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state);
       List<Question> tempQuestions = state.questions!;
@@ -80,6 +79,7 @@ class EditQuizController extends _$EditQuizController {
       for (Question question in state.questions!) {
         await ref.read(createEditQuizServiceProvider).createOrUpdateQuestionWithAnswers(question: question);
       }
+      log(state.questions!.first.question.toString());
       return (true, null);
     } catch (e, s) {
       _logger.info('SaveQuiz error: $e, $s');

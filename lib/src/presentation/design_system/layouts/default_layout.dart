@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
-import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:go_router/go_router.dart';
 
 class DefaultLayout extends ConsumerWidget {
@@ -17,13 +16,7 @@ class DefaultLayout extends ConsumerWidget {
         children: [
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [kSecondaryColor, kPrimaryColor],
-                ),
-              ),
+              color: const Color(0xFF1E1E1E),
               child: Column(
                 children: [
                   Padding(

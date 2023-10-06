@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
@@ -86,6 +88,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
 
   void updateQuestion() {
     question = question.copyWith(answers: answers);
+    log(question.question);
     ref.read(editQuizControllerProvider(quiz: widget.quiz).notifier).updateQuestion(question: question);
     // if (question.answers!.length >= 2) {
     // } else {
@@ -126,7 +129,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                     initialValue: question.question,
                     style: theme.textTheme.bodyMedium,
                     decoration: const InputDecoration(
-                      hintText: 'Question Title...',
+                      hintText: 'Fragestellung...',
                       contentPadding: EdgeInsets.all(16),
                     ),
                     onChanged: (value) => onQuestionTitleChange(value),
@@ -193,7 +196,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                       initialValue: answers[index].answer,
                       style: theme.textTheme.bodySmall,
                       decoration: const InputDecoration(
-                        hintText: 'Answer...',
+                        hintText: 'Antwortmöglichkeit...',
                         contentPadding: EdgeInsets.all(16),
                       ),
                       onChanged: (value) {
@@ -234,10 +237,10 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                     ),
                     Expanded(
                       child: TextFormField(
-                        initialValue: 'Answer...',
+                        initialValue: 'Antwortmöglichkeit...',
                         style: theme.textTheme.bodySmall,
                         decoration: const InputDecoration(
-                          hintText: 'Answer...',
+                          hintText: 'Antwortmöglichkeit...',
                           contentPadding: EdgeInsets.all(16),
                         ),
                       ),

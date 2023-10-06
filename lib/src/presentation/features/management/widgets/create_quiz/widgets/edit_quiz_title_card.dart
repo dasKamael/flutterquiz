@@ -33,7 +33,7 @@ class EditQuizTitleCard extends ConsumerWidget {
             child: TextFormField(
               initialValue: quiz.title,
               decoration: const InputDecoration(
-                hintText: 'Quiz Title',
+                hintText: 'Quiz Titel',
                 contentPadding: EdgeInsets.all(16),
               ),
               onChanged: (value) => ref.read(editQuizControllerProvider(quiz: quiz).notifier).updateQuizTitle(value),
@@ -46,7 +46,7 @@ class EditQuizTitleCard extends ConsumerWidget {
               initialValue: quiz.description,
               style: theme.textTheme.bodySmall,
               decoration: const InputDecoration(
-                hintText: 'Quiz Description',
+                hintText: 'Quiz beschreibung',
                 contentPadding: EdgeInsets.all(16),
               ),
               onChanged: (value) =>
@@ -58,7 +58,7 @@ class EditQuizTitleCard extends ConsumerWidget {
             onChanged: (value) {
               ref.read(editQuizControllerProvider(quiz: quiz).notifier).toggleIsPrivate(value);
             },
-            title: Text('Is private', style: theme.textTheme.bodySmall),
+            title: Text('Ist Privat', style: theme.textTheme.bodySmall),
           ),
         ],
       ),

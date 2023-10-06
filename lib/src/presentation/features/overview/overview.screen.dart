@@ -19,7 +19,7 @@ class OverviewScreen extends ConsumerWidget {
       child: ref.watch(getQuizzesServiceProvider).when(
             data: (quizzes) {
               if (quizzes.isEmpty) {
-                return const Text('No quizzes');
+                return const Center(child: Text('Keine Quizze gefunden. Versuche es später nochmal.'));
               }
               return SingleChildScrollView(
                 child: Padding(
