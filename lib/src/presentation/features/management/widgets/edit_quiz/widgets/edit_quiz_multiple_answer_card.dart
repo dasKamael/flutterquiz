@@ -1,13 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
-import 'package:flutterquiz/src/presentation/features/management/widgets/create_quiz/edit_quiz.controller.dart';
+import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/edit_quiz.controller.dart';
 
-class EditQuizSingleAnswerCard extends ConsumerStatefulWidget {
-  const EditQuizSingleAnswerCard({
+class EditQuizMultipleAnswerCard extends ConsumerStatefulWidget {
+  const EditQuizMultipleAnswerCard({
     super.key,
     required this.quiz,
     required this.question,
@@ -19,10 +17,10 @@ class EditQuizSingleAnswerCard extends ConsumerStatefulWidget {
   final VoidCallback onRemoveQuestion;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _EditQuizSingleAnswerCardState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _EditQuizMultipleAnswerCardState();
 }
 
-class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerCard> {
+class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAnswerCard> {
   late Question question;
   List<Answer> answers = [];
 
@@ -36,31 +34,8 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
 
   void setIsCorrectAndRemoveFromOldOne(int index) {
     setState(() {
-      answers = answers.map((e) {
-        if (e.isCorrect) {
-          return e.copyWith(isCorrect: false);
-        }
-        return e;
-      }).toList();
-      answers[index] = answers[index].copyWith(isCorrect: true);
+      answers[index] = answers[index].copyWith(isCorrect: !answers[index].isCorrect);
     });
-    updateQuestion();
-  }
-
-  void onAnswerChange(String value, int index) {
-    List<Answer> temp = answers;
-    temp[index] = temp[index].copyWith(answer: value);
-    setState(() {
-      answers = temp;
-    });
-    updateQuestion();
-  }
-
-  void onQuestionTitleChange(String value) {
-    setState(() {
-      question = question.copyWith(question: value);
-    });
-    updateQuestion();
   }
 
   void removeAnswerFromList(int index) {
@@ -69,7 +44,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
       temp.removeAt(index);
       answers = temp;
     });
-    updateQuestion();
   }
 
   void onExplanationChange(String value) {
@@ -94,6 +68,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    ref.watch(editQuizControllerProvider(widget.quiz.id));
     return Card(
       margin: EdgeInsets.zero,
       child: Column(
@@ -121,7 +96,12 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                       hintText: 'Fragestellung...',
                       contentPadding: EdgeInsets.all(16),
                     ),
-                    onChanged: (value) => onQuestionTitleChange(value),
+                    onChanged: (value) {
+                      setState(() {
+                        question = question.copyWith(question: value);
+                      });
+                      updateQuestion();
+                    },
                   ),
                 ),
                 IconButton(
@@ -173,8 +153,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
             itemBuilder: (context, index) {
               return Row(
                 children: [
-                  Radio(
-                    groupValue: true,
+                  Checkbox(
                     value: answers[index].isCorrect,
                     onChanged: (_) {
                       setIsCorrectAndRemoveFromOldOne(index);
@@ -188,9 +167,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                         hintText: 'Antwortmöglichkeit...',
                         contentPadding: EdgeInsets.all(16),
                       ),
-                      onChanged: (value) {
-                        onAnswerChange(value, index);
-                      },
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -219,8 +195,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                 opacity: 0.4,
                 child: Row(
                   children: [
-                    Radio(
-                      groupValue: true,
+                    Checkbox(
                       value: false,
                       onChanged: (_) {},
                     ),

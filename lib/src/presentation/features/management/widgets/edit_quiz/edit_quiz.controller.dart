@@ -13,9 +13,12 @@ part 'edit_quiz.controller.g.dart';
 class EditQuizController extends _$EditQuizController {
   Logger get _logger => Logger('EditQuizController');
 
+  late final Quiz _oldQuiz;
+
   @override
   FutureOr<Quiz> build(String? quizId) async {
     final Quiz quiz = await ref.read(getCompleteQuizProvider(quizId: quizId).future);
+    _oldQuiz = quiz;
     return quiz;
   }
 
@@ -74,6 +77,8 @@ class EditQuizController extends _$EditQuizController {
   // Common ############################################################################################################
 
   Future<(bool, String?)> saveQuiz() async {
+    // Compare _oldQuiz with state.value! and save questions and answers that are different inside lists
+
     try {
       log(state.value!.questions!.first.question.toString());
       Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state.value!);

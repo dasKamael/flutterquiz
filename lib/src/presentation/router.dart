@@ -8,7 +8,7 @@ import 'package:flutterquiz/src/presentation/design_system/layouts/default_layou
 import 'package:flutterquiz/src/presentation/features/authentication/auth.screen.dart';
 import 'package:flutterquiz/src/presentation/features/leaderboard/leaderboard.screen.dart';
 import 'package:flutterquiz/src/presentation/features/management/management_dashboard.screen.dart';
-import 'package:flutterquiz/src/presentation/features/management/widgets/create_quiz/edit_quiz.screen.dart';
+import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/edit_quiz.screen.dart';
 import 'package:flutterquiz/src/presentation/features/overview/overview.screen.dart';
 import 'package:flutterquiz/src/presentation/features/quiz/question/question.screen.dart';
 import 'package:flutterquiz/src/presentation/features/quiz/quiz.screen.dart';

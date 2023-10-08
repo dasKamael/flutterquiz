@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
-import 'package:flutterquiz/src/presentation/features/management/widgets/create_quiz/edit_quiz.controller.dart';
-import 'package:flutterquiz/src/presentation/features/management/widgets/create_quiz/widgets/add_question_dialog.dart';
-import 'package:flutterquiz/src/presentation/features/management/widgets/create_quiz/widgets/edit_quiz_multiple_answer_card.dart';
-import 'package:flutterquiz/src/presentation/features/management/widgets/create_quiz/widgets/edit_quiz_single_answer_card.dart';
-import 'package:flutterquiz/src/presentation/features/management/widgets/create_quiz/widgets/edit_quiz_title_card.dart';
+import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/edit_quiz.controller.dart';
+import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/widgets/add_question_dialog.dart';
+import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/widgets/edit_quiz_multiple_answer_card.dart';
+import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/widgets/edit_quiz_single_answer_card.dart';
+import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/widgets/edit_quiz_title_card.dart';
 import 'package:go_router/go_router.dart';
 
 class EditQuizScreen extends ConsumerWidget {
