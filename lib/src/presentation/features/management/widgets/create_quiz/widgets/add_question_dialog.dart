@@ -27,7 +27,7 @@ class AddQuestionDialogContent extends ConsumerWidget {
                 return InkWell(
                   onTap: () {
                     ref
-                        .read(editQuizControllerProvider(quiz: quiz).notifier)
+                        .read(editQuizControllerProvider(quiz.id).notifier)
                         .addQuestion(questionType: types.value![index]);
                     context.pop();
                   },

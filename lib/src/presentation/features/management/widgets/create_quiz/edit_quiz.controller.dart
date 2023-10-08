@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
+import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,73 +14,77 @@ class EditQuizController extends _$EditQuizController {
   Logger get _logger => Logger('EditQuizController');
 
   @override
-  Quiz build({required Quiz quiz}) {
+  FutureOr<Quiz> build(String? quizId) async {
+    final Quiz quiz = await ref.read(getCompleteQuizProvider(quizId: quizId).future);
     return quiz;
   }
 
   // Quiz related ######################################################################################################
 
   void updateQuizTitle(String value) {
-    state = state.copyWith(title: value);
+    state = AsyncValue.data(state.value!.copyWith(title: value));
   }
 
   void updateQuizDescription(String value) {
-    state = state.copyWith(description: value);
+    state = AsyncValue.data(state.value!.copyWith(description: value));
   }
 
   void toggleIsPrivate(bool value) {
-    state = state.copyWith(isPrivate: value);
+    state = AsyncValue.data(state.value!.copyWith(isPrivate: value));
   }
 
   // Question related ##################################################################################################
 
   void addQuestion({required QuestionType questionType}) {
-    state = state.copyWith(
-      questions: [
-        ...state.questions ?? [],
-        Question(
-          id: state.questions!.length.toString(),
-          quizId: state.id ?? '',
-          question: '',
-          answers: [],
-          explanation: '',
-          explanationLink: '',
-          createdAt: DateTime.now(),
-          type: questionType.name,
-        ),
-      ],
+    state = AsyncValue.data(
+      state.value!.copyWith(
+        questions: [
+          ...state.value!.questions ?? [],
+          Question(
+            id: state.value!.questions!.length.toString(),
+            quizId: state.value!.id ?? '',
+            question: '',
+            answers: [],
+            explanation: '',
+            explanationLink: '',
+            createdAt: DateTime.now(),
+            type: questionType.name,
+          ),
+        ],
+      ),
     );
   }
 
   void updateQuestion({required Question question}) {
-    List<Question> temp = state.questions!.toList();
+    List<Question> temp = state.value!.questions!.toList();
     temp[temp.indexWhere((element) => element.id == question.id)] = question;
 
-    state = state.copyWith(questions: temp);
+    state = AsyncValue.data(state.value!.copyWith(questions: temp));
   }
 
   void removeQuestion({required int index}) {
-    List<Question> temp = state.questions!.toList();
+    List<Question> temp = state.value!.questions!.toList();
     Question removedQuestion = temp.removeAt(index);
     // TODO - Delete Question with Answers from DB
     if (removedQuestion.id != '') {
       // ref.read(createEditQuizServiceProvider).deleteQuestionWithAnswers(questionId: removedQuestion.id);
     }
-    state = state.copyWith(questions: temp);
+    state = AsyncValue.data(state.value!.copyWith(questions: temp));
   }
 
   // Common ############################################################################################################
 
   Future<(bool, String?)> saveQuiz() async {
-    log(state.questions!.first.question.toString());
     try {
-      Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state);
-      List<Question> tempQuestions = state.questions!;
-      state = newQuiz.copyWith(questions: tempQuestions);
-      for (Question question in state.questions!) {
+      log(state.value!.questions!.first.question.toString());
+      Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state.value!);
+      List<Question> tempQuestions = state.value!.questions!;
+      state = AsyncValue.data(newQuiz.copyWith(questions: tempQuestions));
+
+      for (Question question in state.value!.questions!) {
         await ref.read(createEditQuizServiceProvider).createOrUpdateQuestionWithAnswers(question: question);
       }
-      log(state.questions!.first.question.toString());
+      log(state.value!.questions!.first.question.toString());
       return (true, null);
     } catch (e, s) {
       _logger.info('SaveQuiz error: $e, $s');

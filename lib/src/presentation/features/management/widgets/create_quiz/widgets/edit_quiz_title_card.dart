@@ -12,7 +12,7 @@ class EditQuizTitleCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final state = ref.watch(editQuizControllerProvider(quiz: quiz));
+
     return Card(
       margin: EdgeInsets.zero,
       child: Column(
@@ -36,7 +36,7 @@ class EditQuizTitleCard extends ConsumerWidget {
                 hintText: 'Quiz Titel',
                 contentPadding: EdgeInsets.all(16),
               ),
-              onChanged: (value) => ref.read(editQuizControllerProvider(quiz: quiz).notifier).updateQuizTitle(value),
+              onChanged: (value) => ref.read(editQuizControllerProvider(quiz.id).notifier).updateQuizTitle(value),
             ),
           ),
           const Divider(indent: 20, endIndent: 20),
@@ -49,14 +49,13 @@ class EditQuizTitleCard extends ConsumerWidget {
                 hintText: 'Quiz beschreibung',
                 contentPadding: EdgeInsets.all(16),
               ),
-              onChanged: (value) =>
-                  ref.read(editQuizControllerProvider(quiz: quiz).notifier).updateQuizDescription(value),
+              onChanged: (value) => ref.read(editQuizControllerProvider(quiz.id).notifier).updateQuizDescription(value),
             ),
           ),
           SwitchListTile(
-            value: state.isPrivate,
+            value: quiz.isPrivate,
             onChanged: (value) {
-              ref.read(editQuizControllerProvider(quiz: quiz).notifier).toggleIsPrivate(value);
+              ref.read(editQuizControllerProvider(quiz.id).notifier).toggleIsPrivate(value);
             },
             title: Text('Ist Privat', style: theme.textTheme.bodySmall),
           ),

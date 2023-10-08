@@ -7,7 +7,7 @@ part of 'edit_quiz.controller.dart';
 // **************************************************************************
 
 String _$editQuizControllerHash() =>
-    r'85417a3566fd913f873a59ab75316f44042a242f';
+    r'5cb3f3d5553caa96c84983caeec2a14806cd8eb0';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,12 +30,12 @@ class _SystemHash {
   }
 }
 
-abstract class _$EditQuizController extends BuildlessAutoDisposeNotifier<Quiz> {
-  late final Quiz quiz;
+abstract class _$EditQuizController extends BuildlessAsyncNotifier<Quiz> {
+  late final String? quizId;
 
-  Quiz build({
-    required Quiz quiz,
-  });
+  FutureOr<Quiz> build(
+    String? quizId,
+  );
 }
 
 /// See also [EditQuizController].
@@ -43,16 +43,16 @@ abstract class _$EditQuizController extends BuildlessAutoDisposeNotifier<Quiz> {
 const editQuizControllerProvider = EditQuizControllerFamily();
 
 /// See also [EditQuizController].
-class EditQuizControllerFamily extends Family<Quiz> {
+class EditQuizControllerFamily extends Family<AsyncValue<Quiz>> {
   /// See also [EditQuizController].
   const EditQuizControllerFamily();
 
   /// See also [EditQuizController].
-  EditQuizControllerProvider call({
-    required Quiz quiz,
-  }) {
+  EditQuizControllerProvider call(
+    String? quizId,
+  ) {
     return EditQuizControllerProvider(
-      quiz: quiz,
+      quizId,
     );
   }
 
@@ -61,7 +61,7 @@ class EditQuizControllerFamily extends Family<Quiz> {
     covariant EditQuizControllerProvider provider,
   ) {
     return call(
-      quiz: provider.quiz,
+      provider.quizId,
     );
   }
 
@@ -82,12 +82,12 @@ class EditQuizControllerFamily extends Family<Quiz> {
 
 /// See also [EditQuizController].
 class EditQuizControllerProvider
-    extends AutoDisposeNotifierProviderImpl<EditQuizController, Quiz> {
+    extends AsyncNotifierProviderImpl<EditQuizController, Quiz> {
   /// See also [EditQuizController].
-  EditQuizControllerProvider({
-    required this.quiz,
-  }) : super.internal(
-          () => EditQuizController()..quiz = quiz,
+  EditQuizControllerProvider(
+    this.quizId,
+  ) : super.internal(
+          () => EditQuizController()..quizId = quizId,
           from: editQuizControllerProvider,
           name: r'editQuizControllerProvider',
           debugGetCreateSourceHash:
@@ -99,27 +99,27 @@ class EditQuizControllerProvider
               EditQuizControllerFamily._allTransitiveDependencies,
         );
 
-  final Quiz quiz;
+  final String? quizId;
 
   @override
   bool operator ==(Object other) {
-    return other is EditQuizControllerProvider && other.quiz == quiz;
+    return other is EditQuizControllerProvider && other.quizId == quizId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, quiz.hashCode);
+    hash = _SystemHash.combine(hash, quizId.hashCode);
 
     return _SystemHash.finish(hash);
   }
 
   @override
-  Quiz runNotifierBuild(
+  FutureOr<Quiz> runNotifierBuild(
     covariant EditQuizController notifier,
   ) {
     return notifier.build(
-      quiz: quiz,
+      quizId,
     );
   }
 }

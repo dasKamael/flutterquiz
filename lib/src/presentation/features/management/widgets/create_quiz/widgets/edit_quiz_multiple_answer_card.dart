@@ -62,13 +62,13 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
 
   void updateQuestion() {
     question = question.copyWith(answers: answers);
-    ref.read(editQuizControllerProvider(quiz: widget.quiz).notifier).updateQuestion(question: question);
+    ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuestion(question: question);
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    ref.watch(editQuizControllerProvider(quiz: widget.quiz));
+    ref.watch(editQuizControllerProvider(widget.quiz.id));
     return Card(
       margin: EdgeInsets.zero,
       child: Column(
@@ -96,6 +96,12 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                       hintText: 'Fragestellung...',
                       contentPadding: EdgeInsets.all(16),
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        question = question.copyWith(question: value);
+                      });
+                      updateQuestion();
+                    },
                   ),
                 ),
                 IconButton(

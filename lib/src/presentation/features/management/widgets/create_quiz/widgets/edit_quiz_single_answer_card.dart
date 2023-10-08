@@ -89,22 +89,12 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   void updateQuestion() {
     question = question.copyWith(answers: answers);
     log(question.question);
-    ref.read(editQuizControllerProvider(quiz: widget.quiz).notifier).updateQuestion(question: question);
-    // if (question.answers!.length >= 2) {
-    // } else {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     const SnackBar(
-    //       content: Text('You need at least 2 answers'),
-    //       duration: Duration(seconds: 2),
-    //     ),
-    //   );
-    // }
+    ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuestion(question: question);
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    ref.watch(editQuizControllerProvider(quiz: widget.quiz));
     return Card(
       margin: EdgeInsets.zero,
       child: Column(
