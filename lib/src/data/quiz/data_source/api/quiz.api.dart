@@ -183,6 +183,14 @@ class QuizApi {
     }
   }
 
+  Future<void> deleteQuestionWithId({required String questionId}) async {
+    try {
+      await supabaseClient.from('questions').delete().eq('id', questionId);
+    } catch (e) {
+      _logger.info('DeleteQuestionWithId error: $e');
+    }
+  }
+
   // Answers #################################################################
   Future<List<AnswerResponseDto>> getAnswersByQuestionId({required String questionId}) async {
     try {
@@ -235,6 +243,14 @@ class QuizApi {
     } catch (e) {
       _logger.info('CreateOrUpdateAnswer error: $e');
       return null;
+    }
+  }
+
+  Future<void> deleteAnswerWithId({required String answerId}) async {
+    try {
+      await supabaseClient.from('answers').delete().eq('id', answerId);
+    } catch (e) {
+      _logger.info('DeleteAnswer error: $e');
     }
   }
 }

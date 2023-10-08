@@ -68,7 +68,6 @@ class EditQuizController extends _$EditQuizController {
   void removeQuestion({required int index}) {
     List<Question> temp = state.value!.questions!.toList();
     Question removedQuestion = temp.removeAt(index);
-    // TODO - Delete Question with Answers from DB
     if (removedQuestion.id != '') {
       // ref.read(createEditQuizServiceProvider).deleteQuestionWithAnswers(questionId: removedQuestion.id);
     }
@@ -78,11 +77,12 @@ class EditQuizController extends _$EditQuizController {
   // Common ############################################################################################################
 
   Future<(bool, String?)> saveQuiz() async {
-    // Compare _oldQuiz.questions with state.value!.questions
-
+    Quiz tempQuiz = state.value!;
+    state = const AsyncValue.loading();
     QuizDiff diff = findDifferences(_oldQuiz, state.value!);
-    log(diff.removedQuestions.toString());
+
     log(diff.removedAnswers.toString());
+    log(diff.removedQuestions.toString());
 
     try {
       Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state.value!);
@@ -93,10 +93,20 @@ class EditQuizController extends _$EditQuizController {
         log(question.answers.toString());
         await ref.read(createEditQuizServiceProvider).createOrUpdateQuestionWithAnswers(question: question);
       }
-      log(state.value!.questions!.first.question.toString());
+
+      for (Question question in diff.removedQuestions) {
+        await ref.read(createEditQuizServiceProvider).deleteQuestionWithId(questionId: question.id);
+      }
+
+      for (Answer answer in diff.removedAnswers) {
+        await ref.read(createEditQuizServiceProvider).deleteAnswerWithId(answerId: answer.id);
+      }
+      state = AsyncValue.data(tempQuiz);
+
       return (true, null);
     } catch (e, s) {
       _logger.info('SaveQuiz error: $e, $s');
+      state = AsyncValue.data(tempQuiz);
       return (false, e.toString());
     }
   }

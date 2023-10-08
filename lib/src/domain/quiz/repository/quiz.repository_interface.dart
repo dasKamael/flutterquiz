@@ -11,7 +11,9 @@ abstract class QuizRepositoryInterface {
   Future<Question> getQuestionById(String questionId);
   Future<List<Question>> getQuestionsByQuizId(String quizId);
   Future<Question> createOrUpdateQuestion({required Question question});
+  Future<void> deleteAnswerWithId({required String answerId});
   // Answers #################################################################
   Future<List<Answer>> getAnswersByQuestionId(String questionId);
   Future<void> createOrUpdateAnswer({required Answer answer});
+  Future<void> deleteQuestionWithId({required String questionId});
 }

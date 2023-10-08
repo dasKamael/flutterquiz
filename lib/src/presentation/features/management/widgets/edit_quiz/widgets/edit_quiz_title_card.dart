@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
@@ -9,22 +10,37 @@ class EditQuizTitleCard extends ConsumerWidget {
 
   final Quiz quiz;
 
+  String missingTitle(WidgetRef ref) {
+    final state = ref.read(editQuizControllerProvider(quiz.id)).value!;
+    if (state.title.isEmpty) return 'Es muss ein Titel geben.';
+    if (state.description.isEmpty) return 'Es muss eine Beschreibung geben.';
+    return '';
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final state = ref.watch(editQuizControllerProvider(quiz.id));
 
     return Card(
       margin: EdgeInsets.zero,
       child: Column(
         children: [
           Container(
-            height: 16,
+            height: 32,
             width: double.infinity,
-            decoration: const BoxDecoration(
-              color: kPrimaryColor,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: state.value!.title.isEmpty || state.value!.description.isEmpty ? kErrorColor : kPrimaryColor,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
+              ),
+            ),
+            child: Center(
+              child: AutoSizeText(
+                missingTitle(ref),
+                maxLines: 1,
+                style: theme.textTheme.labelMedium!.copyWith(color: Colors.white),
               ),
             ),
           ),

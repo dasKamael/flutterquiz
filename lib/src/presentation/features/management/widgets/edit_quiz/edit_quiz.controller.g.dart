@@ -7,7 +7,7 @@ part of 'edit_quiz.controller.dart';
 // **************************************************************************
 
 String _$editQuizControllerHash() =>
-    r'1f344ea7980c9d9f2852fde9bef3101e7e08693a';
+    r'4177ccfc736b5d5d8f1552c23c2e448749d53414';
 
 /// Copied from Dart SDK
 class _SystemHash {

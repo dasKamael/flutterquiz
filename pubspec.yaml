@@ -29,6 +29,7 @@ dependencies:
   # Logging
   logging: ^1.2.0
   logging_appenders: ^1.2.0+1
+  collection: ^1.17.2
 
 dev_dependencies:
   flutter_test:

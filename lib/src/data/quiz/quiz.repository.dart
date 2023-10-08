@@ -92,6 +92,16 @@ class QuizRepository implements QuizRepositoryInterface {
   Future<void> createOrUpdateAnswer({required Answer answer}) async {
     await quizApi.createOrUpdateAnswer(answer: answer);
   }
+
+  @override
+  Future<void> deleteQuestionWithId({required String questionId}) async {
+    await quizApi.deleteQuestionWithId(questionId: questionId);
+  }
+
+  @override
+  Future<void> deleteAnswerWithId({required String answerId}) async {
+    await quizApi.deleteAnswerWithId(answerId: answerId);
+  }
 }
 
 /// Providers

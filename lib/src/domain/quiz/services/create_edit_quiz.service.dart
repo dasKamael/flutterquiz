@@ -35,6 +35,14 @@ class CreateEditQuizService {
   Future<void> createOrUpdateAnswer({required Answer answer}) async {
     await quizRepositoryProvider.createOrUpdateAnswer(answer: answer);
   }
+
+  Future<void> deleteQuestionWithId({required String questionId}) async {
+    await quizRepositoryProvider.deleteQuestionWithId(questionId: questionId);
+  }
+
+  Future<void> deleteAnswerWithId({required String answerId}) async {
+    await quizRepositoryProvider.deleteAnswerWithId(answerId: answerId);
+  }
 }
 
 /// Providers

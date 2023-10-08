@@ -87,7 +87,7 @@ class QuizOverviewListTile extends ConsumerWidget {
             child: const Expanded(
               child: Card(
                 color: kPrimaryColor,
-                child: Icon(Icons.leaderboard),
+                child: Icon(Icons.leaderboard, color: Color(0xFF1E1E1E)),
               ),
             ),
           ),
@@ -100,7 +100,7 @@ class QuizOverviewListTile extends ConsumerWidget {
             child: const Expanded(
               child: Card(
                 color: kPrimaryColor,
-                child: Icon(Icons.edit),
+                child: Icon(Icons.edit, color: Color(0xFF1E1E1E)),
               ),
             ),
           ),
