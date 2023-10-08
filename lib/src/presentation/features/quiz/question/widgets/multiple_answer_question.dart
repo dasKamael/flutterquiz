@@ -40,6 +40,7 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
                   Container(
                     constraints: const BoxConstraints(maxWidth: 500),
                     child: Card(
+                      color: kBackgroundColor,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CheckboxListTile(
@@ -49,7 +50,7 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
                               Text(
                                 widget.question.answers![index].answer,
                                 textAlign: TextAlign.left,
-                                style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.black),
+                                style: Theme.of(context).textTheme.labelMedium,
                               ),
                             ],
                           ),
@@ -72,7 +73,6 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
         ElevatedButton(
           style: theme.elevatedButtonTheme.style?.copyWith(
             backgroundColor: MaterialStateProperty.all<Color>(kSecondaryColor),
-            foregroundColor: MaterialStateProperty.all<Color>(kTextColorLight),
           ),
           onPressed: _selected.any((element) => element == true)
               ? () {

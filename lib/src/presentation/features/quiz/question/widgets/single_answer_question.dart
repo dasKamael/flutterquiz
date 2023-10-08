@@ -34,19 +34,20 @@ class SingleAnswerQuestion extends ConsumerWidget {
             child: Container(
               constraints: const BoxConstraints(maxWidth: 500),
               child: Card(
+                color: kBackgroundColor,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
                       Text(
                         String.fromCharCode(index + 65),
-                        style: theme.textTheme.headlineLarge?.copyWith(color: kPrimaryColor),
+                        style: theme.textTheme.headlineLarge,
                       ),
                       const SizedBox(width: 10),
                       Text(
                         question.answers![index].answer,
                         textAlign: TextAlign.left,
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.black),
+                        style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],
                   ),

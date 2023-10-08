@@ -15,57 +15,54 @@ class DefaultLayout extends ConsumerWidget {
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              color: const Color(0xFF1E1E1E),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: Text('Home', style: theme.textTheme.labelMedium),
+                        onPressed: () => context.go('/'),
+                      ),
+                      if (ref.read(authServiceProvider) != null)
                         TextButton(
-                          child: Text('Home', style: theme.textTheme.labelMedium),
-                          onPressed: () => context.go('/'),
+                          child: Text('Dashboard', style: theme.textTheme.labelMedium),
+                          onPressed: () => context.go('/management'),
                         ),
-                        if (ref.read(authServiceProvider) != null)
-                          TextButton(
-                            child: Text('Dashboard', style: theme.textTheme.labelMedium),
-                            onPressed: () => context.go('/management'),
-                          ),
-                        const Spacer(),
-                        if (ref.read(authServiceProvider) != null)
-                          Text(
-                            'Hello ${ref.read(authServiceProvider)?.username ?? ''}',
-                            style: theme.textTheme.labelMedium,
-                          ),
-                        const SizedBox(width: 8),
-                        if (ref.read(authServiceProvider) == null)
-                          ElevatedButton(
-                            child: const Text('Anmelden'),
-                            onPressed: () => context.go('/auth'),
-                          )
-                        else
-                          TextButton(
-                            child: Text(
-                              'Abmelden',
-                              style: theme.textTheme.labelMedium?.copyWith(
-                                color: theme.textTheme.labelMedium?.color?.withOpacity(
-                                  0.5,
-                                ),
+                      const Spacer(),
+                      if (ref.read(authServiceProvider) != null)
+                        Text(
+                          'Hello ${ref.read(authServiceProvider)?.username ?? ''}',
+                          style: theme.textTheme.labelMedium,
+                        ),
+                      const SizedBox(width: 8),
+                      if (ref.read(authServiceProvider) == null)
+                        ElevatedButton(
+                          child: const Text('Anmelden'),
+                          onPressed: () => context.go('/auth'),
+                        )
+                      else
+                        TextButton(
+                          child: Text(
+                            'Abmelden',
+                            style: theme.textTheme.labelMedium?.copyWith(
+                              color: theme.textTheme.labelMedium?.color?.withOpacity(
+                                0.5,
                               ),
                             ),
-                            onPressed: () {
-                              ref.read(authServiceProvider.notifier).signOut();
-                              context.go('/');
-                            },
                           ),
-                      ],
-                    ),
+                          onPressed: () {
+                            ref.read(authServiceProvider.notifier).signOut();
+                            context.go('/');
+                          },
+                        ),
+                    ],
                   ),
-                  Expanded(child: child),
-                ],
-              ),
+                ),
+                Expanded(child: child),
+              ],
             ),
           ),
         ],

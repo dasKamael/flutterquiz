@@ -18,7 +18,7 @@ UiTheme uiTheme(UiThemeRef ref) {
 const kFontFamily = 'Roboto';
 const kPrimaryColor = Color(0xfffafafe);
 const kSecondaryColor = Color(0xff3497FD);
-const kBackgroundColor = Color(0xffFAFAFE);
+const kBackgroundColor = Color(0xff1e1e1e);
 const kCardColor = Color(0xff252526);
 const kTextColor = Color(0xfffafafe);
 const kTextColorLight = Color(0xff042B59);
@@ -156,7 +156,7 @@ class UiTheme {
           fontFamily: 'AxiaBlack',
           fontWeight: FontWeight.w400,
           height: 1.0,
-          color: kPrimaryColor,
+          color: kTextColor,
           fontFeatures: [const FontFeature.liningFigures()],
         ),
       ),
@@ -184,7 +184,7 @@ class UiTheme {
         ),
       ),
       cardTheme: CardTheme(
-        elevation: 2,
+        elevation: 5,
         shadowColor: Colors.black87,
         color: kCardColor,
         shape: RoundedRectangleBorder(
@@ -221,7 +221,7 @@ class UiTheme {
       fontFamily: 'AxiaBlack',
       fontSize: 32,
       letterSpacing: 2.08,
-      color: kPrimaryColor,
+      color: kTextColor,
       fontWeight: FontWeight.w800,
       fontFeatures: [const FontFeature.liningFigures()],
     );
@@ -244,7 +244,7 @@ class UiTheme {
       fontFamily: 'AxiaLight',
       fontSize: 15,
       letterSpacing: 1.25,
-      color: kPrimaryColor,
+      color: kTextColor,
       fontWeight: FontWeight.w400,
       fontFeatures: [const FontFeature.liningFigures()],
     );
