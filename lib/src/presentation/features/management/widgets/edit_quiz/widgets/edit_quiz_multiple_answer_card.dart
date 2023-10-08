@@ -178,7 +178,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                   ),
                   Expanded(
                     child: TextFormField(
-                      initialValue: answers[index].answer,
+                      controller: TextEditingController(text: answers[index].answer),
                       style: theme.textTheme.bodySmall,
                       decoration: const InputDecoration(
                         hintText: 'Antwortmöglichkeit...',

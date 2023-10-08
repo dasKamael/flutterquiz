@@ -72,10 +72,8 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   }
 
   void removeAnswerFromList(int index) {
-    List<Answer> temp = answers;
     setState(() {
-      temp.removeAt(index);
-      answers = temp;
+      answers.removeAt(index);
     });
     updateQuestion();
   }
@@ -197,7 +195,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                   ),
                   Expanded(
                     child: TextFormField(
-                      initialValue: answers[index].answer,
+                      controller: TextEditingController(text: answers[index].answer),
                       style: theme.textTheme.bodySmall,
                       decoration: const InputDecoration(
                         hintText: 'Antwortmöglichkeit...',
