@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutterquiz/src/common/utils/quiz_diff.util.dart';
 import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
@@ -77,10 +78,13 @@ class EditQuizController extends _$EditQuizController {
   // Common ############################################################################################################
 
   Future<(bool, String?)> saveQuiz() async {
-    // Compare _oldQuiz with state.value! and save questions and answers that are different inside lists
+    // Compare _oldQuiz.questions with state.value!.questions
+
+    QuizDiff diff = findDifferences(_oldQuiz, state.value!);
+    log(diff.removedQuestions.toString());
+    log(diff.removedAnswers.toString());
 
     try {
-      log(state.value!.questions!.first.question.toString());
       Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state.value!);
       List<Question> tempQuestions = state.value!.questions!;
       state = AsyncValue.data(newQuiz.copyWith(questions: tempQuestions));
