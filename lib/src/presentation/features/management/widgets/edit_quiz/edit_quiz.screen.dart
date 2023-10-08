@@ -72,65 +72,68 @@ class EditQuizScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(kCardBorderRadius),
-                        child: Column(
-                          children: [
-                            EditQuizTitleCard(quiz: quiz),
-                            const SizedBox(height: 16),
-                            ListView.separated(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: quiz.questions?.length ?? 0,
-                              separatorBuilder: (context, index) => const SizedBox(height: 8),
-                              itemBuilder: (context, index) {
-                                switch (quiz.questions![index].type) {
-                                  case 'single':
-                                    return EditQuizSingleAnswerCard(
-                                      quiz: quiz,
-                                      question: quiz.questions![index],
-                                      onRemoveQuestion: () {
-                                        ref
-                                            .read(editQuizControllerProvider(quiz.id).notifier)
-                                            .removeQuestion(index: index);
-                                      },
-                                    );
-                                  case 'multiple':
-                                    return EditQuizMultipleAnswerCard(
-                                      quiz: quiz,
-                                      question: quiz.questions![index],
-                                      onRemoveQuestion: () {
-                                        ref
-                                            .read(editQuizControllerProvider(quiz.id).notifier)
-                                            .removeQuestion(index: index);
-                                      },
-                                    );
-                                  default:
-                                    return EditQuizSingleAnswerCard(
-                                      quiz: quiz,
-                                      question: quiz.questions![index],
-                                      onRemoveQuestion: () {
-                                        ref
-                                            .read(editQuizControllerProvider(quiz.id).notifier)
-                                            .removeQuestion(index: index);
-                                      },
-                                    );
-                                }
-                              },
-                            ),
-                            const SizedBox(height: 8),
-                            FloatingActionButton(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AddQuestionDialogContent(quiz: quiz),
-                                );
-                              },
-                              child: const Icon(Icons.add),
-                            ),
-                            const SizedBox(height: 20),
-                          ],
+                      Container(
+                        constraints: const BoxConstraints(maxWidth: 1000),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(kCardBorderRadius),
+                          child: Column(
+                            children: [
+                              EditQuizTitleCard(quiz: quiz),
+                              const SizedBox(height: 16),
+                              ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: quiz.questions?.length ?? 0,
+                                separatorBuilder: (context, index) => const SizedBox(height: 8),
+                                itemBuilder: (context, index) {
+                                  switch (quiz.questions![index].type) {
+                                    case 'single':
+                                      return EditQuizSingleAnswerCard(
+                                        quiz: quiz,
+                                        question: quiz.questions![index],
+                                        onRemoveQuestion: () {
+                                          ref
+                                              .read(editQuizControllerProvider(quiz.id).notifier)
+                                              .removeQuestion(index: index);
+                                        },
+                                      );
+                                    case 'multiple':
+                                      return EditQuizMultipleAnswerCard(
+                                        quiz: quiz,
+                                        question: quiz.questions![index],
+                                        onRemoveQuestion: () {
+                                          ref
+                                              .read(editQuizControllerProvider(quiz.id).notifier)
+                                              .removeQuestion(index: index);
+                                        },
+                                      );
+                                    default:
+                                      return EditQuizSingleAnswerCard(
+                                        quiz: quiz,
+                                        question: quiz.questions![index],
+                                        onRemoveQuestion: () {
+                                          ref
+                                              .read(editQuizControllerProvider(quiz.id).notifier)
+                                              .removeQuestion(index: index);
+                                        },
+                                      );
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: 8),
+                              FloatingActionButton(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AddQuestionDialogContent(quiz: quiz),
+                                  );
+                                },
+                                child: const Icon(Icons.add),
+                              ),
+                              const SizedBox(height: 20),
+                            ],
+                          ),
                         ),
                       ),
                     ],

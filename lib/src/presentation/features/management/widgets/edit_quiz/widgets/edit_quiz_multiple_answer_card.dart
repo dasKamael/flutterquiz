@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
@@ -30,6 +31,15 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
     question = widget.question;
     if (question.answers == null) answers = [];
     answers = question.answers!.toList();
+  }
+
+  String missingAnswer() {
+    if (answers.length < 2) return 'Es muss mindestens 2 Antwortmöglichkeiten geben.';
+    if (answers.any((element) => element.answer.isEmpty)) return 'Es darf keine leere Antwortmöglichkeit geben.';
+    if (answers.every((element) => element.isCorrect == false)) {
+      return 'Es muss mindestens eine richtige Antwortmöglichkeit geben.';
+    }
+    return '';
   }
 
   void setIsCorrectAndRemoveFromOldOne(int index) {
@@ -74,13 +84,20 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
       child: Column(
         children: [
           Container(
-            height: 16,
+            height: 32,
             width: double.infinity,
-            decoration: const BoxDecoration(
-              color: kSecondaryColor,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: missingAnswer() == '' ? kSecondaryColor : kErrorColor,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
+              ),
+            ),
+            child: Center(
+              child: AutoSizeText(
+                missingAnswer(),
+                maxLines: 1,
+                style: theme.textTheme.labelMedium!.copyWith(color: Colors.white),
               ),
             ),
           ),
