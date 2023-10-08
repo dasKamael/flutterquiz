@@ -58,7 +58,6 @@ class EditQuizController extends _$EditQuizController {
   void updateQuestion({required Question question}) {
     List<Question> temp = state.value!.questions!.toList();
     temp[temp.indexWhere((element) => element.id == question.id)] = question;
-
     state = AsyncValue.data(state.value!.copyWith(questions: temp));
   }
 
@@ -82,6 +81,7 @@ class EditQuizController extends _$EditQuizController {
       state = AsyncValue.data(newQuiz.copyWith(questions: tempQuestions));
 
       for (Question question in state.value!.questions!) {
+        log(question.answers.toString());
         await ref.read(createEditQuizServiceProvider).createOrUpdateQuestionWithAnswers(question: question);
       }
       log(state.value!.questions!.first.question.toString());

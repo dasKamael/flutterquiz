@@ -204,7 +204,7 @@ class QuizApi {
     try {
       final bool answerExists = await supabaseClient.rpc(
         'check_answer_exists',
-        params: {'answer_id': double.tryParse(answer.id) != null ? null : answer.id},
+        params: {'answer_id': double.tryParse(answer.id) != null || answer.id == '' ? null : answer.id},
       );
 
       final dynamic response;

@@ -88,7 +88,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
 
   void updateQuestion() {
     question = question.copyWith(answers: answers);
-    log(question.question);
     ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuestion(question: question);
   }
 
