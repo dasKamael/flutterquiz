@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
@@ -25,21 +24,22 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
   late Question question;
   List<Answer> answers = [];
 
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController explanationController = TextEditingController();
+  final TextEditingController explanationLinkController = TextEditingController();
+
+  List<TextEditingController> answerControllers = [];
+
   @override
   void initState() {
     super.initState();
     question = widget.question;
     if (question.answers == null) answers = [];
     answers = question.answers!.toList();
-  }
 
-  String missingAnswer() {
-    if (answers.length < 2) return 'Es muss mindestens 2 Antwortmöglichkeiten geben.';
-    if (answers.any((element) => element.answer.isEmpty)) return 'Es darf keine leere Antwortmöglichkeit geben.';
-    if (answers.every((element) => element.isCorrect == false)) {
-      return 'Es muss mindestens eine richtige Antwortmöglichkeit geben.';
-    }
-    return '';
+    titleController.text = question.question;
+    explanationController.text = question.explanation ?? '';
+    explanationLinkController.text = question.explanationLink ?? '';
   }
 
   void setIsCorrectAndRemoveFromOldOne(int index) {
@@ -86,18 +86,11 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
           Container(
             height: 32,
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: missingAnswer() == '' ? kSecondaryColor : kErrorColor,
-              borderRadius: const BorderRadius.only(
+            decoration: const BoxDecoration(
+              color: kSecondaryColor,
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
-              ),
-            ),
-            child: Center(
-              child: AutoSizeText(
-                missingAnswer(),
-                maxLines: 1,
-                style: theme.textTheme.labelMedium!.copyWith(color: Colors.white),
               ),
             ),
           ),
@@ -118,6 +111,11 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                         question = question.copyWith(question: value);
                       });
                       updateQuestion();
+                    },
+                    controller: titleController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) return 'Es muss eine Fragestellung geben.';
+                      return null;
                     },
                   ),
                 ),
@@ -142,6 +140,11 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                   hintStyle: theme.textTheme.bodySmall,
                 ),
                 onChanged: (value) => onExplanationChange(value),
+                controller: explanationController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) return 'Es muss eine Erklärung geben.';
+                  return null;
+                },
               ),
             ),
           ),
@@ -158,6 +161,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                   hintStyle: theme.textTheme.bodySmall,
                 ),
                 onChanged: (value) => onExplanationLinkChange(value),
+                controller: explanationLinkController,
               ),
             ),
           ),
@@ -168,6 +172,10 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
             itemCount: answers.length,
             separatorBuilder: (context, index) => const SizedBox(height: 8),
             itemBuilder: (context, index) {
+              answerControllers = [
+                ...answerControllers,
+                TextEditingController(text: answers[index].answer),
+              ];
               return Row(
                 children: [
                   Checkbox(
@@ -178,12 +186,21 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                   ),
                   Expanded(
                     child: TextFormField(
-                      controller: TextEditingController(text: answers[index].answer),
+                      controller: answerControllers[index],
                       style: theme.textTheme.bodySmall,
                       decoration: const InputDecoration(
                         hintText: 'Antwortmöglichkeit...',
                         contentPadding: EdgeInsets.all(16),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) return 'Es muss eine Antwortmöglichkeit geben.';
+                        if (answers.length < 2) return 'Es muss mindestens 2 Antwortmöglichkeiten geben.';
+
+                        if (answers.every((element) => element.isCorrect == false)) {
+                          return 'Es muss mindestens eine richtige Antwortmöglichkeit geben.';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   const SizedBox(width: 8),

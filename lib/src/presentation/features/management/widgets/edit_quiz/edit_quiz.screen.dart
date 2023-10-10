@@ -97,7 +97,7 @@ class _EditQuizScreenState extends ConsumerState<EditQuizScreen> {
                                         shrinkWrap: true,
                                         physics: const NeverScrollableScrollPhysics(),
                                         itemCount: quiz.questions?.length ?? 0,
-                                        separatorBuilder: (context, index) => const SizedBox(height: 8),
+                                        separatorBuilder: (context, index) => const SizedBox(height: 16),
                                         itemBuilder: (context, index) {
                                           switch (quiz.questions![index].type) {
                                             case 'single':
