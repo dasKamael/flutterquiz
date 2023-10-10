@@ -24,6 +24,8 @@ mixin _$QuestionResponseDto {
   String get question => throw _privateConstructorUsedError;
   String get explanation => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'widget_type')
+  String get widgetType => throw _privateConstructorUsedError;
   @JsonKey(name: 'explanation_link')
   String get explanationLink => throw _privateConstructorUsedError;
   @JsonKey(name: 'quiz_id')
@@ -50,6 +52,7 @@ abstract class $QuestionResponseDtoCopyWith<$Res> {
       String question,
       String explanation,
       String type,
+      @JsonKey(name: 'widget_type') String widgetType,
       @JsonKey(name: 'explanation_link') String explanationLink,
       @JsonKey(name: 'quiz_id') String quizId,
       @JsonKey(name: 'created_at') String createdAt,
@@ -73,6 +76,7 @@ class _$QuestionResponseDtoCopyWithImpl<$Res, $Val extends QuestionResponseDto>
     Object? question = null,
     Object? explanation = null,
     Object? type = null,
+    Object? widgetType = null,
     Object? explanationLink = null,
     Object? quizId = null,
     Object? createdAt = null,
@@ -94,6 +98,10 @@ class _$QuestionResponseDtoCopyWithImpl<$Res, $Val extends QuestionResponseDto>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
               as String,
       explanationLink: null == explanationLink
           ? _value.explanationLink
@@ -128,6 +136,7 @@ abstract class _$$_QuestionResponseDtoCopyWith<$Res>
       String question,
       String explanation,
       String type,
+      @JsonKey(name: 'widget_type') String widgetType,
       @JsonKey(name: 'explanation_link') String explanationLink,
       @JsonKey(name: 'quiz_id') String quizId,
       @JsonKey(name: 'created_at') String createdAt,
@@ -149,6 +158,7 @@ class __$$_QuestionResponseDtoCopyWithImpl<$Res>
     Object? question = null,
     Object? explanation = null,
     Object? type = null,
+    Object? widgetType = null,
     Object? explanationLink = null,
     Object? quizId = null,
     Object? createdAt = null,
@@ -170,6 +180,10 @@ class __$$_QuestionResponseDtoCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
               as String,
       explanationLink: null == explanationLink
           ? _value.explanationLink
@@ -199,6 +213,7 @@ class _$_QuestionResponseDto implements _QuestionResponseDto {
       required this.question,
       required this.explanation,
       required this.type,
+      @JsonKey(name: 'widget_type') required this.widgetType,
       @JsonKey(name: 'explanation_link') required this.explanationLink,
       @JsonKey(name: 'quiz_id') required this.quizId,
       @JsonKey(name: 'created_at') required this.createdAt,
@@ -216,6 +231,9 @@ class _$_QuestionResponseDto implements _QuestionResponseDto {
   @override
   final String type;
   @override
+  @JsonKey(name: 'widget_type')
+  final String widgetType;
+  @override
   @JsonKey(name: 'explanation_link')
   final String explanationLink;
   @override
@@ -230,7 +248,7 @@ class _$_QuestionResponseDto implements _QuestionResponseDto {
 
   @override
   String toString() {
-    return 'QuestionResponseDto(id: $id, question: $question, explanation: $explanation, type: $type, explanationLink: $explanationLink, quizId: $quizId, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'QuestionResponseDto(id: $id, question: $question, explanation: $explanation, type: $type, widgetType: $widgetType, explanationLink: $explanationLink, quizId: $quizId, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -244,6 +262,8 @@ class _$_QuestionResponseDto implements _QuestionResponseDto {
             (identical(other.explanation, explanation) ||
                 other.explanation == explanation) &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.widgetType, widgetType) ||
+                other.widgetType == widgetType) &&
             (identical(other.explanationLink, explanationLink) ||
                 other.explanationLink == explanationLink) &&
             (identical(other.quizId, quizId) || other.quizId == quizId) &&
@@ -256,7 +276,7 @@ class _$_QuestionResponseDto implements _QuestionResponseDto {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, question, explanation, type,
-      explanationLink, quizId, createdAt, updatedAt);
+      widgetType, explanationLink, quizId, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -279,6 +299,7 @@ abstract class _QuestionResponseDto implements QuestionResponseDto {
       required final String question,
       required final String explanation,
       required final String type,
+      @JsonKey(name: 'widget_type') required final String widgetType,
       @JsonKey(name: 'explanation_link') required final String explanationLink,
       @JsonKey(name: 'quiz_id') required final String quizId,
       @JsonKey(name: 'created_at') required final String createdAt,
@@ -296,6 +317,9 @@ abstract class _QuestionResponseDto implements QuestionResponseDto {
   String get explanation;
   @override
   String get type;
+  @override
+  @JsonKey(name: 'widget_type')
+  String get widgetType;
   @override
   @JsonKey(name: 'explanation_link')
   String get explanationLink;

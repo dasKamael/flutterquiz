@@ -7,7 +7,7 @@ part of 'leaderboard.service.dart';
 // **************************************************************************
 
 String _$leaderBoardServiceHash() =>
-    r'db62bd066cbb504634b55c16dbeb95cd955a9de1';
+    r'282b097024136592e2757263abd323a30480d8f8';
 
 /// Copied from Dart SDK
 class _SystemHash {

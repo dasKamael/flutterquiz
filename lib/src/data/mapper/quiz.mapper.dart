@@ -33,6 +33,7 @@ class QuestionMapper extends Mapper<Question, QuestionResponseDto> {
       createdAt: DateTime.parse(dto.createdAt),
       updatedAt: dto.updatedAt != null ? DateTime.parse(dto.updatedAt!) : null,
       type: dto.type,
+      widgetType: dto.widgetType,
     );
   }
 }
@@ -47,6 +48,7 @@ class AnswerMapper extends Mapper<Answer, AnswerResponseDto> {
       questionId: dto.questionId,
       createdAt: DateTime.parse(dto.createdAt),
       updatedAt: dto.updatedAt != null ? DateTime.parse(dto.updatedAt!) : null,
+      widgetType: dto.widgetType,
     );
   }
 }

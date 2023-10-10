@@ -29,6 +29,7 @@ class Question with _$Question {
     required DateTime createdAt,
     DateTime? updatedAt,
     required String type,
+    required String widgetType,
     List<Answer>? answers,
   }) = _Question;
 }
@@ -41,6 +42,7 @@ class Answer with _$Answer {
     required bool isCorrect,
     required String questionId,
     required DateTime createdAt,
+    required String widgetType,
     DateTime? updatedAt,
   }) = _Answer;
 }

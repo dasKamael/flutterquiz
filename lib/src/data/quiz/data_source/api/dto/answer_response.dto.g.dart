@@ -10,6 +10,7 @@ _$_AnswerResponseDto _$$_AnswerResponseDtoFromJson(Map<String, dynamic> json) =>
     _$_AnswerResponseDto(
       id: json['id'] as String,
       answer: json['answer'] as String,
+      widgetType: json['widget_type'] as String,
       isCorrect: json['is_correct'] as bool,
       questionId: json['question_id'] as String,
       createdAt: json['created_at'] as String,
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_AnswerResponseDtoToJson(
     <String, dynamic>{
       'id': instance.id,
       'answer': instance.answer,
+      'widget_type': instance.widgetType,
       'is_correct': instance.isCorrect,
       'question_id': instance.questionId,
       'created_at': instance.createdAt,

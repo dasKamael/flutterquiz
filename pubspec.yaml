@@ -30,6 +30,7 @@ dependencies:
   logging: ^1.2.0
   logging_appenders: ^1.2.0+1
   collection: ^1.17.2
+  syntax_highlight: ^0.2.0
 
 dev_dependencies:
   flutter_test:

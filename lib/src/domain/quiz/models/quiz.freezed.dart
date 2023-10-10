@@ -344,6 +344,7 @@ mixin _$Question {
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
+  String get widgetType => throw _privateConstructorUsedError;
   List<Answer>? get answers => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -365,6 +366,7 @@ abstract class $QuestionCopyWith<$Res> {
       DateTime createdAt,
       DateTime? updatedAt,
       String type,
+      String widgetType,
       List<Answer>? answers});
 }
 
@@ -389,6 +391,7 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
     Object? createdAt = null,
     Object? updatedAt = freezed,
     Object? type = null,
+    Object? widgetType = null,
     Object? answers = freezed,
   }) {
     return _then(_value.copyWith(
@@ -424,6 +427,10 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
+              as String,
       answers: freezed == answers
           ? _value.answers
           : answers // ignore: cast_nullable_to_non_nullable
@@ -448,6 +455,7 @@ abstract class _$$_QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
       DateTime createdAt,
       DateTime? updatedAt,
       String type,
+      String widgetType,
       List<Answer>? answers});
 }
 
@@ -470,6 +478,7 @@ class __$$_QuestionCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = freezed,
     Object? type = null,
+    Object? widgetType = null,
     Object? answers = freezed,
   }) {
     return _then(_$_Question(
@@ -505,6 +514,10 @@ class __$$_QuestionCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
+              as String,
       answers: freezed == answers
           ? _value._answers
           : answers // ignore: cast_nullable_to_non_nullable
@@ -525,6 +538,7 @@ class _$_Question implements _Question {
       required this.createdAt,
       this.updatedAt,
       required this.type,
+      required this.widgetType,
       final List<Answer>? answers})
       : _answers = answers;
 
@@ -544,6 +558,8 @@ class _$_Question implements _Question {
   final DateTime? updatedAt;
   @override
   final String type;
+  @override
+  final String widgetType;
   final List<Answer>? _answers;
   @override
   List<Answer>? get answers {
@@ -556,7 +572,7 @@ class _$_Question implements _Question {
 
   @override
   String toString() {
-    return 'Question(id: $id, quizId: $quizId, question: $question, explanation: $explanation, explanationLink: $explanationLink, createdAt: $createdAt, updatedAt: $updatedAt, type: $type, answers: $answers)';
+    return 'Question(id: $id, quizId: $quizId, question: $question, explanation: $explanation, explanationLink: $explanationLink, createdAt: $createdAt, updatedAt: $updatedAt, type: $type, widgetType: $widgetType, answers: $answers)';
   }
 
   @override
@@ -577,6 +593,8 @@ class _$_Question implements _Question {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.widgetType, widgetType) ||
+                other.widgetType == widgetType) &&
             const DeepCollectionEquality().equals(other._answers, _answers));
   }
 
@@ -591,6 +609,7 @@ class _$_Question implements _Question {
       createdAt,
       updatedAt,
       type,
+      widgetType,
       const DeepCollectionEquality().hash(_answers));
 
   @JsonKey(ignore: true)
@@ -610,6 +629,7 @@ abstract class _Question implements Question {
       required final DateTime createdAt,
       final DateTime? updatedAt,
       required final String type,
+      required final String widgetType,
       final List<Answer>? answers}) = _$_Question;
 
   @override
@@ -629,6 +649,8 @@ abstract class _Question implements Question {
   @override
   String get type;
   @override
+  String get widgetType;
+  @override
   List<Answer>? get answers;
   @override
   @JsonKey(ignore: true)
@@ -643,6 +665,7 @@ mixin _$Answer {
   bool get isCorrect => throw _privateConstructorUsedError;
   String get questionId => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  String get widgetType => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -660,6 +683,7 @@ abstract class $AnswerCopyWith<$Res> {
       bool isCorrect,
       String questionId,
       DateTime createdAt,
+      String widgetType,
       DateTime? updatedAt});
 }
 
@@ -681,6 +705,7 @@ class _$AnswerCopyWithImpl<$Res, $Val extends Answer>
     Object? isCorrect = null,
     Object? questionId = null,
     Object? createdAt = null,
+    Object? widgetType = null,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -704,6 +729,10 @@ class _$AnswerCopyWithImpl<$Res, $Val extends Answer>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
+              as String,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -724,6 +753,7 @@ abstract class _$$_AnswerCopyWith<$Res> implements $AnswerCopyWith<$Res> {
       bool isCorrect,
       String questionId,
       DateTime createdAt,
+      String widgetType,
       DateTime? updatedAt});
 }
 
@@ -742,6 +772,7 @@ class __$$_AnswerCopyWithImpl<$Res>
     Object? isCorrect = null,
     Object? questionId = null,
     Object? createdAt = null,
+    Object? widgetType = null,
     Object? updatedAt = freezed,
   }) {
     return _then(_$_Answer(
@@ -765,6 +796,10 @@ class __$$_AnswerCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
+              as String,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -782,6 +817,7 @@ class _$_Answer implements _Answer {
       required this.isCorrect,
       required this.questionId,
       required this.createdAt,
+      required this.widgetType,
       this.updatedAt});
 
   @override
@@ -795,11 +831,13 @@ class _$_Answer implements _Answer {
   @override
   final DateTime createdAt;
   @override
+  final String widgetType;
+  @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'Answer(id: $id, answer: $answer, isCorrect: $isCorrect, questionId: $questionId, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Answer(id: $id, answer: $answer, isCorrect: $isCorrect, questionId: $questionId, createdAt: $createdAt, widgetType: $widgetType, updatedAt: $updatedAt)';
   }
 
   @override
@@ -815,13 +853,15 @@ class _$_Answer implements _Answer {
                 other.questionId == questionId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.widgetType, widgetType) ||
+                other.widgetType == widgetType) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, answer, isCorrect, questionId, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, answer, isCorrect,
+      questionId, createdAt, widgetType, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -837,6 +877,7 @@ abstract class _Answer implements Answer {
       required final bool isCorrect,
       required final String questionId,
       required final DateTime createdAt,
+      required final String widgetType,
       final DateTime? updatedAt}) = _$_Answer;
 
   @override
@@ -849,6 +890,8 @@ abstract class _Answer implements Answer {
   String get questionId;
   @override
   DateTime get createdAt;
+  @override
+  String get widgetType;
   @override
   DateTime? get updatedAt;
   @override

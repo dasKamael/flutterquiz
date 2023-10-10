@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
-import 'package:flutterquiz/src/presentation/design_system/widgets/ui_elevated_button.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_loading.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,6 +30,7 @@ class QuizScreen extends ConsumerWidget {
                   width: 1000,
                   child: Column(
                     children: [
+                      const Spacer(),
                       Text(
                         quiz.title,
                         style: theme.textTheme.displayLarge,
@@ -41,8 +41,11 @@ class QuizScreen extends ConsumerWidget {
                         style: theme.textTheme.bodySmall,
                       ),
                       const Spacer(),
-                      UiElevatedButton(
-                        child: Text('Quiz starten', style: theme.textTheme.labelMedium),
+                      TextButton(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                          child: Text('Quiz starten', style: theme.textTheme.labelLarge),
+                        ),
                         onPressed: () {
                           ref.read(quizScoreControllerProvider.notifier).reset();
                           context.go('/quiz/$quizId/${question[0].id}');

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/edit_quiz.controller.dart';
@@ -86,7 +87,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
       child: Column(
         children: [
           Container(
-            height: 32,
+            height: 16,
             width: double.infinity,
             decoration: const BoxDecoration(
               color: kSecondaryColor,
@@ -215,7 +216,14 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
               setState(() {
                 answers = [
                   ...answers,
-                  Answer(answer: '', isCorrect: false, id: '', questionId: '', createdAt: DateTime.now()),
+                  Answer(
+                    answer: '',
+                    isCorrect: false,
+                    id: '',
+                    questionId: '',
+                    createdAt: DateTime.now(),
+                    widgetType: WidgetType.text.name,
+                  ),
                 ];
                 answerControllers.add(TextEditingController(text: ''));
               });

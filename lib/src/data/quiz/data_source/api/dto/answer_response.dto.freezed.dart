@@ -22,6 +22,8 @@ AnswerResponseDto _$AnswerResponseDtoFromJson(Map<String, dynamic> json) {
 mixin _$AnswerResponseDto {
   String get id => throw _privateConstructorUsedError;
   String get answer => throw _privateConstructorUsedError;
+  @JsonKey(name: 'widget_type')
+  String get widgetType => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_correct')
   bool get isCorrect => throw _privateConstructorUsedError;
   @JsonKey(name: 'question_id')
@@ -46,6 +48,7 @@ abstract class $AnswerResponseDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String answer,
+      @JsonKey(name: 'widget_type') String widgetType,
       @JsonKey(name: 'is_correct') bool isCorrect,
       @JsonKey(name: 'question_id') String questionId,
       @JsonKey(name: 'created_at') String createdAt,
@@ -67,6 +70,7 @@ class _$AnswerResponseDtoCopyWithImpl<$Res, $Val extends AnswerResponseDto>
   $Res call({
     Object? id = null,
     Object? answer = null,
+    Object? widgetType = null,
     Object? isCorrect = null,
     Object? questionId = null,
     Object? createdAt = null,
@@ -80,6 +84,10 @@ class _$AnswerResponseDtoCopyWithImpl<$Res, $Val extends AnswerResponseDto>
       answer: null == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
+              as String,
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
               as String,
       isCorrect: null == isCorrect
           ? _value.isCorrect
@@ -112,6 +120,7 @@ abstract class _$$_AnswerResponseDtoCopyWith<$Res>
   $Res call(
       {String id,
       String answer,
+      @JsonKey(name: 'widget_type') String widgetType,
       @JsonKey(name: 'is_correct') bool isCorrect,
       @JsonKey(name: 'question_id') String questionId,
       @JsonKey(name: 'created_at') String createdAt,
@@ -131,6 +140,7 @@ class __$$_AnswerResponseDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? answer = null,
+    Object? widgetType = null,
     Object? isCorrect = null,
     Object? questionId = null,
     Object? createdAt = null,
@@ -144,6 +154,10 @@ class __$$_AnswerResponseDtoCopyWithImpl<$Res>
       answer: null == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
+              as String,
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
               as String,
       isCorrect: null == isCorrect
           ? _value.isCorrect
@@ -171,6 +185,7 @@ class _$_AnswerResponseDto implements _AnswerResponseDto {
   const _$_AnswerResponseDto(
       {required this.id,
       required this.answer,
+      @JsonKey(name: 'widget_type') required this.widgetType,
       @JsonKey(name: 'is_correct') required this.isCorrect,
       @JsonKey(name: 'question_id') required this.questionId,
       @JsonKey(name: 'created_at') required this.createdAt,
@@ -183,6 +198,9 @@ class _$_AnswerResponseDto implements _AnswerResponseDto {
   final String id;
   @override
   final String answer;
+  @override
+  @JsonKey(name: 'widget_type')
+  final String widgetType;
   @override
   @JsonKey(name: 'is_correct')
   final bool isCorrect;
@@ -198,7 +216,7 @@ class _$_AnswerResponseDto implements _AnswerResponseDto {
 
   @override
   String toString() {
-    return 'AnswerResponseDto(id: $id, answer: $answer, isCorrect: $isCorrect, questionId: $questionId, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'AnswerResponseDto(id: $id, answer: $answer, widgetType: $widgetType, isCorrect: $isCorrect, questionId: $questionId, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -208,6 +226,8 @@ class _$_AnswerResponseDto implements _AnswerResponseDto {
             other is _$_AnswerResponseDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.widgetType, widgetType) ||
+                other.widgetType == widgetType) &&
             (identical(other.isCorrect, isCorrect) ||
                 other.isCorrect == isCorrect) &&
             (identical(other.questionId, questionId) ||
@@ -220,8 +240,8 @@ class _$_AnswerResponseDto implements _AnswerResponseDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, answer, isCorrect, questionId, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, answer, widgetType,
+      isCorrect, questionId, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -242,6 +262,7 @@ abstract class _AnswerResponseDto implements AnswerResponseDto {
   const factory _AnswerResponseDto(
           {required final String id,
           required final String answer,
+          @JsonKey(name: 'widget_type') required final String widgetType,
           @JsonKey(name: 'is_correct') required final bool isCorrect,
           @JsonKey(name: 'question_id') required final String questionId,
           @JsonKey(name: 'created_at') required final String createdAt,
@@ -255,6 +276,9 @@ abstract class _AnswerResponseDto implements AnswerResponseDto {
   String get id;
   @override
   String get answer;
+  @override
+  @JsonKey(name: 'widget_type')
+  String get widgetType;
   @override
   @JsonKey(name: 'is_correct')
   bool get isCorrect;

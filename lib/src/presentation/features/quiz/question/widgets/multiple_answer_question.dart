@@ -40,7 +40,7 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
                   Container(
                     constraints: const BoxConstraints(maxWidth: 500),
                     child: Card(
-                      color: kBackgroundColor,
+                      color: kSecondaryColor,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CheckboxListTile(

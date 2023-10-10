@@ -34,7 +34,8 @@ class SingleAnswerQuestion extends ConsumerWidget {
             child: Container(
               constraints: const BoxConstraints(maxWidth: 500),
               child: Card(
-                color: kBackgroundColor,
+                color: kSecondaryColor,
+                elevation: 1,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(

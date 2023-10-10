@@ -53,6 +53,7 @@ class EditQuizController extends _$EditQuizController {
             explanationLink: '',
             createdAt: DateTime.now(),
             type: questionType.name,
+            widgetType: WidgetType.text.name,
           ),
         ],
       ),

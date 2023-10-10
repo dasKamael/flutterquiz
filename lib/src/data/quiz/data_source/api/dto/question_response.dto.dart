@@ -10,6 +10,7 @@ class QuestionResponseDto with _$QuestionResponseDto {
     required String question,
     required String explanation,
     required String type,
+    @JsonKey(name: 'widget_type') required String widgetType,
     @JsonKey(name: 'explanation_link') required String explanationLink,
     @JsonKey(name: 'quiz_id') required String quizId,
     @JsonKey(name: 'created_at') required String createdAt,
