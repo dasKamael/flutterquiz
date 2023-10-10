@@ -41,8 +41,8 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     }
 
     titleController.text = question.question;
-    explanationController.text = question.explanation ?? '';
-    explanationLinkController.text = question.explanationLink ?? '';
+    explanationController.text = question.explanation;
+    explanationLinkController.text = question.explanationLink;
   }
 
   void setIsCorrectAndRemoveFromOldOne(int index) {

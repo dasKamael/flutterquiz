@@ -41,8 +41,8 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
     }
 
     titleController.text = question.question;
-    explanationController.text = question.explanation ?? '';
-    explanationLinkController.text = question.explanationLink ?? '';
+    explanationController.text = question.explanation;
+    explanationLinkController.text = question.explanationLink;
   }
 
   void setIsCorrectAndRemoveFromOldOne(int index) {
