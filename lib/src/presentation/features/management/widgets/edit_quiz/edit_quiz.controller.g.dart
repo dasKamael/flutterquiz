@@ -7,7 +7,7 @@ part of 'edit_quiz.controller.dart';
 // **************************************************************************
 
 String _$editQuizControllerHash() =>
-    r'4177ccfc736b5d5d8f1552c23c2e448749d53414';
+    r'418f5fdc4cbaceaa04139523258cb6bb3ddb01e4';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,7 +30,8 @@ class _SystemHash {
   }
 }
 
-abstract class _$EditQuizController extends BuildlessAsyncNotifier<Quiz> {
+abstract class _$EditQuizController
+    extends BuildlessAutoDisposeAsyncNotifier<Quiz> {
   late final String? quizId;
 
   FutureOr<Quiz> build(
@@ -82,7 +83,7 @@ class EditQuizControllerFamily extends Family<AsyncValue<Quiz>> {
 
 /// See also [EditQuizController].
 class EditQuizControllerProvider
-    extends AsyncNotifierProviderImpl<EditQuizController, Quiz> {
+    extends AutoDisposeAsyncNotifierProviderImpl<EditQuizController, Quiz> {
   /// See also [EditQuizController].
   EditQuizControllerProvider(
     this.quizId,

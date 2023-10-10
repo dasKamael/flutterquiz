@@ -10,7 +10,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'edit_quiz.controller.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 class EditQuizController extends _$EditQuizController {
   Logger get _logger => Logger('EditQuizController');
 
