@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_highlight/flutter_highlight.dart';
+import 'package:flutter_highlight/themes/vs2015.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
@@ -45,11 +47,28 @@ class SingleAnswerQuestion extends ConsumerWidget {
                         style: theme.textTheme.headlineLarge,
                       ),
                       const SizedBox(width: 10),
-                      Text(
-                        question.answers![index].answer,
-                        textAlign: TextAlign.left,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
+                      // HighlightView(
+                      //   question.answers![index].answer,
+                      //   language: 'dart',
+                      //   theme: vs2015Theme,
+                      //   padding: const EdgeInsets.all(8),
+                      //   textStyle: theme.textTheme.bodySmall,
+                      // ),
+                      if (question.answers![index].widgetType == 'text')
+                        Text(
+                          question.answers![index].answer,
+                          style: theme.textTheme.bodySmall,
+                        ),
+                      if (question.answers![index].widgetType == 'code')
+                        Expanded(
+                          child: HighlightView(
+                            question.answers![index].answer,
+                            language: 'dart',
+                            theme: vs2015Theme,
+                            padding: const EdgeInsets.all(8),
+                            textStyle: theme.textTheme.bodySmall,
+                          ),
+                        ),
                     ],
                   ),
                 ),

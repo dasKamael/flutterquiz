@@ -87,13 +87,13 @@ class _EditQuizScreenState extends ConsumerState<EditQuizScreen> {
                               constraints: const BoxConstraints(maxWidth: 1000),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(kCardBorderRadius),
-                                child: Column(
-                                  children: [
-                                    EditQuizTitleCard(quiz: quiz),
-                                    const SizedBox(height: 16),
-                                    Form(
-                                      key: formKey,
-                                      child: ListView.separated(
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: [
+                                      EditQuizTitleCard(quiz: quiz),
+                                      const SizedBox(height: 16),
+                                      ListView.separated(
                                         shrinkWrap: true,
                                         physics: const NeverScrollableScrollPhysics(),
                                         itemCount: quiz.questions?.length ?? 0,
@@ -133,20 +133,20 @@ class _EditQuizScreenState extends ConsumerState<EditQuizScreen> {
                                           }
                                         },
                                       ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    FloatingActionButton(
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
-                                      onPressed: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) => AddQuestionDialogContent(quiz: quiz),
-                                        );
-                                      },
-                                      child: const Icon(Icons.add),
-                                    ),
-                                    const SizedBox(height: 20),
-                                  ],
+                                      const SizedBox(height: 8),
+                                      FloatingActionButton(
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+                                        onPressed: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) => AddQuestionDialogContent(quiz: quiz),
+                                          );
+                                        },
+                                        child: const Icon(Icons.add),
+                                      ),
+                                      const SizedBox(height: 20),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

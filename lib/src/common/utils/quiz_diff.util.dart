@@ -24,7 +24,8 @@ QuizDiff findDifferences(Quiz oldQuiz, Quiz newQuiz) {
     Question? newQuestion = newQuiz.questions!.firstWhereOrNull((q) => q.id == oldQuestion.id);
     if (newQuestion != null) {
       for (final oldAnswer in oldQuestion.answers!) {
-        if (!newQuestion.answers!.contains(oldAnswer)) {
+        // If the old answer id is not in the new answers, it was removed
+        if (!newQuestion.answers!.any((a) => a.id == oldAnswer.id)) {
           removedAnswers.add(oldAnswer);
         }
       }

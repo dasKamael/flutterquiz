@@ -4,8 +4,3 @@ enum QuestionType {
   singleCode,
   multipleCode,
 }
-
-enum WidgetType {
-  text,
-  code,
-}

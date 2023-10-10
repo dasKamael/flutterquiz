@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
+import 'package:flutterquiz/src/domain/quiz/enums/widget_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/edit_quiz.controller.dart';
@@ -30,12 +30,16 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   final TextEditingController explanationLinkController = TextEditingController();
 
   List<TextEditingController> answerControllers = [];
+  WidgetType answersWidgetType = WidgetType.text;
 
   @override
   void initState() {
     super.initState();
     question = widget.question;
     if (question.answers == null) answers = [];
+    if (question.answers != null) {
+      answersWidgetType = WidgetType.fromString(question.answers!.first.widgetType);
+    }
     answers = question.answers!.toList();
     for (Answer answer in answers) {
       answerControllers.add(TextEditingController(text: answer.answer));
@@ -44,6 +48,19 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     titleController.text = question.question;
     explanationController.text = question.explanation;
     explanationLinkController.text = question.explanationLink;
+  }
+
+  List<DropdownMenuItem<WidgetType>> getWidgetTypes() {
+    final List<DropdownMenuItem<WidgetType>> items = [];
+    for (WidgetType type in WidgetType.values) {
+      items.add(
+        DropdownMenuItem(
+          value: type,
+          child: Text(type.name),
+        ),
+      );
+    }
+    return items;
   }
 
   void setIsCorrectAndRemoveFromOldOne(int index) {
@@ -190,6 +207,40 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                 ),
                 onChanged: (value) => onExplanationLinkChange(value),
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              children: [
+                Text('Fragetyp: ', style: theme.textTheme.bodySmall),
+                const SizedBox(width: 8),
+                DropdownButton<WidgetType>(
+                  items: getWidgetTypes(),
+                  value: WidgetType.fromString(question.widgetType),
+                  onChanged: (value) {
+                    setState(() {
+                      question = question.copyWith(widgetType: value!.name);
+                    });
+                    updateQuestion();
+                  },
+                ),
+                const SizedBox(width: 24),
+                if (question.answers!.isNotEmpty) Text('Antworttyp: ', style: theme.textTheme.bodySmall),
+                const SizedBox(width: 8),
+                if (question.answers!.isNotEmpty)
+                  DropdownButton<WidgetType>(
+                    items: getWidgetTypes(),
+                    value: answersWidgetType,
+                    onChanged: (value) {
+                      setState(() {
+                        answersWidgetType = value!;
+                        answers = answers.map((e) => e.copyWith(widgetType: value.name)).toList();
+                      });
+                      updateQuestion();
+                    },
+                  ),
+              ],
             ),
           ),
           const Divider(indent: 20, endIndent: 20),

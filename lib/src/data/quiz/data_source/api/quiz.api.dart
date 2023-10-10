@@ -158,6 +158,7 @@ class QuizApi {
               'type': question.type,
               'explanation': question.explanation,
               'explanation_link': question.explanationLink,
+              'widget_type': question.widgetType,
             })
             .eq('id', question.id)
             .select()
@@ -171,6 +172,7 @@ class QuizApi {
               'type': question.type,
               'explanation': question.explanation,
               'explanation_link': question.explanationLink,
+              'widget_type': question.widgetType,
             })
             .select()
             .single();
@@ -224,6 +226,7 @@ class QuizApi {
               'question_id': answer.questionId,
               'answer': answer.answer,
               'is_correct': answer.isCorrect,
+              'widget_type': answer.widgetType,
             })
             .eq('id', answer.id)
             .select()
@@ -235,6 +238,7 @@ class QuizApi {
               'question_id': answer.questionId,
               'answer': answer.answer,
               'is_correct': answer.isCorrect,
+              'widget_type': answer.widgetType,
             })
             .select()
             .single();

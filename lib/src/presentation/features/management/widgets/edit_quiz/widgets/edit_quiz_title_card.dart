@@ -1,26 +1,22 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/edit_quiz.controller.dart';
 
-class EditQuizTitleCard extends ConsumerWidget {
+class EditQuizTitleCard extends ConsumerStatefulWidget {
   const EditQuizTitleCard({super.key, required this.quiz});
 
   final Quiz quiz;
 
-  String missingTitle(WidgetRef ref) {
-    final state = ref.read(editQuizControllerProvider(quiz.id)).value!;
-    if (state.title.isEmpty) return 'Es muss ein Titel geben.';
-    if (state.description.isEmpty) return 'Es muss eine Beschreibung geben.';
-    return '';
-  }
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<EditQuizTitleCard> createState() => _EditQuizTitleCardState();
+}
+
+class _EditQuizTitleCardState extends ConsumerState<EditQuizTitleCard> {
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final state = ref.watch(editQuizControllerProvider(quiz.id));
 
     return Card(
       margin: EdgeInsets.zero,
@@ -29,49 +25,52 @@ class EditQuizTitleCard extends ConsumerWidget {
           Container(
             height: 32,
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: state.value!.title.isEmpty || state.value!.description.isEmpty ? kErrorColor : kPrimaryColor,
-              borderRadius: const BorderRadius.only(
+            decoration: const BoxDecoration(
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
-              ),
-            ),
-            child: Center(
-              child: AutoSizeText(
-                missingTitle(ref),
-                maxLines: 1,
-                style: theme.textTheme.labelMedium!.copyWith(color: Colors.white),
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              initialValue: quiz.title,
+              controller: TextEditingController(text: widget.quiz.title),
               decoration: const InputDecoration(
                 hintText: 'Quiz Titel',
                 contentPadding: EdgeInsets.all(16),
               ),
-              onChanged: (value) => ref.read(editQuizControllerProvider(quiz.id).notifier).updateQuizTitle(value),
+              onChanged: (value) =>
+                  ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuizTitle(value),
+              validator: (value) {
+                if (value == null || value.isEmpty) return 'Es muss einen Titel geben.';
+                return null;
+              },
             ),
           ),
           const Divider(indent: 20, endIndent: 20),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              initialValue: quiz.description,
+              controller: TextEditingController(text: widget.quiz.description),
               style: theme.textTheme.bodySmall,
               decoration: const InputDecoration(
                 hintText: 'Quiz beschreibung',
                 contentPadding: EdgeInsets.all(16),
               ),
-              onChanged: (value) => ref.read(editQuizControllerProvider(quiz.id).notifier).updateQuizDescription(value),
+              onChanged: (value) =>
+                  ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuizDescription(value),
+              validator: (value) {
+                if (value == null || value.isEmpty) return 'Es muss eine Beschreibung geben.';
+                return null;
+              },
             ),
           ),
           SwitchListTile(
-            value: quiz.isPrivate,
+            value: widget.quiz.isPrivate,
             onChanged: (value) {
-              ref.read(editQuizControllerProvider(quiz.id).notifier).toggleIsPrivate(value);
+              ref.read(editQuizControllerProvider(widget.quiz.id).notifier).toggleIsPrivate(value);
             },
             title: Text('Ist Privat', style: theme.textTheme.bodySmall),
           ),
