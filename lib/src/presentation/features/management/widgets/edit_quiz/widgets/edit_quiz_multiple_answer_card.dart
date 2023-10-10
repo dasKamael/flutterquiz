@@ -36,6 +36,9 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
     question = widget.question;
     if (question.answers == null) answers = [];
     answers = question.answers!.toList();
+    for (Answer answer in answers) {
+      answerControllers.add(TextEditingController(text: answer.answer));
+    }
 
     titleController.text = question.question;
     explanationController.text = question.explanation ?? '';
@@ -49,10 +52,9 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
   }
 
   void removeAnswerFromList(int index) {
-    List<Answer> temp = answers;
     setState(() {
-      temp.removeAt(index);
-      answers = temp;
+      answers.removeAt(index);
+      answerControllers.removeAt(index);
     });
   }
 
@@ -100,7 +102,6 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
               children: [
                 Expanded(
                   child: TextFormField(
-                    initialValue: question.question,
                     style: theme.textTheme.bodyMedium,
                     decoration: const InputDecoration(
                       hintText: 'Fragestellung...',
@@ -133,7 +134,6 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
             child: SizedBox(
               height: 40,
               child: TextFormField(
-                initialValue: question.explanation,
                 style: theme.textTheme.bodySmall,
                 decoration: InputDecoration(
                   hintText: 'Erklärung...',
@@ -154,7 +154,6 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
             child: SizedBox(
               height: 40,
               child: TextFormField(
-                initialValue: question.explanationLink,
                 style: theme.textTheme.bodySmall,
                 decoration: InputDecoration(
                   hintText: 'Erklärungslink...',
@@ -172,10 +171,6 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
             itemCount: answers.length,
             separatorBuilder: (context, index) => const SizedBox(height: 8),
             itemBuilder: (context, index) {
-              answerControllers = [
-                ...answerControllers,
-                TextEditingController(text: answers[index].answer),
-              ];
               return Row(
                 children: [
                   Checkbox(
@@ -193,7 +188,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                         contentPadding: EdgeInsets.all(16),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty) return 'Es muss eine Antwortmöglichkeit geben.';
+                        if (value == null || value.isEmpty) return 'Es darf keine leere Antwortmöglichkeit geben.';
                         if (answers.length < 2) return 'Es muss mindestens 2 Antwortmöglichkeiten geben.';
 
                         if (answers.every((element) => element.isCorrect == false)) {
@@ -222,6 +217,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                   ...answers,
                   Answer(answer: '', isCorrect: false, id: '', questionId: '', createdAt: DateTime.now()),
                 ];
+                answerControllers.add(TextEditingController(text: ''));
               });
             },
             child: IgnorePointer(

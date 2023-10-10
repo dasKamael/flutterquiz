@@ -36,6 +36,9 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     question = widget.question;
     if (question.answers == null) answers = [];
     answers = question.answers!.toList();
+    for (Answer answer in answers) {
+      answerControllers.add(TextEditingController(text: answer.answer));
+    }
 
     titleController.text = question.question;
     explanationController.text = question.explanation ?? '';
@@ -74,6 +77,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   void removeAnswerFromList(int index) {
     setState(() {
       answers.removeAt(index);
+      answerControllers.removeAt(index);
     });
     updateQuestion();
   }
@@ -194,10 +198,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
             itemCount: answers.length,
             separatorBuilder: (context, index) => const SizedBox(height: 8),
             itemBuilder: (context, index) {
-              answerControllers = [
-                ...answerControllers,
-                TextEditingController(text: answers[index].answer),
-              ];
               return Row(
                 children: [
                   Radio(
@@ -252,6 +252,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                   ...answers,
                   Answer(answer: '', isCorrect: false, id: '', questionId: '', createdAt: DateTime.now()),
                 ];
+                answerControllers.add(TextEditingController(text: ''));
               });
             },
             child: IgnorePointer(
