@@ -9,15 +9,21 @@ import 'package:flutterquiz/src/presentation/features/management/widgets/edit_qu
 import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/widgets/edit_quiz_title_card.dart';
 import 'package:go_router/go_router.dart';
 
-class EditQuizScreen extends ConsumerWidget {
+class EditQuizScreen extends ConsumerStatefulWidget {
   const EditQuizScreen({super.key, this.quizId});
 
   final String? quizId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<EditQuizScreen> createState() => _EditQuizScreenState();
+}
+
+class _EditQuizScreenState extends ConsumerState<EditQuizScreen> {
+  final formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return ref.watch(editQuizControllerProvider(quizId)).when(
+    return ref.watch(editQuizControllerProvider(widget.quizId)).when(
           data: (quiz) {
             return Container(
               constraints: const BoxConstraints(maxWidth: 1000),
@@ -42,7 +48,7 @@ class EditQuizScreen extends ConsumerWidget {
                           ),
                           const Spacer(),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => context.pop(),
                             style: theme.elevatedButtonTheme.style?.copyWith(
                               backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                             ),
@@ -54,9 +60,11 @@ class EditQuizScreen extends ConsumerWidget {
                           const SizedBox(width: 4),
                           ElevatedButton(
                             onPressed: () async {
-                              await ref.read(editQuizControllerProvider(quiz.id).notifier).saveQuiz();
+                              if (formKey.currentState!.validate()) {
+                                await ref.read(editQuizControllerProvider(quiz.id).notifier).saveQuiz();
 
-                              if (context.mounted) context.pop();
+                                if (context.mounted) context.pop();
+                              }
                             },
                             style: theme.elevatedButtonTheme.style?.copyWith(
                               backgroundColor: MaterialStateProperty.all(kSecondaryColor),
@@ -83,45 +91,48 @@ class EditQuizScreen extends ConsumerWidget {
                                   children: [
                                     EditQuizTitleCard(quiz: quiz),
                                     const SizedBox(height: 16),
-                                    ListView.separated(
-                                      shrinkWrap: true,
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      itemCount: quiz.questions?.length ?? 0,
-                                      separatorBuilder: (context, index) => const SizedBox(height: 8),
-                                      itemBuilder: (context, index) {
-                                        switch (quiz.questions![index].type) {
-                                          case 'single':
-                                            return EditQuizSingleAnswerCard(
-                                              quiz: quiz,
-                                              question: quiz.questions![index],
-                                              onRemoveQuestion: () {
-                                                ref
-                                                    .read(editQuizControllerProvider(quiz.id).notifier)
-                                                    .removeQuestion(index: index);
-                                              },
-                                            );
-                                          case 'multiple':
-                                            return EditQuizMultipleAnswerCard(
-                                              quiz: quiz,
-                                              question: quiz.questions![index],
-                                              onRemoveQuestion: () {
-                                                ref
-                                                    .read(editQuizControllerProvider(quiz.id).notifier)
-                                                    .removeQuestion(index: index);
-                                              },
-                                            );
-                                          default:
-                                            return EditQuizSingleAnswerCard(
-                                              quiz: quiz,
-                                              question: quiz.questions![index],
-                                              onRemoveQuestion: () {
-                                                ref
-                                                    .read(editQuizControllerProvider(quiz.id).notifier)
-                                                    .removeQuestion(index: index);
-                                              },
-                                            );
-                                        }
-                                      },
+                                    Form(
+                                      key: formKey,
+                                      child: ListView.separated(
+                                        shrinkWrap: true,
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        itemCount: quiz.questions?.length ?? 0,
+                                        separatorBuilder: (context, index) => const SizedBox(height: 8),
+                                        itemBuilder: (context, index) {
+                                          switch (quiz.questions![index].type) {
+                                            case 'single':
+                                              return EditQuizSingleAnswerCard(
+                                                quiz: quiz,
+                                                question: quiz.questions![index],
+                                                onRemoveQuestion: () {
+                                                  ref
+                                                      .read(editQuizControllerProvider(quiz.id).notifier)
+                                                      .removeQuestion(index: index);
+                                                },
+                                              );
+                                            case 'multiple':
+                                              return EditQuizMultipleAnswerCard(
+                                                quiz: quiz,
+                                                question: quiz.questions![index],
+                                                onRemoveQuestion: () {
+                                                  ref
+                                                      .read(editQuizControllerProvider(quiz.id).notifier)
+                                                      .removeQuestion(index: index);
+                                                },
+                                              );
+                                            default:
+                                              return EditQuizSingleAnswerCard(
+                                                quiz: quiz,
+                                                question: quiz.questions![index],
+                                                onRemoveQuestion: () {
+                                                  ref
+                                                      .read(editQuizControllerProvider(quiz.id).notifier)
+                                                      .removeQuestion(index: index);
+                                                },
+                                              );
+                                          }
+                                        },
+                                      ),
                                     ),
                                     const SizedBox(height: 8),
                                     FloatingActionButton(

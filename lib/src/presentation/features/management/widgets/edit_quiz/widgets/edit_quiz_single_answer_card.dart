@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
@@ -25,14 +24,11 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   late Question question;
   List<Answer> answers = [];
 
-  String missingAnswer() {
-    if (answers.length < 2) return 'Es muss mindestens 2 Antwortmöglichkeiten geben.';
-    if (answers.any((element) => element.answer.isEmpty)) return 'Es darf keine leere Antwortmöglichkeit geben.';
-    if (answers.every((element) => element.isCorrect == false)) {
-      return 'Es muss mindestens eine richtige Antwortmöglichkeit geben.';
-    }
-    return '';
-  }
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController explanationController = TextEditingController();
+  final TextEditingController explanationLinkController = TextEditingController();
+
+  List<TextEditingController> answerControllers = [];
 
   @override
   void initState() {
@@ -40,6 +36,10 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     question = widget.question;
     if (question.answers == null) answers = [];
     answers = question.answers!.toList();
+
+    titleController.text = question.question;
+    explanationController.text = question.explanation ?? '';
+    explanationLinkController.text = question.explanationLink ?? '';
   }
 
   void setIsCorrectAndRemoveFromOldOne(int index) {
@@ -107,20 +107,20 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
           Container(
             height: 32,
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: missingAnswer() == '' ? kSecondaryColor : kErrorColor,
-              borderRadius: const BorderRadius.only(
+            decoration: const BoxDecoration(
+              color: kSecondaryColor,
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               ),
             ),
-            child: Center(
-              child: AutoSizeText(
-                missingAnswer(),
-                maxLines: 1,
-                style: theme.textTheme.labelMedium!.copyWith(color: Colors.white),
-              ),
-            ),
+            // child: Center(
+            //   child: AutoSizeText(
+            //     validatedText,
+            //     maxLines: 1,
+            //     style: theme.textTheme.labelMedium!.copyWith(color: Colors.white),
+            //   ),
+            // ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -128,13 +128,19 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
               children: [
                 Expanded(
                   child: TextFormField(
-                    initialValue: question.question,
+                    controller: titleController,
                     style: theme.textTheme.bodyMedium,
                     decoration: const InputDecoration(
                       hintText: 'Fragestellung...',
                       contentPadding: EdgeInsets.all(16),
                     ),
                     onChanged: (value) => onQuestionTitleChange(value),
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Es muss eine Fragestellung geben.';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 IconButton(
@@ -149,15 +155,20 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SizedBox(
-              height: 40,
               child: TextFormField(
-                initialValue: question.explanation,
+                controller: explanationController,
                 style: theme.textTheme.bodySmall,
                 decoration: InputDecoration(
                   hintText: 'Erklärung...',
                   hintStyle: theme.textTheme.bodySmall,
                 ),
                 onChanged: (value) => onExplanationChange(value),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Es muss eine Erklärung geben.';
+                  }
+                  return null;
+                },
               ),
             ),
           ),
@@ -165,9 +176,8 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SizedBox(
-              height: 40,
               child: TextFormField(
-                initialValue: question.explanationLink,
+                controller: explanationLinkController,
                 style: theme.textTheme.bodySmall,
                 decoration: InputDecoration(
                   hintText: 'Erklärungslink...',
@@ -184,6 +194,10 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
             itemCount: answers.length,
             separatorBuilder: (context, index) => const SizedBox(height: 8),
             itemBuilder: (context, index) {
+              answerControllers = [
+                ...answerControllers,
+                TextEditingController(text: answers[index].answer),
+              ];
               return Row(
                 children: [
                   Radio(
@@ -195,7 +209,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                   ),
                   Expanded(
                     child: TextFormField(
-                      controller: TextEditingController(text: answers[index].answer),
+                      controller: answerControllers[index],
                       style: theme.textTheme.bodySmall,
                       decoration: const InputDecoration(
                         hintText: 'Antwortmöglichkeit...',
@@ -203,6 +217,19 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                       ),
                       onChanged: (value) {
                         onAnswerChange(value, index);
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Es darf keine leere Antwortmöglichkeit geben.';
+                        }
+
+                        if (answers.length < 2) return 'Es muss mindestens 2 Antwortmöglichkeiten geben.';
+
+                        if (answers.every((element) => element.isCorrect == false)) {
+                          return 'Es muss mindestens eine richtige Antwortmöglichkeit geben.';
+                        }
+
+                        return null;
                       },
                     ),
                   ),
