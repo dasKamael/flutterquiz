@@ -47,13 +47,6 @@ class SingleAnswerQuestion extends ConsumerWidget {
                         style: theme.textTheme.headlineLarge,
                       ),
                       const SizedBox(width: 10),
-                      // HighlightView(
-                      //   question.answers![index].answer,
-                      //   language: 'dart',
-                      //   theme: vs2015Theme,
-                      //   padding: const EdgeInsets.all(8),
-                      //   textStyle: theme.textTheme.bodySmall,
-                      // ),
                       if (question.answers![index].widgetType == 'text')
                         Text(
                           question.answers![index].answer,

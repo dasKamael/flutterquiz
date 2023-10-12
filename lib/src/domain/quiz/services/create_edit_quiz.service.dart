@@ -1,5 +1,6 @@
 import 'package:flutterquiz/src/data/quiz/quiz.repository.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/repository/quiz.repository_interface.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'create_edit_quiz.service.g.dart';
@@ -7,7 +8,7 @@ part 'create_edit_quiz.service.g.dart';
 class CreateEditQuizService {
   CreateEditQuizService({required this.quizRepositoryProvider});
 
-  final QuizRepository quizRepositoryProvider;
+  final QuizRepositoryInterface quizRepositoryProvider;
 
   // Quizzes #################################################################
 
@@ -48,6 +49,6 @@ class CreateEditQuizService {
 /// Providers
 @riverpod
 CreateEditQuizService createEditQuizService(CreateEditQuizServiceRef ref) {
-  final repository = ref.read(quizRepositoryProvider);
+  final QuizRepositoryInterface repository = ref.read(quizRepositoryProvider);
   return CreateEditQuizService(quizRepositoryProvider: repository);
 }

@@ -29,7 +29,6 @@ class Question with _$Question {
     required DateTime createdAt,
     DateTime? updatedAt,
     required String type,
-    required String widgetType,
     List<Answer>? answers,
   }) = _Question;
 }

@@ -1,6 +1,6 @@
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 
-abstract class QuizRepositoryInterface {
+abstract interface class QuizRepositoryInterface {
   // Quizzes #################################################################
   Future<List<Quiz>> getQuizzes();
   Future<List<Quiz>> getQuizzesByUserId({required String userId});

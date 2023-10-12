@@ -158,7 +158,6 @@ class QuizApi {
               'type': question.type,
               'explanation': question.explanation,
               'explanation_link': question.explanationLink,
-              'widget_type': question.widgetType,
             })
             .eq('id', question.id)
             .select()
@@ -172,7 +171,6 @@ class QuizApi {
               'type': question.type,
               'explanation': question.explanation,
               'explanation_link': question.explanationLink,
-              'widget_type': question.widgetType,
             })
             .select()
             .single();

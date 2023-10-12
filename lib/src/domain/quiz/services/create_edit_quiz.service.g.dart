@@ -7,7 +7,7 @@ part of 'create_edit_quiz.service.dart';
 // **************************************************************************
 
 String _$createEditQuizServiceHash() =>
-    r'3371427b8aad466c18749cdf525c7f7ee0cbeeee';
+    r'2cd3d9ec54e462ab854e9ec7a0dd858c8f37bff7';
 
 /// Providers
 ///

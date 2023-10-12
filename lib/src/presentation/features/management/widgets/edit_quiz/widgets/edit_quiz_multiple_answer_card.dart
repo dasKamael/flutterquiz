@@ -1,9 +1,12 @@
+import 'package:code_text_field/code_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/enums/widget_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/edit_quiz.controller.dart';
+// ignore: depend_on_referenced_packages
+import 'package:highlight/languages/dart.dart';
 
 class EditQuizMultipleAnswerCard extends ConsumerStatefulWidget {
   const EditQuizMultipleAnswerCard({
@@ -30,15 +33,28 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
   final TextEditingController explanationLinkController = TextEditingController();
 
   List<TextEditingController> answerControllers = [];
+  List<CodeController> answerCodeControllers = [];
+
+  WidgetType answersWidgetType = WidgetType.text;
 
   @override
   void initState() {
     super.initState();
     question = widget.question;
     if (question.answers == null) answers = [];
+
     answers = question.answers!.toList();
+    if (question.answers != null) {
+      answersWidgetType = WidgetType.fromString(question.answers!.first.widgetType);
+    }
     for (Answer answer in answers) {
       answerControllers.add(TextEditingController(text: answer.answer));
+      answerCodeControllers.add(
+        CodeController(
+          text: answer.answer,
+          language: dart,
+        ),
+      );
     }
 
     titleController.text = question.question;
@@ -46,10 +62,32 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
     explanationLinkController.text = question.explanationLink;
   }
 
+  List<DropdownMenuItem<WidgetType>> getWidgetTypes() {
+    final List<DropdownMenuItem<WidgetType>> items = [];
+    for (WidgetType type in WidgetType.values) {
+      items.add(
+        DropdownMenuItem(
+          value: type,
+          child: Text(type.name),
+        ),
+      );
+    }
+    return items;
+  }
+
   void setIsCorrectAndRemoveFromOldOne(int index) {
     setState(() {
       answers[index] = answers[index].copyWith(isCorrect: !answers[index].isCorrect);
     });
+  }
+
+  void onAnswerChange(String value, int index) {
+    List<Answer> temp = answers;
+    temp[index] = temp[index].copyWith(answer: value);
+    setState(() {
+      answers = temp;
+    });
+    updateQuestion();
   }
 
   void removeAnswerFromList(int index) {
@@ -165,6 +203,27 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              children: [
+                if (question.answers!.isNotEmpty) Text('Antworttyp: ', style: theme.textTheme.bodySmall),
+                const SizedBox(width: 8),
+                if (question.answers!.isNotEmpty)
+                  DropdownButton<WidgetType>(
+                    items: getWidgetTypes(),
+                    value: answersWidgetType,
+                    onChanged: (value) {
+                      setState(() {
+                        answersWidgetType = value!;
+                        answers = answers.map((e) => e.copyWith(widgetType: value.name)).toList();
+                      });
+                      updateQuestion();
+                    },
+                  ),
+              ],
+            ),
+          ),
           const Divider(indent: 20, endIndent: 20),
           ListView.separated(
             shrinkWrap: true,
@@ -180,25 +239,42 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                       setIsCorrectAndRemoveFromOldOne(index);
                     },
                   ),
-                  Expanded(
-                    child: TextFormField(
-                      controller: answerControllers[index],
-                      style: theme.textTheme.bodySmall,
-                      decoration: const InputDecoration(
-                        hintText: 'Antwortmöglichkeit...',
-                        contentPadding: EdgeInsets.all(16),
+                  if (answersWidgetType == WidgetType.code)
+                    Expanded(
+                      child: CodeField(
+                        controller: CodeController(
+                          text: answers[index].answer,
+                          language: dart,
+                        ),
+                        onChanged: (value) {
+                          onAnswerChange(value, index);
+                        },
+                        textStyle: theme.textTheme.bodySmall!.copyWith(fontFamily: 'SourceCode'),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) return 'Es darf keine leere Antwortmöglichkeit geben.';
-                        if (answers.length < 2) return 'Es muss mindestens 2 Antwortmöglichkeiten geben.';
-
-                        if (answers.every((element) => element.isCorrect == false)) {
-                          return 'Es muss mindestens eine richtige Antwortmöglichkeit geben.';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
+                  if (answersWidgetType == WidgetType.text)
+                    Expanded(
+                      child: TextFormField(
+                        controller: answerControllers[index],
+                        style: theme.textTheme.bodySmall,
+                        decoration: const InputDecoration(
+                          hintText: 'Antwortmöglichkeit...',
+                          contentPadding: EdgeInsets.all(16),
+                        ),
+                        onChanged: (value) {
+                          onAnswerChange(value, index);
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) return 'Es darf keine leere Antwortmöglichkeit geben.';
+                          if (answers.length < 2) return 'Es muss mindestens 2 Antwortmöglichkeiten geben.';
+
+                          if (answers.every((element) => element.isCorrect == false)) {
+                            return 'Es muss mindestens eine richtige Antwortmöglichkeit geben.';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
                   const SizedBox(width: 8),
                   IconButton(
                     onPressed: () {
@@ -226,6 +302,12 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                   ),
                 ];
                 answerControllers.add(TextEditingController(text: ''));
+                answerCodeControllers.add(
+                  CodeController(
+                    text: '',
+                    language: dart,
+                  ),
+                );
               });
             },
             child: IgnorePointer(
