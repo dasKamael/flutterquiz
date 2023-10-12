@@ -17,7 +17,11 @@ class QuizResultScreen extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('Du hast das Quiz erfolgreich beendet!', style: theme.textTheme.headlineLarge),
+        Text(
+          'Du hast das Quiz erfolgreich beendet!',
+          style: theme.textTheme.headlineLarge,
+          textAlign: TextAlign.center,
+        ),
         const SizedBox(height: 16),
         Text('Dein Score ist: $quizscore', style: theme.textTheme.headlineMedium),
         const SizedBox(height: 80),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:flutterquiz/src/common/utils/url_launcher.util.dart';
+import 'package:flutterquiz/src/domain/quiz/enums/widget_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
@@ -33,6 +35,7 @@ class QuestionResultDialog extends ConsumerWidget {
         ref.read(quizScoreControllerProvider.notifier).incrementBy(value: 1);
       }
     });
+    final theme = Theme.of(context);
 
     return Center(
       child: Card(
@@ -52,7 +55,17 @@ class QuestionResultDialog extends ConsumerWidget {
                 Text('Die richtigen Antworten lauten:', style: Theme.of(context).textTheme.bodySmall),
               if (answers.any((answer) => !answer.isCorrect))
                 for (final answer in question.answers!)
-                  if (answer.isCorrect) Text(answer.answer, style: Theme.of(context).textTheme.bodySmall),
+                  if (answer.isCorrect && answer.widgetType == WidgetType.text.name)
+                    Text(answer.answer, style: Theme.of(context).textTheme.bodySmall)
+                  else if (answer.isCorrect && answer.widgetType == WidgetType.code.name)
+                    SyntaxView(
+                      code: answer.answer,
+                      syntax: Syntax.DART,
+                      syntaxTheme: SyntaxTheme.vscodeDark(),
+                      withZoom: false,
+                      withLinesCount: true,
+                      fontSize: theme.textTheme.bodySmall!.fontSize!,
+                    ),
               const SizedBox(width: 200, child: Divider()),
               Text(question.explanation, style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 24),

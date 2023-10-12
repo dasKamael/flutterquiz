@@ -16,12 +16,12 @@ class QuestionScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final int questionCount = ref.watch(getCompleteQuizProvider(quizId: quizId)).value!.questions!.length;
 
     return ref.watch(questionControllerProvider(quizId: quizId, questionId: questionId)).when(
           data: (question) {
-            final int questionCount = ref.read(getCompleteQuizProvider(quizId: quizId)).value!.questions!.length;
             final int questionPosition =
-                ref.read(getCompleteQuizProvider(quizId: quizId)).value!.questions!.indexOf(question) + 1;
+                ref.watch(getCompleteQuizProvider(quizId: quizId)).value!.questions!.indexOf(question) + 1;
 
             return Center(
               child: SizedBox(
@@ -79,7 +79,7 @@ class QuestionScreen extends ConsumerWidget {
           },
           loading: () => const UiLoading(),
           error: (error, stackTrace) {
-            return UiAppError(error: stackTrace);
+            return UiAppError(error: error);
           },
         );
   }

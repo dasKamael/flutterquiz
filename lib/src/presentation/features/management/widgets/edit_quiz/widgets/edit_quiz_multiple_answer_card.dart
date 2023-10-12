@@ -116,6 +116,29 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
     ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuestion(question: question);
   }
 
+  void changeWidgetType(WidgetType widgetType) {
+    if (widgetType == WidgetType.text) {
+      for (int i = 0; i < answerCodeControllers.length; i++) {
+        answerControllers[i].text = answerCodeControllers[i].text;
+      }
+    }
+    if (widgetType == WidgetType.code) {
+      for (int i = 0; i < answerCodeControllers.length; i++) {
+        answerCodeControllers[i].text = answerControllers[i].text;
+      }
+    }
+
+    setState(() {
+      answersWidgetType = widgetType;
+      answers = answers.map((e) => e.copyWith(widgetType: widgetType.name)).toList();
+
+      answerControllers = answerControllers.map((e) {
+        return TextEditingController(text: e.text);
+      }).toList();
+    });
+    updateQuestion();
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -213,13 +236,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                   DropdownButton<WidgetType>(
                     items: getWidgetTypes(),
                     value: answersWidgetType,
-                    onChanged: (value) {
-                      setState(() {
-                        answersWidgetType = value!;
-                        answers = answers.map((e) => e.copyWith(widgetType: value.name)).toList();
-                      });
-                      updateQuestion();
-                    },
+                    onChanged: (value) => changeWidgetType(value!),
                   ),
               ],
             ),
@@ -261,6 +278,7 @@ class _EditQuizMultipleAnswerCardState extends ConsumerState<EditQuizMultipleAns
                           hintText: 'Antwortmöglichkeit...',
                           contentPadding: EdgeInsets.all(16),
                         ),
+                        maxLines: null,
                         onChanged: (value) {
                           onAnswerChange(value, index);
                         },

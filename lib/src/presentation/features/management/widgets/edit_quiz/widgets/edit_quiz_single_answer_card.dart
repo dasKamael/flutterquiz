@@ -51,6 +51,17 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
         CodeController(
           text: answer.answer,
           language: dart,
+          patternMap: {
+            r'\B#[a-zA-Z0-9]+\b': const TextStyle(color: Colors.red),
+            r'\B@[a-zA-Z0-9]+\b': const TextStyle(
+              fontWeight: FontWeight.w800,
+              color: Colors.blue,
+            ),
+            r'\B![a-zA-Z0-9]+\b': const TextStyle(color: Colors.yellow, fontStyle: FontStyle.italic),
+          },
+          stringMap: {
+            'bev': const TextStyle(color: Colors.indigo),
+          },
         ),
       );
     }
@@ -87,12 +98,8 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   }
 
   void onAnswerChange(String value, int index) {
-    List<Answer> temp = answers;
-    temp[index] = temp[index].copyWith(answer: value);
-    answerCodeControllers[index].text = value;
-    answerControllers[index].text = value;
     setState(() {
-      answers = temp;
+      answers[index] = answers[index].copyWith(answer: value);
     });
     updateQuestion();
   }
@@ -129,6 +136,29 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
   void updateQuestion() {
     question = question.copyWith(answers: answers);
     ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuestion(question: question);
+  }
+
+  void changeWidgetType(WidgetType widgetType) {
+    if (widgetType == WidgetType.text) {
+      for (int i = 0; i < answerCodeControllers.length; i++) {
+        answerControllers[i].text = answerCodeControllers[i].text;
+      }
+    }
+    if (widgetType == WidgetType.code) {
+      for (int i = 0; i < answerCodeControllers.length; i++) {
+        answerCodeControllers[i].text = answerControllers[i].text;
+      }
+    }
+
+    setState(() {
+      answersWidgetType = widgetType;
+      answers = answers.map((e) => e.copyWith(widgetType: widgetType.name)).toList();
+
+      answerControllers = answerControllers.map((e) {
+        return TextEditingController(text: e.text);
+      }).toList();
+    });
+    updateQuestion();
   }
 
   @override
@@ -225,11 +255,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                     items: getWidgetTypes(),
                     value: answersWidgetType,
                     onChanged: (value) {
-                      setState(() {
-                        answersWidgetType = value!;
-                        answers = answers.map((e) => e.copyWith(widgetType: value.name)).toList();
-                      });
-                      updateQuestion();
+                      changeWidgetType(value!);
                     },
                   ),
               ],
@@ -270,6 +296,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
                           hintText: 'Antwortmöglichkeit...',
                           contentPadding: EdgeInsets.all(16),
                         ),
+                        maxLines: null,
                         onChanged: (value) {
                           onAnswerChange(value, index);
                         },
