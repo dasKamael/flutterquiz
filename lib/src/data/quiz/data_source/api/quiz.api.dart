@@ -255,6 +255,14 @@ class QuizApi {
       _logger.info('DeleteAnswer error: $e');
     }
   }
+
+  Future<void> deleteQuizWithId({String? quizId}) async {
+    try {
+      await supabaseClient.rpc('delete_quiz', params: {'quizid': quizId});
+    } catch (e) {
+      _logger.info('DeleteQuiz error: $e');
+    }
+  }
 }
 
 /// Providers

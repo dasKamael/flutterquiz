@@ -54,6 +54,11 @@ class QuizRepository implements QuizRepositoryInterface {
     await quizApi.increamentQuizPassedCount(quizId: quizId);
   }
 
+  @override
+  Future<void> deleteQuizWithId({String? quizId}) async {
+    await quizApi.deleteQuizWithId(quizId: quizId);
+  }
+
   // Questions ###############################################################
   @override
   Future<Question> getQuestionById(String questionId) async {

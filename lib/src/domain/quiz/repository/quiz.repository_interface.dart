@@ -4,6 +4,7 @@ abstract interface class QuizRepositoryInterface {
   // Quizzes #################################################################
   Future<List<Quiz>> getQuizzes();
   Future<List<Quiz>> getQuizzesByUserId({required String userId});
+  Future<void> deleteQuizWithId({String? quizId});
   Future<Quiz> getQuizById({required String quizId});
   Future<Quiz> createOrUpdateQuiz({required Quiz quiz});
   Future<void> increamentQuizPassedCount({required String quizId});

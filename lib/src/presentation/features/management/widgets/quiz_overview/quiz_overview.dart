@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
+import 'package:flutterquiz/src/domain/quiz/services/create_edit_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_quizzes_by_user_id.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/design_system/widgets/ui_app_error.dart';
@@ -105,13 +106,63 @@ class QuizOverviewListTile extends ConsumerWidget {
             ),
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: 64,
           width: 40,
           child: Expanded(
-            child: Card(
-              color: kErrorColor,
-              child: Icon(Icons.delete),
+            child: InkWell(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return SizedBox(
+                      width: 200,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Spacer(),
+                          Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text('Quiz löschen?', style: TextStyle(fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 16),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          context.pop();
+                                        },
+                                        child: const Text('Abbrechen'),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      TextButton(
+                                        onPressed: () {
+                                          ref.read(createEditQuizServiceProvider).deleteQuizWithId(quizId: quiz.id);
+                                          context.pop();
+                                        },
+                                        child: const Text('Löschen'),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+              child: const Card(
+                color: kErrorColor,
+                child: Icon(Icons.delete),
+              ),
             ),
           ),
         ),
