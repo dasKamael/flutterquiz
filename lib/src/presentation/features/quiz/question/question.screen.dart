@@ -16,10 +16,10 @@ class QuestionScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final int questionCount = ref.watch(getCompleteQuizProvider(quizId: quizId)).value!.questions!.length;
 
     return ref.watch(questionControllerProvider(quizId: quizId, questionId: questionId)).when(
           data: (question) {
+            final int questionCount = ref.watch(getCompleteQuizProvider(quizId: quizId)).value!.questions!.length;
             final int questionPosition =
                 ref.watch(getCompleteQuizProvider(quizId: quizId)).value!.questions!.indexOf(question) + 1;
 

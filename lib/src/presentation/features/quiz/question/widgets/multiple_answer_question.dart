@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/presentation/design_system/ui_theme.dart';
 import 'package:flutterquiz/src/presentation/features/quiz/question/question_result.dialog.dart';
@@ -47,11 +48,20 @@ class _MultipleAnswerQuestionState extends ConsumerState<MultipleAnswerQuestion>
                           value: _selected[index],
                           title: Row(
                             children: [
-                              Text(
-                                widget.question.answers![index].answer,
-                                textAlign: TextAlign.left,
-                                style: Theme.of(context).textTheme.labelMedium,
-                              ),
+                              if (widget.question.answers![index].widgetType == 'text')
+                                Text(
+                                  widget.question.answers![index].answer,
+                                  style: theme.textTheme.bodySmall,
+                                ),
+                              if (widget.question.answers![index].widgetType == 'code')
+                                SyntaxView(
+                                  code: widget.question.answers![index].answer,
+                                  syntax: Syntax.DART,
+                                  syntaxTheme: SyntaxTheme.vscodeDark(),
+                                  withZoom: false,
+                                  withLinesCount: true,
+                                  fontSize: theme.textTheme.bodySmall!.fontSize!,
+                                ),
                             ],
                           ),
                           controlAffinity: ListTileControlAffinity.leading,
