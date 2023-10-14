@@ -14,6 +14,16 @@ class EditQuizTitleCard extends ConsumerStatefulWidget {
 }
 
 class _EditQuizTitleCardState extends ConsumerState<EditQuizTitleCard> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    titleController.text = widget.quiz.title;
+    descriptionController.text = widget.quiz.description;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -36,7 +46,7 @@ class _EditQuizTitleCardState extends ConsumerState<EditQuizTitleCard> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              controller: TextEditingController(text: widget.quiz.title),
+              controller: titleController,
               decoration: const InputDecoration(
                 hintText: 'Quiz Titel',
                 contentPadding: EdgeInsets.all(16),
@@ -53,7 +63,7 @@ class _EditQuizTitleCardState extends ConsumerState<EditQuizTitleCard> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              controller: TextEditingController(text: widget.quiz.description),
+              controller: descriptionController,
               style: theme.textTheme.bodySmall,
               decoration: const InputDecoration(
                 hintText: 'Quiz beschreibung',
