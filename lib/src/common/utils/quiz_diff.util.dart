@@ -30,6 +30,11 @@ QuizDiff findDifferences(Quiz oldQuiz, Quiz newQuiz) {
         }
       }
     }
+
+    // Check if any removed questionid is in answers. If so, remove answer with that questionid
+    for (final removedQuestion in removedQuestions) {
+      removedAnswers.removeWhere((a) => a.questionId == removedQuestion.id);
+    }
   }
 
   return QuizDiff(removedQuestions: removedQuestions, removedAnswers: removedAnswers);

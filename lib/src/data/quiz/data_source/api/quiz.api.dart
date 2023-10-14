@@ -185,7 +185,7 @@ class QuizApi {
 
   Future<void> deleteQuestionWithId({required String questionId}) async {
     try {
-      await supabaseClient.from('questions').delete().eq('id', questionId);
+      await supabaseClient.rpc('delete_question', params: {'questionid': questionId});
     } catch (e) {
       _logger.info('DeleteQuestionWithId error: $e');
     }
