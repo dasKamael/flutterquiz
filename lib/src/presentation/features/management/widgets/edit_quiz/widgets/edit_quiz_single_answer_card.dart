@@ -41,7 +41,7 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     super.initState();
     question = widget.question;
     if (question.answers == null) answers = [];
-    if (question.answers != null) {
+    if (question.answers!.isNotEmpty) {
       answersWidgetType = WidgetType.fromString(question.answers!.first.widgetType);
     }
     answers = question.answers!.toList();
@@ -133,11 +133,6 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
     updateQuestion();
   }
 
-  void updateQuestion() {
-    question = question.copyWith(answers: answers);
-    ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuestion(question: question);
-  }
-
   void changeWidgetType(WidgetType widgetType) {
     if (widgetType == WidgetType.text) {
       for (int i = 0; i < answerCodeControllers.length; i++) {
@@ -159,6 +154,11 @@ class _EditQuizSingleAnswerCardState extends ConsumerState<EditQuizSingleAnswerC
       }).toList();
     });
     updateQuestion();
+  }
+
+  void updateQuestion() {
+    question = question.copyWith(answers: answers);
+    ref.read(editQuizControllerProvider(widget.quiz.id).notifier).updateQuestion(question: question);
   }
 
   @override

@@ -79,6 +79,10 @@ class EditQuizController extends _$EditQuizController {
   // Common ############################################################################################################
 
   Future<(bool, String?)> saveQuiz() async {
+    if (state.value!.questions!.isEmpty) {
+      return (false, 'no_questions');
+    }
+
     Quiz tempQuiz = state.value!;
     state = const AsyncValue.loading();
     QuizDiff diff = findDifferences(_oldQuiz, state.value!);

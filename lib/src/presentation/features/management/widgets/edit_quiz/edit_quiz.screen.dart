@@ -61,9 +61,25 @@ class _EditQuizScreenState extends ConsumerState<EditQuizScreen> {
                           ElevatedButton(
                             onPressed: () async {
                               if (formKey.currentState!.validate()) {
-                                await ref.read(editQuizControllerProvider(quiz.id).notifier).saveQuiz();
+                                final (success, value) =
+                                    await ref.read(editQuizControllerProvider(quiz.id).notifier).saveQuiz();
 
-                                if (context.mounted) context.pop();
+                                if (value == 'no_questions') {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Es muss mindestens eine Frage vorhanden sein.'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Quiz erfolgreich gespeichert.'),
+                                      backgroundColor: Colors.green,
+                                    ),
+                                  );
+                                  if (context.mounted) context.pop();
+                                }
                               }
                             },
                             style: theme.elevatedButtonTheme.style?.copyWith(
