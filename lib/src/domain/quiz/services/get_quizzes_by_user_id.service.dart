@@ -10,4 +10,8 @@ class GetQuizzesByUserId extends _$GetQuizzesByUserId {
   Future<List<Quiz>> build({required String userId}) async {
     return await ref.read(quizRepositoryProvider).getQuizzesByUserId(userId: userId);
   }
+
+  invalidate() {
+    ref.invalidateSelf();
+  }
 }
