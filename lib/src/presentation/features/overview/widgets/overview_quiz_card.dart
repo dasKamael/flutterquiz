@@ -56,7 +56,7 @@ class _OverviewQuizCardState extends State<OverviewQuizCard> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      '${quiz.rating}',
+                      quiz.rating.toStringAsFixed(2),
                       style: theme.textTheme.labelMedium,
                     ),
                     const SizedBox(width: 4),

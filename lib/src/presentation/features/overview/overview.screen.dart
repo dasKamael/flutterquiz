@@ -40,12 +40,8 @@ class OverviewScreen extends ConsumerWidget {
                         SizedBox(
                           width: isDesktop ? 1000 : double.infinity,
                           child: GridView.builder(
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: quizzes.length >= 8
-                                  ? 4
-                                  : quizzes.length == 1
-                                      ? 1
-                                      : 2,
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
                             ),
                             itemCount: quizzes.length,
                             shrinkWrap: true,
