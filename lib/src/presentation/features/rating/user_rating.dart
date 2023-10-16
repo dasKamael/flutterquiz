@@ -17,6 +17,7 @@ class _UserRatingState extends ConsumerState<UserRating> {
   bool wasRated = false;
   bool wasSend = false;
   bool isLoading = false;
+  bool wasAlreadyRated = false;
 
   double rating = 0;
 
@@ -34,9 +35,19 @@ class _UserRatingState extends ConsumerState<UserRating> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    checkWasAlreadyRated();
+  }
+
+  void checkWasAlreadyRated() async {
+    wasAlreadyRated = await ref.read(ratingServiceProvider).wasAlreadyRated(quizId: widget.quizId);
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (wasSend) return const Text('Vielen dank für die Bewertung!');
-
+    if (wasAlreadyRated) return const Text('Du hast dieses Quiz bereits bewertet!');
     return Column(
       children: [
         const Text('Wie hat dir das Quiz gefallen?'),

@@ -6,7 +6,7 @@ part of 'rating.repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ratingRepositoryHash() => r'320f7d64da5ee05bdb9dfe1d130e5cced7c913dc';
+String _$ratingRepositoryHash() => r'423f81a667b6a2807ddf83f203cb621f32ad311e';
 
 /// Providers
 ///

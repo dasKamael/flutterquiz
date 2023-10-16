@@ -22,7 +22,7 @@ class QuestionResultDialog extends ConsumerWidget {
       context.go('/quiz/${question.quizId}/${questions[questionIndex + 1].id}');
       context.pop();
     } else {
-      ref.read(createEditQuizServiceProvider).increamentQuizPassedCount(quizId: question.quizId);
+      ref.read(createEditQuizServiceProvider).incrementQuizCompletedCount(quizId: question.quizId);
       context.go('/quiz/${question.quizId}/result');
       context.pop();
     }

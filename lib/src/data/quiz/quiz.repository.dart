@@ -3,6 +3,7 @@ import 'package:flutterquiz/src/data/quiz/data_source/api/dto/answer_response.dt
 import 'package:flutterquiz/src/data/quiz/data_source/api/dto/question_response.dto.dart';
 import 'package:flutterquiz/src/data/quiz/data_source/api/dto/quiz_response.dto.dart';
 import 'package:flutterquiz/src/data/quiz/data_source/api/quiz.api.dart';
+import 'package:flutterquiz/src/data/quiz/data_source/local/quiz.local_data.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/repository/quiz.repository_interface.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,9 +12,11 @@ part 'quiz.repository.g.dart';
 
 class QuizRepository implements QuizRepositoryInterface {
   final QuizApi quizApi;
+  final QuizLocalData quizLocalData;
 
   QuizRepository({
     required this.quizApi,
+    required this.quizLocalData,
   });
 
   // Quizzes #################################################################
@@ -50,8 +53,12 @@ class QuizRepository implements QuizRepositoryInterface {
   }
 
   @override
-  Future<void> increamentQuizPassedCount({required String quizId}) async {
-    await quizApi.increamentQuizPassedCount(quizId: quizId);
+  Future<void> incrementQuizCompletedCount({required String quizId}) async {
+    bool wasAlreadyCompleted = await quizLocalData.isQuizAlreadyCompleted(quizId: quizId);
+    if (wasAlreadyCompleted == false) {
+      await quizLocalData.setQuizCompleted(quizId: quizId);
+      await quizApi.incrementQuizCompletedCount(quizId: quizId);
+    }
   }
 
   @override
@@ -107,13 +114,20 @@ class QuizRepository implements QuizRepositoryInterface {
   Future<void> deleteAnswerWithId({required String answerId}) async {
     await quizApi.deleteAnswerWithId(answerId: answerId);
   }
+
+  @override
+  Future<void> quizCompleted() async {
+    throw UnimplementedError();
+  }
 }
 
 /// Providers
 @riverpod
 QuizRepository quizRepository(QuizRepositoryRef ref) {
   final quizApi = ref.watch(quizApiProvider);
+  final quizLocalData = ref.watch(quizLocalDataProvider);
   return QuizRepository(
     quizApi: quizApi,
+    quizLocalData: quizLocalData,
   );
 }

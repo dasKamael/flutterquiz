@@ -16,8 +16,8 @@ class CreateEditQuizService {
     return await quizRepositoryProvider.createOrUpdateQuiz(quiz: quiz);
   }
 
-  Future<void> increamentQuizPassedCount({required String quizId}) async {
-    await quizRepositoryProvider.increamentQuizPassedCount(quizId: quizId);
+  Future<void> incrementQuizCompletedCount({required String quizId}) async {
+    await quizRepositoryProvider.incrementQuizCompletedCount(quizId: quizId);
   }
 
   // Questions ###############################################################

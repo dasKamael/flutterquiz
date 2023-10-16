@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'rating.service.dart';
+part of 'rating.local_data.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ratingServiceHash() => r'980dbddf5e776e80891bcff3f8805501f4b208a5';
+String _$ratingLocalDataHash() => r'0e08c6c5416a954371a6e359f433d6ffb32966b1';
 
-/// See also [ratingService].
-@ProviderFor(ratingService)
-final ratingServiceProvider = AutoDisposeProvider<RatingService>.internal(
-  ratingService,
-  name: r'ratingServiceProvider',
+/// See also [ratingLocalData].
+@ProviderFor(ratingLocalData)
+final ratingLocalDataProvider = AutoDisposeProvider<RatingLocalData>.internal(
+  ratingLocalData,
+  name: r'ratingLocalDataProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$ratingServiceHash,
+      : _$ratingLocalDataHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef RatingServiceRef = AutoDisposeProviderRef<RatingService>;
+typedef RatingLocalDataRef = AutoDisposeProviderRef<RatingLocalData>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

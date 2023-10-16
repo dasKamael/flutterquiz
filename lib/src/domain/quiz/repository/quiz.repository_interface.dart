@@ -7,7 +7,7 @@ abstract interface class QuizRepositoryInterface {
   Future<void> deleteQuizWithId({String? quizId});
   Future<Quiz> getQuizById({required String quizId});
   Future<Quiz> createOrUpdateQuiz({required Quiz quiz});
-  Future<void> increamentQuizPassedCount({required String quizId});
+  Future<void> incrementQuizCompletedCount({required String quizId});
   // Questions ###############################################################
   Future<Question> getQuestionById(String questionId);
   Future<List<Question>> getQuestionsByQuizId(String quizId);
@@ -17,4 +17,7 @@ abstract interface class QuizRepositoryInterface {
   Future<List<Answer>> getAnswersByQuestionId(String questionId);
   Future<void> createOrUpdateAnswer({required Answer answer});
   Future<void> deleteQuestionWithId({required String questionId});
+
+  // Local Datasource ########################################################
+  Future<void> quizCompleted();
 }

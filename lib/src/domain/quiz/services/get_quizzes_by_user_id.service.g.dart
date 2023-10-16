@@ -7,7 +7,7 @@ part of 'get_quizzes_by_user_id.service.dart';
 // **************************************************************************
 
 String _$getQuizzesByUserIdHash() =>
-    r'4dea3eae5bc59de58fa96caed30f774d87726260';
+    r'80e65647b2cb6af0ec2926f6a9eb5a0efcb74f3f';
 
 /// Copied from Dart SDK
 class _SystemHash {
