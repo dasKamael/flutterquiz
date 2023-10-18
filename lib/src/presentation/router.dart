@@ -6,6 +6,7 @@ import 'package:flutterquiz/src/common/router/router_notifier.dart';
 import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/presentation/design_system/layouts/default_layout.dart';
 import 'package:flutterquiz/src/presentation/features/authentication/auth.screen.dart';
+import 'package:flutterquiz/src/presentation/features/authentication/auth_success.screen.dart';
 import 'package:flutterquiz/src/presentation/features/leaderboard/leaderboard.screen.dart';
 import 'package:flutterquiz/src/presentation/features/management/management_dashboard.screen.dart';
 import 'package:flutterquiz/src/presentation/features/management/widgets/edit_quiz/edit_quiz.screen.dart';
@@ -124,6 +125,17 @@ Raw<GoRouter> router(RouterRef ref) {
                 child: const AuthScreen(),
               );
             },
+            routes: [
+              GoRoute(
+                path: 'success',
+                pageBuilder: (context, state) {
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: const AuthSuccessScreen(),
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),

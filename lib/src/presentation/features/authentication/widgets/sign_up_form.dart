@@ -109,6 +109,10 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                         username: userNameController.text,
                       );
 
+                  if (result.$1 && mounted) {
+                    context.go('/auth/success');
+                  }
+
                   if (result.$1 == false && mounted) {
                     if (result.$2 == 'mail') {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -130,9 +134,6 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                       _isLoading = false;
                     });
                     return;
-                  }
-                  if (result.$1 == true && mounted) {
-                    context.go('/management');
                   }
                 }
               },

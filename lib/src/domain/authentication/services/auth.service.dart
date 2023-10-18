@@ -114,15 +114,16 @@ class AuthService extends _$AuthService {
   Future<(bool, String?)> signUp({required String email, required String password, required String username}) async {
     final supabaseClient = ref.watch(supabaseClientProvider);
 
-    final bool userExists = await userAlreadyExists(email: email);
     final bool usernameExists = await userNameAlreadyExists(username: username);
-    if (userExists) {
-      return (false, 'mail');
-    }
+    final bool userExists = await userAlreadyExists(email: email);
     if (usernameExists) {
       return (false, 'username');
     }
-    if (!userExists) {
+    if (userExists) {
+      return (false, 'mail');
+    }
+
+    if (!userExists || !usernameExists) {
       try {
         await supabaseClient.auth.signUp(
           email: email,
