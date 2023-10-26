@@ -6,8 +6,8 @@ part of 'get_quizzes_by_user_id.service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getQuizzesByUserIdHash() =>
-    r'80e65647b2cb6af0ec2926f6a9eb5a0efcb74f3f';
+String _$getQuizzesByUserIdServiceHash() =>
+    r'624ee17f4007ca87a9b03011dbb349e64a8632a2';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,7 +30,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$GetQuizzesByUserId
+abstract class _$GetQuizzesByUserIdService
     extends BuildlessAutoDisposeAsyncNotifier<List<Quiz>> {
   late final String userId;
 
@@ -39,27 +39,27 @@ abstract class _$GetQuizzesByUserId
   });
 }
 
-/// See also [GetQuizzesByUserId].
-@ProviderFor(GetQuizzesByUserId)
-const getQuizzesByUserIdProvider = GetQuizzesByUserIdFamily();
+/// See also [GetQuizzesByUserIdService].
+@ProviderFor(GetQuizzesByUserIdService)
+const getQuizzesByUserIdServiceProvider = GetQuizzesByUserIdServiceFamily();
 
-/// See also [GetQuizzesByUserId].
-class GetQuizzesByUserIdFamily extends Family<AsyncValue<List<Quiz>>> {
-  /// See also [GetQuizzesByUserId].
-  const GetQuizzesByUserIdFamily();
+/// See also [GetQuizzesByUserIdService].
+class GetQuizzesByUserIdServiceFamily extends Family<AsyncValue<List<Quiz>>> {
+  /// See also [GetQuizzesByUserIdService].
+  const GetQuizzesByUserIdServiceFamily();
 
-  /// See also [GetQuizzesByUserId].
-  GetQuizzesByUserIdProvider call({
+  /// See also [GetQuizzesByUserIdService].
+  GetQuizzesByUserIdServiceProvider call({
     required String userId,
   }) {
-    return GetQuizzesByUserIdProvider(
+    return GetQuizzesByUserIdServiceProvider(
       userId: userId,
     );
   }
 
   @override
-  GetQuizzesByUserIdProvider getProviderOverride(
-    covariant GetQuizzesByUserIdProvider provider,
+  GetQuizzesByUserIdServiceProvider getProviderOverride(
+    covariant GetQuizzesByUserIdServiceProvider provider,
   ) {
     return call(
       userId: provider.userId,
@@ -78,33 +78,34 @@ class GetQuizzesByUserIdFamily extends Family<AsyncValue<List<Quiz>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'getQuizzesByUserIdProvider';
+  String? get name => r'getQuizzesByUserIdServiceProvider';
 }
 
-/// See also [GetQuizzesByUserId].
-class GetQuizzesByUserIdProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    GetQuizzesByUserId, List<Quiz>> {
-  /// See also [GetQuizzesByUserId].
-  GetQuizzesByUserIdProvider({
+/// See also [GetQuizzesByUserIdService].
+class GetQuizzesByUserIdServiceProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<GetQuizzesByUserIdService,
+        List<Quiz>> {
+  /// See also [GetQuizzesByUserIdService].
+  GetQuizzesByUserIdServiceProvider({
     required this.userId,
   }) : super.internal(
-          () => GetQuizzesByUserId()..userId = userId,
-          from: getQuizzesByUserIdProvider,
-          name: r'getQuizzesByUserIdProvider',
+          () => GetQuizzesByUserIdService()..userId = userId,
+          from: getQuizzesByUserIdServiceProvider,
+          name: r'getQuizzesByUserIdServiceProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$getQuizzesByUserIdHash,
-          dependencies: GetQuizzesByUserIdFamily._dependencies,
+                  : _$getQuizzesByUserIdServiceHash,
+          dependencies: GetQuizzesByUserIdServiceFamily._dependencies,
           allTransitiveDependencies:
-              GetQuizzesByUserIdFamily._allTransitiveDependencies,
+              GetQuizzesByUserIdServiceFamily._allTransitiveDependencies,
         );
 
   final String userId;
 
   @override
   bool operator ==(Object other) {
-    return other is GetQuizzesByUserIdProvider && other.userId == userId;
+    return other is GetQuizzesByUserIdServiceProvider && other.userId == userId;
   }
 
   @override
@@ -117,7 +118,7 @@ class GetQuizzesByUserIdProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
   @override
   Future<List<Quiz>> runNotifierBuild(
-    covariant GetQuizzesByUserId notifier,
+    covariant GetQuizzesByUserIdService notifier,
   ) {
     return notifier.build(
       userId: userId,

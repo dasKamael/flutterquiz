@@ -109,7 +109,7 @@ class EditQuizController extends _$EditQuizController {
       }
       state = AsyncValue.data(tempQuiz);
 
-      ref.read(getQuizzesByUserIdProvider(userId: ref.read(authServiceProvider)!.id).notifier).invalidate();
+      ref.read(getQuizzesByUserIdServiceProvider(userId: ref.read(authServiceProvider)!.id).notifier).invalidate();
 
       return (true, null);
     } catch (e, s) {

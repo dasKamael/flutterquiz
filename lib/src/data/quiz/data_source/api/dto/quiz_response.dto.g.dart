@@ -13,8 +13,8 @@ _$_QuizResponseDto _$$_QuizResponseDtoFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       createdBy: json['created_by'] as String,
       isPrivate: json['is_private'] as bool,
-      userRatedCount: json['user_rated_count'] as int,
       rating: (json['rating'] as num).toDouble(),
+      userRatedCount: json['user_rated_count'] as int,
       createdAt: json['created_at'] as String,
       updatedAt: json['updated_at'] as String?,
     );
@@ -26,8 +26,8 @@ Map<String, dynamic> _$$_QuizResponseDtoToJson(_$_QuizResponseDto instance) =>
       'description': instance.description,
       'created_by': instance.createdBy,
       'is_private': instance.isPrivate,
-      'user_rated_count': instance.userRatedCount,
       'rating': instance.rating,
+      'user_rated_count': instance.userRatedCount,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
     };

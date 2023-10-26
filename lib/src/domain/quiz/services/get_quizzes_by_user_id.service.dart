@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'get_quizzes_by_user_id.service.g.dart';
 
 @riverpod
-class GetQuizzesByUserId extends _$GetQuizzesByUserId {
+class GetQuizzesByUserIdService extends _$GetQuizzesByUserIdService {
   @override
   Future<List<Quiz>> build({required String userId}) async {
     return await ref.read(quizRepositoryProvider).getQuizzesByUserId(userId: userId);

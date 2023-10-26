@@ -1,4 +1,4 @@
-import 'package:flutterquiz/src/data/mapper/quiz.mapper.dart';
+import 'package:flutterquiz/src/data/quiz/quiz.mapper.dart';
 import 'package:flutterquiz/src/data/quiz/data_source/api/dto/answer_response.dto.dart';
 import 'package:flutterquiz/src/data/quiz/data_source/api/dto/question_response.dto.dart';
 import 'package:flutterquiz/src/data/quiz/data_source/api/dto/quiz_response.dto.dart';

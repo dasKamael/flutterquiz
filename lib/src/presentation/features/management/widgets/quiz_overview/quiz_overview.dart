@@ -19,7 +19,7 @@ class QuizOverview extends ConsumerWidget {
     final userId = ref.watch(authServiceProvider)!.id;
     return ManagementPageCard(
       title: '',
-      child: ref.watch(getQuizzesByUserIdProvider(userId: userId)).when(
+      child: ref.watch(getQuizzesByUserIdServiceProvider(userId: userId)).when(
             data: (quizzes) {
               return Padding(
                 padding: const EdgeInsets.all(16.0),

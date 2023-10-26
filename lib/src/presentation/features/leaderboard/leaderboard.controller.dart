@@ -1,5 +1,5 @@
 import 'package:flutterquiz/src/common/supabase/supabase.provider.dart';
-import 'package:flutterquiz/src/data/mapper/leaderboard.mapper.dart';
+import 'package:flutterquiz/src/data/leaderboard/leaderboard.mapper.dart';
 import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/domain/leaderboard/models/leaderboard_entry.dart';
 import 'package:flutterquiz/src/domain/leaderboard/services/leaderboard.service.dart';

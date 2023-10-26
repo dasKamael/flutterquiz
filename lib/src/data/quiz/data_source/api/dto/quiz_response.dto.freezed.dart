@@ -27,9 +27,9 @@ mixin _$QuizResponseDto {
   String get createdBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_private')
   bool get isPrivate => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_rated_count')
   int get userRatedCount => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   String get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
@@ -53,8 +53,8 @@ abstract class $QuizResponseDtoCopyWith<$Res> {
       String description,
       @JsonKey(name: 'created_by') String createdBy,
       @JsonKey(name: 'is_private') bool isPrivate,
-      @JsonKey(name: 'user_rated_count') int userRatedCount,
       double rating,
+      @JsonKey(name: 'user_rated_count') int userRatedCount,
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String? updatedAt});
 }
@@ -77,8 +77,8 @@ class _$QuizResponseDtoCopyWithImpl<$Res, $Val extends QuizResponseDto>
     Object? description = null,
     Object? createdBy = null,
     Object? isPrivate = null,
-    Object? userRatedCount = null,
     Object? rating = null,
+    Object? userRatedCount = null,
     Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
@@ -103,14 +103,14 @@ class _$QuizResponseDtoCopyWithImpl<$Res, $Val extends QuizResponseDto>
           ? _value.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
               as bool,
-      userRatedCount: null == userRatedCount
-          ? _value.userRatedCount
-          : userRatedCount // ignore: cast_nullable_to_non_nullable
-              as int,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      userRatedCount: null == userRatedCount
+          ? _value.userRatedCount
+          : userRatedCount // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -137,8 +137,8 @@ abstract class _$$_QuizResponseDtoCopyWith<$Res>
       String description,
       @JsonKey(name: 'created_by') String createdBy,
       @JsonKey(name: 'is_private') bool isPrivate,
-      @JsonKey(name: 'user_rated_count') int userRatedCount,
       double rating,
+      @JsonKey(name: 'user_rated_count') int userRatedCount,
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String? updatedAt});
 }
@@ -159,8 +159,8 @@ class __$$_QuizResponseDtoCopyWithImpl<$Res>
     Object? description = null,
     Object? createdBy = null,
     Object? isPrivate = null,
-    Object? userRatedCount = null,
     Object? rating = null,
+    Object? userRatedCount = null,
     Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
@@ -185,14 +185,14 @@ class __$$_QuizResponseDtoCopyWithImpl<$Res>
           ? _value.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
               as bool,
-      userRatedCount: null == userRatedCount
-          ? _value.userRatedCount
-          : userRatedCount // ignore: cast_nullable_to_non_nullable
-              as int,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      userRatedCount: null == userRatedCount
+          ? _value.userRatedCount
+          : userRatedCount // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -214,8 +214,8 @@ class _$_QuizResponseDto implements _QuizResponseDto {
       required this.description,
       @JsonKey(name: 'created_by') required this.createdBy,
       @JsonKey(name: 'is_private') required this.isPrivate,
-      @JsonKey(name: 'user_rated_count') required this.userRatedCount,
       required this.rating,
+      @JsonKey(name: 'user_rated_count') required this.userRatedCount,
       @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'updated_at') this.updatedAt});
 
@@ -235,10 +235,10 @@ class _$_QuizResponseDto implements _QuizResponseDto {
   @JsonKey(name: 'is_private')
   final bool isPrivate;
   @override
+  final double rating;
+  @override
   @JsonKey(name: 'user_rated_count')
   final int userRatedCount;
-  @override
-  final double rating;
   @override
   @JsonKey(name: 'created_at')
   final String createdAt;
@@ -248,7 +248,7 @@ class _$_QuizResponseDto implements _QuizResponseDto {
 
   @override
   String toString() {
-    return 'QuizResponseDto(id: $id, title: $title, description: $description, createdBy: $createdBy, isPrivate: $isPrivate, userRatedCount: $userRatedCount, rating: $rating, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'QuizResponseDto(id: $id, title: $title, description: $description, createdBy: $createdBy, isPrivate: $isPrivate, rating: $rating, userRatedCount: $userRatedCount, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -264,9 +264,9 @@ class _$_QuizResponseDto implements _QuizResponseDto {
                 other.createdBy == createdBy) &&
             (identical(other.isPrivate, isPrivate) ||
                 other.isPrivate == isPrivate) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.userRatedCount, userRatedCount) ||
                 other.userRatedCount == userRatedCount) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -276,7 +276,7 @@ class _$_QuizResponseDto implements _QuizResponseDto {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description,
-      createdBy, isPrivate, userRatedCount, rating, createdAt, updatedAt);
+      createdBy, isPrivate, rating, userRatedCount, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -299,8 +299,8 @@ abstract class _QuizResponseDto implements QuizResponseDto {
           required final String description,
           @JsonKey(name: 'created_by') required final String createdBy,
           @JsonKey(name: 'is_private') required final bool isPrivate,
-          @JsonKey(name: 'user_rated_count') required final int userRatedCount,
           required final double rating,
+          @JsonKey(name: 'user_rated_count') required final int userRatedCount,
           @JsonKey(name: 'created_at') required final String createdAt,
           @JsonKey(name: 'updated_at') final String? updatedAt}) =
       _$_QuizResponseDto;
@@ -321,10 +321,10 @@ abstract class _QuizResponseDto implements QuizResponseDto {
   @JsonKey(name: 'is_private')
   bool get isPrivate;
   @override
+  double get rating;
+  @override
   @JsonKey(name: 'user_rated_count')
   int get userRatedCount;
-  @override
-  double get rating;
   @override
   @JsonKey(name: 'created_at')
   String get createdAt;
