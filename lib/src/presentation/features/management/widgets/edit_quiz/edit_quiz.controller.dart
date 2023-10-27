@@ -87,9 +87,6 @@ class EditQuizController extends _$EditQuizController {
     state = const AsyncValue.loading();
     QuizDiff diff = findDifferences(_oldQuiz, state.value!);
 
-    log(diff.removedAnswers.toString());
-    log(diff.removedQuestions.toString());
-
     try {
       Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state.value!);
       List<Question> tempQuestions = state.value!.questions!;
