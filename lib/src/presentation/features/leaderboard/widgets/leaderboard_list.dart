@@ -17,9 +17,9 @@ class LeaderboardList extends ConsumerWidget {
           children: [
             TableRow(
               children: [
-                Text('Rang', textAlign: TextAlign.start, style: theme.textTheme.headlineMedium),
-                Text('Nutzername', textAlign: TextAlign.start, style: theme.textTheme.headlineMedium),
-                Text('Score', textAlign: TextAlign.start, style: theme.textTheme.headlineMedium),
+                Text('Rang', textAlign: TextAlign.start, style: theme.textTheme.labelMedium),
+                Text('Nutzername', textAlign: TextAlign.start, style: theme.textTheme.labelMedium),
+                Text('Score', textAlign: TextAlign.start, style: theme.textTheme.labelMedium),
               ],
             ),
             const TableRow(

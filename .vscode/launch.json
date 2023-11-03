@@ -9,6 +9,7 @@
             "name": "flutterquiz",
             "request": "launch",
             "type": "dart",
+            "args": ["--web-port", "8686"]
         },
         {
             "name": "flutterquiz (profile mode)",

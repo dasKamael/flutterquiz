@@ -29,6 +29,20 @@ class LeaderBoardApi {
     required int score,
   }) async {
     try {
+      // Check if entry exists and update or create
+      List list =
+          await supabaseClient.from('leaderboard').select().eq('quiz_id', quizId).eq('user_id', userId).limit(1);
+      if (list.isNotEmpty) {
+        await supabaseClient
+            .from('leaderboard')
+            .update({
+              'score': score,
+            })
+            .eq('quiz_id', quizId)
+            .eq('user_id', userId);
+        return;
+      }
+
       await supabaseClient.from('leaderboard').insert([
         {
           'quiz_id': quizId,
