@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/services/quiz_score.service.dart';
@@ -34,6 +35,33 @@ class QuizScreen extends ConsumerWidget {
                       Text(
                         quiz.title,
                         style: theme.textTheme.displayLarge,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RatingBar(
+                            allowHalfRating: true,
+                            ignoreGestures: true,
+                            itemSize: 20,
+                            initialRating: quiz.rating.toDouble(),
+                            ratingWidget: RatingWidget(
+                              full: const Icon(Icons.star, color: Colors.amber),
+                              half: const Icon(Icons.star_half, color: Colors.amberAccent),
+                              empty: const Icon(Icons.star_border, color: Colors.grey),
+                            ),
+                            onRatingUpdate: (value) {},
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            quiz.rating.toStringAsFixed(2),
+                            style: theme.textTheme.labelMedium,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            '(${quiz.userRatedCount})',
+                            style: theme.textTheme.labelSmall,
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 40),
                       Text(

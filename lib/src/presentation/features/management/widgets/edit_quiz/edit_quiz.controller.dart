@@ -80,6 +80,7 @@ class EditQuizController extends _$EditQuizController {
 
   Future<(bool, String?)> saveQuiz() async {
     if (state.value!.questions!.isEmpty) {
+      state = AsyncValue.data(state.value!.copyWith(isPrivate: true));
       return (false, 'no_questions');
     }
 
