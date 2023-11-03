@@ -22,33 +22,31 @@ class QuestionScreen extends ConsumerWidget {
             final int questionPosition =
                 ref.watch(getCompleteQuizProvider(quizId: quizId)).value!.questions!.indexOf(question) + 1;
 
-            return Center(
-              child: SizedBox(
-                width: 1000,
-                child: Container(
-                  color: Colors.transparent,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        'Frage $questionPosition von $questionCount',
-                        style: theme.textTheme.bodySmall,
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        question.question,
-                        style: theme.textTheme.headlineLarge,
-                      ),
-                      const SizedBox(height: 20),
-                      if (question.answers!.isEmpty)
-                        const Text('Keine Antwort gefunden. Bitte versuche es später erneut.'),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                        child: QuestionUtil.getQuestionType(question.type, question),
-                      ),
-                    ],
-                  ),
+            return SizedBox(
+              width: 1000,
+              child: Container(
+                color: Colors.transparent,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
+                      'Frage $questionPosition von $questionCount',
+                      style: theme.textTheme.bodySmall,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      question.question,
+                      style: theme.textTheme.headlineLarge,
+                    ),
+                    const SizedBox(height: 20),
+                    if (question.answers!.isEmpty)
+                      const Text('Keine Antwort gefunden. Bitte versuche es später erneut.'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      child: QuestionUtil.getQuestionType(question.type, question),
+                    ),
+                  ],
                 ),
               ),
             );

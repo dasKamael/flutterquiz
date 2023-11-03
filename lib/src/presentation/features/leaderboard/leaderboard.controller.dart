@@ -15,7 +15,7 @@ part 'leaderboard.controller.g.dart';
 class LeaderboardController extends _$LeaderboardController {
   @override
   FutureOr<LeaderboardState> build({required String quizId}) async {
-    LeaderboardState preLoadleaderboardState = const LeaderboardState(
+    LeaderboardState preLoadedleaderboardState = const LeaderboardState(
       quizId: '',
       quizTitle: '',
       score: 0,
@@ -23,14 +23,14 @@ class LeaderboardController extends _$LeaderboardController {
     );
 
     final Quiz quiz = ref.watch(getCompleteQuizProvider(quizId: quizId)).value!;
-    preLoadleaderboardState = preLoadleaderboardState.copyWith(
+    preLoadedleaderboardState = preLoadedleaderboardState.copyWith(
       score: ref.read(quizScoreControllerProvider),
       quizId: quizId,
       quizTitle: quiz.title,
       entries: [],
     );
     listenToLeaderboardEntryChanges();
-    return preLoadleaderboardState;
+    return preLoadedleaderboardState;
   }
 
   void listenToLeaderboardEntryChanges() {

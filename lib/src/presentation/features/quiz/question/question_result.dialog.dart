@@ -18,6 +18,9 @@ class QuestionResultDialog extends ConsumerWidget {
   void navigateToNextQuestion(BuildContext context, WidgetRef ref) {
     final List<Question> questions = ref.read(getCompleteQuizProvider(quizId: question.quizId)).value!.questions!;
     final int questionIndex = questions.indexOf(question);
+    if (answers.every((answer) => answer.isCorrect)) {
+      ref.read(quizScoreControllerProvider.notifier).incrementBy(value: 1);
+    }
     if (questionIndex + 1 < questions.length) {
       context.go('/quiz/${question.quizId}/${questions[questionIndex + 1].id}');
       context.pop();
@@ -30,11 +33,6 @@ class QuestionResultDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (answers.every((answer) => answer.isCorrect)) {
-        ref.read(quizScoreControllerProvider.notifier).incrementBy(value: 1);
-      }
-    });
     final theme = Theme.of(context);
 
     return Center(
