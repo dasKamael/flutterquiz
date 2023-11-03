@@ -97,25 +97,26 @@ class EditQuizController extends _$EditQuizController {
     state = const AsyncValue.loading();
 
     Quiz tempQuiz = state.value!;
-    QuizDiff diff = findDifferences(_oldQuiz, state.value!);
 
     try {
       Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state.value!);
-      List<Question> tempQuestions = state.value!.questions!;
-      state = AsyncValue.data(newQuiz.copyWith(questions: tempQuestions));
 
       for (Question question in state.value!.questions!) {
-        log(question.answers.toString());
+        question = question.copyWith(quizId: newQuiz.id!);
         await ref.read(createEditQuizServiceProvider).createOrUpdateQuestionWithAnswers(question: question);
       }
 
-      for (Question question in diff.removedQuestions) {
-        await ref.read(createEditQuizServiceProvider).deleteQuestionWithId(questionId: question.id);
-      }
+      if (tempQuiz.id != '') {
+        QuizDiff diff = findDifferences(_oldQuiz, state.value!);
+        for (Question question in diff.removedQuestions) {
+          await ref.read(createEditQuizServiceProvider).deleteQuestionWithId(questionId: question.id);
+        }
 
-      for (Answer answer in diff.removedAnswers) {
-        await ref.read(createEditQuizServiceProvider).deleteAnswerWithId(answerId: answer.id);
+        for (Answer answer in diff.removedAnswers) {
+          await ref.read(createEditQuizServiceProvider).deleteAnswerWithId(answerId: answer.id);
+        }
       }
+      state = AsyncValue.data(tempQuiz);
 
       ref.read(getQuizzesByUserIdServiceProvider(userId: ref.read(authServiceProvider)!.id).notifier).invalidate();
 

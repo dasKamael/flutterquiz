@@ -69,7 +69,7 @@ class QuizApi {
     try {
       final bool quizExists = await supabaseClient.rpc(
         'check_quiz_exists',
-        params: {'quiz_id': double.tryParse(quiz.id!) != null ? null : quiz.id},
+        params: {'quiz_id': double.tryParse(quiz.id!) != null || quiz.id == '' ? null : quiz.id},
       );
       final dynamic response;
       if (quizExists) {
@@ -144,7 +144,7 @@ class QuizApi {
     try {
       final bool questionExists = await supabaseClient.rpc(
         'check_question_exists',
-        params: {'question_id': double.tryParse(question.id) != null ? null : question.id},
+        params: {'question_id': double.tryParse(question.id) != null || question.id == '' ? null : question.id},
       );
 
       final dynamic response;
