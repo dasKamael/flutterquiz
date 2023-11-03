@@ -20,7 +20,21 @@ class EditQuizController extends _$EditQuizController {
 
   @override
   FutureOr<Quiz> build(String? quizId) async {
+    if (quizId == null || quizId == '') {
+      return Quiz(
+        id: '',
+        title: '',
+        description: '',
+        createdBy: '',
+        rating: 0,
+        userRatedCount: 0,
+        createdAt: DateTime.now(),
+        isPrivate: false,
+        questions: [],
+      );
+    }
     final Quiz quiz = await ref.read(getCompleteQuizProvider(quizId: quizId).future);
+    log(quiz.toString());
     _oldQuiz = quiz;
     return quiz;
   }
@@ -69,10 +83,7 @@ class EditQuizController extends _$EditQuizController {
 
   void removeQuestion({required int index}) {
     List<Question> temp = state.value!.questions!.toList();
-    Question removedQuestion = temp.removeAt(index);
-    if (removedQuestion.id != '') {
-      // ref.read(createEditQuizServiceProvider).deleteQuestionWithAnswers(questionId: removedQuestion.id);
-    }
+    temp.removeAt(index);
     state = AsyncValue.data(state.value!.copyWith(questions: temp));
   }
 
@@ -83,9 +94,9 @@ class EditQuizController extends _$EditQuizController {
       state = AsyncValue.data(state.value!.copyWith(isPrivate: true));
       return (false, 'no_questions');
     }
+    state = const AsyncValue.loading();
 
     Quiz tempQuiz = state.value!;
-    state = const AsyncValue.loading();
     QuizDiff diff = findDifferences(_oldQuiz, state.value!);
 
     try {
@@ -105,7 +116,6 @@ class EditQuizController extends _$EditQuizController {
       for (Answer answer in diff.removedAnswers) {
         await ref.read(createEditQuizServiceProvider).deleteAnswerWithId(answerId: answer.id);
       }
-      state = AsyncValue.data(tempQuiz);
 
       ref.read(getQuizzesByUserIdServiceProvider(userId: ref.read(authServiceProvider)!.id).notifier).invalidate();
 

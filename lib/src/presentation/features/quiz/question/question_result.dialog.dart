@@ -80,10 +80,11 @@ class QuestionResultDialog extends ConsumerWidget {
                     },
                   ),
                   const SizedBox(width: 20),
-                  ElevatedButton(
-                    child: const Text('Erklärung'),
-                    onPressed: () => UrlLauncherUtil.openUrl(question.explanationLink, context),
-                  ),
+                  if (question.explanationLink != '')
+                    ElevatedButton(
+                      child: const Text('Erklärung'),
+                      onPressed: () => UrlLauncherUtil.openUrl(question.explanationLink, context),
+                    ),
                 ],
               ),
             ],

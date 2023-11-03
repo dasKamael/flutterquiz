@@ -12,21 +12,7 @@ class GetCompleteQuiz extends _$GetCompleteQuiz {
   }
 
   Future<Quiz> getCompleteQuizById({required String? quizId}) async {
-    if (quizId == null || quizId == '') {
-      return Quiz(
-        id: '',
-        title: '',
-        description: '',
-        createdBy: '',
-        rating: 0,
-        userRatedCount: 0,
-        createdAt: DateTime.now(),
-        isPrivate: false,
-        questions: [],
-      );
-    }
-
-    Quiz quiz = await ref.read(quizRepositoryProvider).getQuizById(quizId: quizId);
+    Quiz quiz = await ref.read(quizRepositoryProvider).getQuizById(quizId: quizId!);
 
     final List<Question> questions = await ref.read(quizRepositoryProvider).getQuestionsByQuizId(quiz.id!);
     List<Question> questionsWithAnswers = [];
