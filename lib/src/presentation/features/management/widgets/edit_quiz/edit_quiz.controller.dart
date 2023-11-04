@@ -1,21 +1,15 @@
 import 'dart:developer';
 
-import 'package:flutterquiz/src/common/utils/quiz_diff.util.dart';
-import 'package:flutterquiz/src/domain/authentication/services/auth.service.dart';
 import 'package:flutterquiz/src/domain/management/services/create_edit_quiz.service.dart';
 import 'package:flutterquiz/src/domain/quiz/enums/question_type.enum.dart';
 import 'package:flutterquiz/src/domain/quiz/models/quiz.dart';
 import 'package:flutterquiz/src/domain/quiz/services/get_complete_quiz.service.dart';
-import 'package:flutterquiz/src/domain/quiz/services/get_quizzes_by_user_id.service.dart';
-import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'edit_quiz.controller.g.dart';
 
 @riverpod
 class EditQuizController extends _$EditQuizController {
-  Logger get _logger => Logger('EditQuizController');
-
   late final Quiz _oldQuiz;
 
   @override
@@ -95,36 +89,6 @@ class EditQuizController extends _$EditQuizController {
       return (false, 'no_questions');
     }
     state = const AsyncValue.loading();
-
-    Quiz tempQuiz = state.value!;
-
-    try {
-      Quiz newQuiz = await ref.read(createEditQuizServiceProvider).createOrUpdateQuiz(quiz: state.value!);
-
-      for (Question question in state.value!.questions!) {
-        question = question.copyWith(quizId: newQuiz.id!);
-        await ref.read(createEditQuizServiceProvider).createOrUpdateQuestionWithAnswers(question: question);
-      }
-
-      if (tempQuiz.id != '') {
-        QuizDiff diff = findDifferences(_oldQuiz, state.value!);
-        for (Question question in diff.removedQuestions) {
-          await ref.read(createEditQuizServiceProvider).deleteQuestionWithId(questionId: question.id);
-        }
-
-        for (Answer answer in diff.removedAnswers) {
-          await ref.read(createEditQuizServiceProvider).deleteAnswerWithId(answerId: answer.id);
-        }
-      }
-      state = AsyncValue.data(tempQuiz);
-
-      ref.read(getQuizzesByUserIdServiceProvider(userId: ref.read(authServiceProvider)!.id).notifier).invalidate();
-
-      return (true, null);
-    } catch (e, s) {
-      _logger.info('SaveQuiz error: $e, $s');
-      state = AsyncValue.data(tempQuiz);
-      return (false, e.toString());
-    }
+    return await ref.read(createEditQuizServiceProvider).saveQuiz(quiz: state.value!, oldQuiz: _oldQuiz);
   }
 }
