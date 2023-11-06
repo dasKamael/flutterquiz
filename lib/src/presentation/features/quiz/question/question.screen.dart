@@ -44,7 +44,7 @@ class QuestionScreen extends ConsumerWidget {
                       const Text('Keine Antwort gefunden. Bitte versuche es später erneut.'),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                      child: QuestionUtil.getQuestionType(question.type, question),
+                      child: QuestionUtil.getQuestionWidgetByType(question.type, question),
                     ),
                   ],
                 ),

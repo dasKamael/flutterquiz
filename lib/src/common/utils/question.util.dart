@@ -4,7 +4,7 @@ import 'package:flutterquiz/src/presentation/features/quiz/question/widgets/mult
 import 'package:flutterquiz/src/presentation/features/quiz/question/widgets/single_answer_question.dart';
 
 class QuestionUtil {
-  static Widget getQuestionType(String questionType, Question question) {
+  static Widget getQuestionWidgetByType(String questionType, Question question) {
     switch (questionType) {
       case 'single':
         return SingleAnswerQuestion(question: question);
