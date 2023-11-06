@@ -12,8 +12,12 @@ class UrlLauncherUtil {
     if (!await launchUrl(uri, mode: launchMode)) {
       log.warning('openUrl: Could not launch $url');
       if (context.mounted) {
-        // TODO context error extension
-        // context.errorMsg(message: 'Could not launch $url');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Could not open $url'),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
     }
   }
