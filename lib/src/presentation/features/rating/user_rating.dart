@@ -17,7 +17,7 @@ class _UserRatingState extends ConsumerState<UserRating> {
   bool wasRated = false;
   bool wasSend = false;
   bool isLoading = false;
-  bool wasAlreadyRated = false;
+  late Future<bool> wasAlreadyRated = Future.value(false);
 
   double rating = 0;
 
@@ -41,39 +41,47 @@ class _UserRatingState extends ConsumerState<UserRating> {
   }
 
   void checkWasAlreadyRated() async {
-    wasAlreadyRated = await ref.read(ratingServiceProvider).wasAlreadyRated(quizId: widget.quizId);
+    wasAlreadyRated = Future.value(await ref.read(ratingServiceProvider).wasAlreadyRated(quizId: widget.quizId));
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     if (wasSend) return const Text('Vielen dank für die Bewertung!');
-    if (wasAlreadyRated) return const Text('Du hast dieses Quiz bereits bewertet!');
-    return Column(
-      children: [
-        const Text('Wie hat dir das Quiz gefallen?'),
-        const SizedBox(height: 20),
-        RatingBar(
-          allowHalfRating: true,
-          ratingWidget: RatingWidget(
-            full: const Icon(Icons.star, color: Colors.amber),
-            half: const Icon(Icons.star_half, color: Colors.amberAccent),
-            empty: const Icon(Icons.star_border, color: Colors.grey),
-          ),
-          onRatingUpdate: (value) {
-            setState(() {
-              rating = value;
-              wasRated = true;
-            });
-          },
-        ),
-        const SizedBox(height: 20),
-        if (isLoading) const CircularProgressIndicator(color: Colors.white),
-        if (wasRated && !isLoading)
-          UiElevatedButton(
-            onPressed: sendRating,
-            child: const Text('Bewertung abschicken'),
-          ),
-      ],
+
+    return FutureBuilder<bool>(
+      future: wasAlreadyRated,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return const CircularProgressIndicator();
+        if (snapshot.data == true) return const Text('Du hast dieses Quiz bereits bewertet!');
+        return Column(
+          children: [
+            const Text('Wie hat dir das Quiz gefallen?'),
+            const SizedBox(height: 20),
+            RatingBar(
+              allowHalfRating: true,
+              ratingWidget: RatingWidget(
+                full: const Icon(Icons.star, color: Colors.amber),
+                half: const Icon(Icons.star_half, color: Colors.amberAccent),
+                empty: const Icon(Icons.star_border, color: Colors.grey),
+              ),
+              onRatingUpdate: (value) {
+                setState(() {
+                  rating = value;
+                  wasRated = true;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            if (isLoading) const CircularProgressIndicator(color: Colors.white),
+            if (wasRated && !isLoading)
+              UiElevatedButton(
+                onPressed: sendRating,
+                child: const Text('Bewertung abschicken'),
+              ),
+          ],
+        );
+      },
     );
   }
 }
